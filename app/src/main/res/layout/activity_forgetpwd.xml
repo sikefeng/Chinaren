@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.sikefeng.chinaren.presenter.ForgetPwdPresenter" />
+
+        <import type="com.sikefeng.chinaren.presenter.vm.ForgetPwdViewModel" />
+
+        <variable
+            name="userBean"
+            type="com.sikefeng.chinaren.entity.model.UserBean" />
+
+        <variable
+            name="presenter"
+            type="ForgetPwdPresenter" />
+
+        <variable
+            name="viewModel"
+            type="ForgetPwdViewModel" />
+    </data>
+<ScrollView
+    android:background="@color/withe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@color/withe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/status_bar_height" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <TextView
+                    android:textColor="@color/withe"
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/forget_password"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:id="@+id/tv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="@string/reset_pwd"
+                android:textColor="@color/text_color"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tv_tips"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="32dp">
+
+                    <TextView
+                        android:id="@+id/tv_phone_tips"
+                        style="@style/RegisterTextTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/phone_number" />
+                    <com.sikefeng.chinaren.widget.ClearEditText
+                        style="@style/editTextStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/tv_phone_tips"
+                        android:id="@+id/loginName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        />
+                    <View
+                        android:layout_below="@id/loginName"
+                        android:layout_toRightOf="@id/tv_phone_tips"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_color"/>
+                   <Button
+                        android:textColor="@drawable/btn_sendcode_text"
+                        android:layout_marginBottom="2dp"
+                        android:layout_alignBottom="@id/loginName"
+                        android:layout_centerVertical="true"
+                        android:text="@string/get_code"
+                        android:background="@drawable/btn_send_code"
+                        android:id="@+id/btnSendCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:id="@+id/tv_code_number"
+                        style="@style/RegisterTextTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/code_number" />
+                    <com.sikefeng.chinaren.widget.ClearEditText
+                        android:text="@{userBean.verCode}"
+                        style="@style/editTextStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/tv_code_number"
+                        android:id="@+id/verCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        />
+                    <View
+                        android:layout_below="@id/verCode"
+                        android:layout_toRightOf="@id/tv_code_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_color"/>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_pwd_tips"
+                        style="@style/RegisterTextTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/pwd_number" />
+                    <com.sikefeng.chinaren.widget.ClearEditText
+                        android:maxLength="20"
+                        android:layout_marginRight="40dp"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        style="@style/editTextStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/tv_pwd_tips"
+                        android:id="@+id/newPassword"
+                        android:layout_width="match_parent"
+                        android:inputType="textPassword"
+                        />
+                    <View
+                        android:id="@+id/pwd_line"
+                        android:layout_below="@id/newPassword"
+                        android:layout_toRightOf="@id/tv_pwd_tips"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_color"/>
+                    <CheckBox
+                        android:layout_alignBottom="@id/pwd_line"
+                        android:button="@drawable/switcher_bg"
+                        android:id="@+id/cbVisiblePwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dip"
+                        android:layout_alignParentRight="true" />
+                </RelativeLayout>
+
+                <Button
+                    android:background="@drawable/btn_submit"
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/submit"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+</layout>

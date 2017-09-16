@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="userBean"
+            type="com.sikefeng.chinaren.entity.model.UserBean" />
+        <variable
+            name="presenter"
+            type="com.sikefeng.chinaren.presenter.NotificationPresenter" />
+
+        <variable
+            name="viewModel"
+            type="com.sikefeng.chinaren.presenter.vm.NotificationViewModel" />
+
+        <variable
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{userBean.loginName}"
+            />
+        <com.classic.common.MultipleStatusView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/status_bar_height"
+            app:emptyView="@layout/view_state_empty_view"
+            app:errorView="@layout/view_state_error_view"
+            app:loadingView="@layout/view_state_loading_view"
+            app:multiState="@{viewModel.stateViewType}"
+            app:noNetworkView="@layout/view_state_no_network_view"
+            app:presenter="@{presenter}">
+
+            <in.srain.cube.views.ptr.PtrFrameLayout
+                style="@style/refreshStyle"
+                android:visibility="@{viewModel.stateViewType == 0 ? View.VISIBLE : View.GONE}"
+                app:loading="@{viewModel.getLoading()}"
+                app:presenter="@{presenter}">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:adapter="@{viewModel.getAdapter()}"
+                    app:layoutManager="@{layoutManager}" />
+
+            </in.srain.cube.views.ptr.PtrFrameLayout>
+
+        </com.classic.common.MultipleStatusView>
+    </LinearLayout>
+</layout>

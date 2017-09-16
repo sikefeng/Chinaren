@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="theme_color">#1c8bcc</color>
+    <color name="withe">#fff</color>
+    <color name="black">#000000</color>
+
+    <color name="bg_color">#eeeeee</color>
+    <color name="bg_color_night">#504f4f</color>
+
+    <color name="text_color">#222222</color>
+    <color name="text_color_night">#FFFFFF</color>
+
+    <color name="load_more">#888888</color>
+    <color name="line_color">#d2d1d1</color>
+    <color name="line">#e6e6e6</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_gray_color">#9b9b9b</color>
+    <color name="text_red_color">#e62121</color>
+    <color name="ripple_color">#20000000</color>
+    <color name="text_title_color">#222222</color>
+    <color name="text_content_color">#20000000</color>
+    <color name="text_hint_color">#9b9b9b</color>
+    <integer-array name="refresh_colors">
+        <item>@color/black</item>
+        <item>@color/black</item>
+        <item>@color/black</item>
+        <item>@color/black</item>
+    </integer-array>
+
+    <!--自定义相机-->
+    <color name="color_262626_70">#4D262626</color>
+    <color name="color_2a2a2a">#2a2a2a</color>
+    <color name="color_f05382">#f05382</color>
+
+    <color name="color_323232">#323232</color>
+    <color name="color_262626">#262626</color>
+    <color name="color_6bcb4a">#6bcb4a</color>
+    <color name="color_757575">#757575</color>
+    <color name="color_f15b82">#f15b82</color>
+    <color name="color_fa4848">#fa4848</color>
+    <color name="color_f15b82_65">#a5f15b82</color>
+    <color name="color_f15b82_90">#e5f15b82</color>
+    <color name="color_ffba00">#ffba00 </color>
+    <color name="color_white_tran_99">#99ffffff</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+
+</resources>
