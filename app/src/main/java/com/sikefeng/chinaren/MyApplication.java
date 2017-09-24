@@ -24,7 +24,7 @@ import com.zhy.changeskin.SkinManager;
 
 
 
-public class XXApplication extends Application {
+public class MyApplication extends Application {
     /**
      * 相机图片，暂定存在这里
      */
@@ -33,20 +33,20 @@ public class XXApplication extends Application {
     /**
      * 自己实例化
      */
-    private static XXApplication instance;
+    private static MyApplication instance;
 
-    public static XXApplication getInstance() {
+    public static MyApplication getInstance() {
         return instance;
     }
 
-    public static void setInstance(XXApplication instance) {
-        XXApplication.instance = instance;
+    public static void setInstance(MyApplication instance) {
+        MyApplication.instance = instance;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        this.setInstance(XXApplication.this);
+        this.setInstance(MyApplication.this);
         init();
 
 
@@ -66,7 +66,7 @@ public class XXApplication extends Application {
                         try {
                             //建议使用下面方式在控制台打印异常，这样就可以在Error级别看到红色log
                             Log.e("AndroidRuntime","--->CockroachException:"+thread+"<---",throwable);
-                            Toast.makeText(XXApplication.this, "Exception Happend\n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyApplication.this, "Exception Happend\n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
 //                        throw new RuntimeException("..."+(i++));
                         } catch (Throwable e) {
 
