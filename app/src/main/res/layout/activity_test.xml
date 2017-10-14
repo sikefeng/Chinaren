@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="user"
+            type="com.sikefeng.chinaren.entity.model.UserBean" />
+
+        <variable
+            name="presenter"
+            type="com.sikefeng.chinaren.presenter.TestPresenter" />
+
+        <variable
+            name="viewModel"
+            type="com.sikefeng.chinaren.presenter.vm.TestViewModel" />
+    </data>
+
+    <LinearLayout
+        android:background="@mipmap/bg_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
+            android:id="@+id/nplItemMomentPhotos"
+            style="@style/MatchWrap"
+            android:layout_marginTop="8dp"
+            app:bga_npl_itemCornerRadius="0dp"
+            app:bga_npl_itemSpanCount="3"
+            app:bga_npl_itemWhiteSpacing="4dp"
+            app:bga_npl_itemWidth="0dp"
+            app:bga_npl_otherWhiteSpacing="64dp"
+            app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+            app:bga_npl_showAsLargeWhenOnlyOne="true"/>
+    </LinearLayout>
+</layout>
