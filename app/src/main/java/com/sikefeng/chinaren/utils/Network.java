@@ -12,7 +12,7 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 
 import java.lang.reflect.Method;
 
@@ -58,7 +58,7 @@ public final class Network {
      * @return true为已经连接，false没有连接
      */
     public static boolean isConnected() {
-        NetworkInfo net = getConnectivityManager(XXApplication.getContext()).getActiveNetworkInfo();
+        NetworkInfo net = getConnectivityManager(MyApplication.getContext()).getActiveNetworkInfo();
         return net != null && net.isConnected();
     }
 
@@ -69,7 +69,7 @@ public final class Network {
      */
     public static boolean isConnectedOrConnecting() {
         ConnectivityManager connectivity = (ConnectivityManager)
-                XXApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                MyApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (connectivity != null) {
             NetworkInfo nInfo = connectivity.getActiveNetworkInfo();

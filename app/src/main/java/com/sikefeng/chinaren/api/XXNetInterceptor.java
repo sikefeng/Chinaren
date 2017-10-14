@@ -2,7 +2,7 @@
 package com.sikefeng.chinaren.api;
 
 import com.alibaba.android.arouter.utils.TextUtils;
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 import com.sikefeng.mvpvmlib.utils.LogUtils;
@@ -19,7 +19,7 @@ public class XXNetInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         Request.Builder builder = request.newBuilder();
-        String token = (String) SharePreferenceUtils.get(XXApplication.getContext(), Constants.TOKEN, "");
+        String token = (String) SharePreferenceUtils.get(MyApplication.getContext(), Constants.TOKEN, "");
         if (!TextUtils.isEmpty(token)) {
             builder.addHeader("Authorization", token);
         }

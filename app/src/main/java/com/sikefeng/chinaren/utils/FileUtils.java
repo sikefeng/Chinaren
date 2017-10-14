@@ -11,7 +11,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.sikefeng.chinaren.R;
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 
 import java.io.File;
 
@@ -40,8 +40,8 @@ public class FileUtils {
             return null;
         } else {
             String cacheImgPath = Environment.getExternalStorageDirectory().getPath()
-                    + File.separator + XXApplication.getContext().getPackageName()
-                    + File.separator + XXApplication.getContext().getString(R.string.app_name) + "_Pic";
+                    + File.separator + MyApplication.getContext().getPackageName()
+                    + File.separator + MyApplication.getContext().getString(R.string.app_name) + "_Pic";
             File file = new File(cacheImgPath);
             if (!file.exists()) {
                 boolean mkresult = file.mkdirs();// 创建文件夹
@@ -93,7 +93,7 @@ public class FileUtils {
             File file = new File(path);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //添加此判断，判断SDK版本是不是4.4或者高于4.4
                 String[] paths = new String[]{path};
-                MediaScannerConnection.scanFile(XXApplication.getContext(), paths, null, null);
+                MediaScannerConnection.scanFile(MyApplication.getContext(), paths, null, null);
             } else {
                 Intent intent;
                 if (file.isDirectory()) {
@@ -106,7 +106,7 @@ public class FileUtils {
                     intent.setData(Uri.fromFile(file));
                     //Log.v(LOG_TAG, "file changed, send broadcast:" + intent.toString());
                 }
-                XXApplication.getContext().sendBroadcast(intent);
+                MyApplication.getContext().sendBroadcast(intent);
             }
         } catch (Exception e) {
         }

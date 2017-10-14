@@ -23,11 +23,11 @@
             type="ForgetPwdViewModel" />
     </data>
 <ScrollView
-    android:background="@color/withe"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:background="@color/withe"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -49,7 +49,7 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <TextView
-                    android:textColor="@color/withe"
+                    android:textColor="@color/white"
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -63,7 +63,7 @@ public class MyFragmentPresenter extends BasePresenter<IRBaseView, MyFragmentVie
                         if (status == 0 && msg.equals("success")) {
                             ToastUtils.showShort(getContext().getString(R.string.exit_login_success));
                             LoginUtil.exitLogin();
-                            ARouter.getInstance().build(Constants.LOGIN_URL, Constants.APP_GOUP).navigation();
+                            ARouter.getInstance().build(Constants.LOGIN_URL).navigation();
                             getContext().finish();
                         } else {
                             ToastUtils.showShort(msg);

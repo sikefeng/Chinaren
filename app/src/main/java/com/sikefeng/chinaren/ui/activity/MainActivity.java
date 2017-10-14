@@ -15,18 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityMainBinding;
 import com.sikefeng.chinaren.entity.event.MainEvent;
 import com.sikefeng.chinaren.entity.event.RvScrollEvent;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
-import com.sikefeng.chinaren.ui.fragment.MainFragment;
+import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
+import com.sikefeng.chinaren.ui.fragment.HomeFragment;
 import com.sikefeng.chinaren.ui.fragment.MyFragment;
-import com.sikefeng.chinaren.ui.fragment.NotificationFragment;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ResUtils;
-import com.sikefeng.chinaren.utils.SwipeBackUtils;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,14 +37,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Route(path = Constants.MAIN_URL, group = Constants.APP_GOUP)
+@Route(path = Constants.MAIN_URL)
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
 
     /**
      * TAB名称集合
      */
-    private String[] titles = ResUtils.getArrStr(R.array.tabTitles);
+    private String[] tabTitles = ResUtils.getArrStr(R.array.tabTitles);
     /**
      * SimpleFragmentPagerAdapter适配器
      */
@@ -57,10 +57,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      */
     private int[] mImgs = new int[]{R.drawable.selector_tab_weixin, R.drawable.selector_tab_friends,
             R.drawable.selector_tab_me};
-    /**
-     * 关闭MainActivity
-     */
-    private String finishActivity = "finish";
+
     /**
      * 订阅事件
      *
@@ -68,10 +65,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MainEvent event) {
-        String type = event.getType();
-        if (type.equals(finishActivity)) {
-            finish();
-        }
+
     }
 
     @Override
@@ -107,33 +101,30 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                     .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
                     .penaltyLog().penaltyDeath().build());
         }
-        SwipeBackUtils.disableSwipeActivity(this);
+//        SwipeBackUtils.disableSwipeActivity(this);
 
-//        getBinding().toolbar.setTitle(getString(R.string.app_name));
-        getBinding().toolbarTitle.setText(getString(R.string.app_name));
-
-
-
+        SwipeBackHelper.getCurrentPage(this)//获取当前页面
+                .setSwipeBackEnable(false);//设置是否可滑动
+        SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(false);
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new MainFragment());
-        fragmentList.add(new NotificationFragment());
-//        fragmentList.add(new ServiceRequestFragment());
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new ContactsFragment());
         fragmentList.add(new MyFragment());
         getBinding().viewpager.setOffscreenPageLimit(fragmentList.size());
-        pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, java.util.Arrays.asList(titles));
+        pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, java.util.Arrays.asList(tabTitles));
 
         getBinding().viewpager.setAdapter(pagerAdapter);//给ViewPager设置适配器
         getBinding().tablayout.setupWithViewPager(getBinding().viewpager);//将TabLayout和ViewPager关联起来
 
         getBinding().tablayout.setSelectedTabIndicatorHeight(0);
-        for (int i = 0; i < titles.length; i++) {
+        for (int i = 0; i < tabTitles.length; i++) {
             //获得到对应位置的Tab
             TabLayout.Tab itemTab = getBinding().tablayout.getTabAt(i);
             if (itemTab != null) {
                 //设置自定义的标题
                 itemTab.setCustomView(R.layout.item_tab);
                 TextView textView = (TextView) itemTab.getCustomView().findViewById(R.id.tv_name);
-                textView.setText(titles[i]);
+                textView.setText(tabTitles[i]);
                 ImageView imageView = (ImageView) itemTab.getCustomView().findViewById(R.id.iv_img);
                 imageView.setImageResource(mImgs[i]);
             }
@@ -152,7 +143,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 EventBus.getDefault().post(new RvScrollEvent(tabIndex, 0));
             }
         });
-
+        getBinding().toolbarTitle.setText(tabTitles[0]);
         getBinding().viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -160,7 +151,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
             @Override
             public void onPageSelected(int position) {
-//                getBinding().toolbar.setTitle(tabTitles[position]);
+                getBinding().toolbarTitle.setText(tabTitles[position]);
             }
 
             @Override

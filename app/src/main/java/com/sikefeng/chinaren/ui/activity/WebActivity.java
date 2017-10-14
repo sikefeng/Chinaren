@@ -6,7 +6,6 @@ package com.sikefeng.chinaren.ui.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -41,14 +40,14 @@ public class WebActivity extends BaseActivity<ActivityWebBinding> {
     protected void init(Bundle savedInstanceState) {
         initWebViewSettings();
 
-        if (null != getIntent()) {
-            String url = getIntent().getStringExtra("url");
-            if (TextUtils.isEmpty(url)) {
-                url = "about:blank";
-            }
-            getBinding().webView.loadUrl(url);
-        }
-
+//        if (null != getIntent()) {
+//            String url = getIntent().getStringExtra("url");
+//            if (TextUtils.isEmpty(url)) {
+//                url = "about:blank";
+//            }
+//            getBinding().webView.loadUrl(url);
+//        }
+        getBinding().webView.loadUrl("http://www.baidu.com");
         getBinding().webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

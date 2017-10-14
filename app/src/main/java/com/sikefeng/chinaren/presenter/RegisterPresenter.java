@@ -144,7 +144,7 @@ public class RegisterPresenter extends BasePresenter<IRBaseView, RegisterViewMod
                         LogUtils.i(status + "=========" + msg);
                         if (status == 0 && msg.equals("success")) {
                             LoginUtil.saveUserData(getContext(), value.getData());
-                            ARouter.getInstance().build(Constants.MAIN_URL, Constants.APP_GOUP).navigation();
+                            ARouter.getInstance().build(Constants.MAIN_URL).navigation();
                             getContext().finish();
                         } else {
                             ToastUtils.showShort(msg);

@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'realm-android'
 android {
     signingConfigs {
         release {
-//            storeFile file("/Users/sikefeng.jks")
-//            storePassword "123456"
-//            keyAlias "sikefeng"
-//            keyPassword "123456"
+            storeFile file("/androidtest.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
         }
         debug {
 //            storeFile file('/Users/sikefeng.jks')
@@ -79,10 +79,22 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs', 'src/main/jniLibs']
+            jniLibs.srcDirs = ['libs']
         }
     }
     productFlavors {
+        dev {
+            applicationId "com.sikefeng.chinaren"
+            resValue "string", "app_name", "Chinaren1"
+            resValue "string", "http_server_url", "http://192.168.2.129:9090/api/"
+        }
+        sit {
+            applicationId "com.sikefeng.chinaren"
+            resValue "string", "app_name", "Chinaren2"
+            resValue "string", "http_server_url", "http://192.168.2.129:9090/api/"
+        }
     }
+
 }
 
 dependencies {
@@ -90,6 +102,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //直接使用引入libs下所有jar包的方式
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.hamcrest:hamcrest-all:1.3'
@@ -110,13 +124,15 @@ dependencies {
     compile(rootProject.ext.support["design"]) {
         exclude module: 'support-annotations'
     }
-    //view
+
+
     /*compile (rootProject.ext.dependencies["autolayout"]) {
-                    exclude group: 'com.android.support'
-                }*/
+                        exclude group: 'com.android.support'
+                    }*/
     compile(rootProject.ext.dependencies["photoview"]) {
         exclude group: 'com.android.support'
     }
+    compile rootProject.ext.dependencies["album"]
     compile rootProject.ext.dependencies["glide"]
     //tools
     compile rootProject.ext.dependencies["eventbus"]
@@ -145,4 +161,15 @@ dependencies {
     compile 'com.neovisionaries:nv-websocket-client:1.31'
     //相机相关
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0@aar'
+    compile files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')
+    //崩溃处理，可以上传到服务器
+    compile 'com.faendir:acra:4.10.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像
+    compile 'pub.devrel:easypermissions:0.3.0'
+    compile 'com.google.zxing:core:3.3.0'
+    compile 'cn.bingoogolapple:bga-adapter:1.1.5@aar'
+    compile 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
 }

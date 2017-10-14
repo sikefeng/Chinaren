@@ -2,7 +2,7 @@ package com.sikefeng.chinaren.utils;
 
 import android.content.Context;
 
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.entity.model.UserBean;
 
 import static com.hss01248.dialog.StyledDialog.context;
@@ -45,8 +45,8 @@ public class LoginUtil {
     public static void exitLogin() {
         String loginName = (String) SharePreferenceUtils.get(context, Constants.LOGINNAME, "");
         String newPassword = (String) SharePreferenceUtils.get(context, Constants.NEWPASSWORD, "");
-        SharePreferenceUtils.clear(XXApplication.getContext());
-        SharePreferenceUtils.put(XXApplication.getContext(), Constants.ISLOGIN, false);
+        SharePreferenceUtils.clear(MyApplication.getContext());
+        SharePreferenceUtils.put(MyApplication.getContext(), Constants.ISLOGIN, false);
         SharePreferenceUtils.put(context, Constants.LOGINNAME, loginName);
         SharePreferenceUtils.put(context, Constants.NEWPASSWORD, newPassword);
     }

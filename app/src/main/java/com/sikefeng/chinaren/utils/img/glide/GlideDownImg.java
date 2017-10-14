@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -63,7 +63,7 @@ public class GlideDownImg {
             public void run() {
                 File file = null;
                 try {
-                    file = Glide.with(XXApplication.getContext())
+                    file = Glide.with(MyApplication.getContext())
                             .load(url)
                             .downloadOnly(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                             .get();

@@ -13,7 +13,6 @@ import android.view.WindowManager;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.jude.swipbackhelper.SwipeBackHelper;
-import com.sikefeng.chinaren.utils.SwipeBackUtils;
 import com.sikefeng.mvpvmlib.base.RBaseActivity;
 import com.zhy.changeskin.SkinManager;
 
@@ -33,8 +32,9 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+//        setTheme(R.style.SwitchTheme1);
         SwipeBackHelper.onCreate(this); //初始化右滑返回上一级界面
-        SwipeBackUtils.enableSwipeActivity(this, 0.1f); //打开右滑事件
+//        SwipeBackUtils.enableSwipeActivity(this, 0.1f); //打开右滑事件
         super.onCreate(savedInstanceState);
         ImmersionBar.with(this).init(); //设置沉浸式状态栏样式
         if(isEnableEventBus() && !EventBus.getDefault().isRegistered(this)){
@@ -142,8 +142,17 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
         }
     }
 
-    protected Toolbar getToolbar(){
-        return null;
+    /**
+     * 设置Toolbar
+     */
+    private Toolbar toolbar;
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+    }
+
+    protected Toolbar getToolbar() {
+        return toolbar;
     }
 
     //是否设置状态栏为透明

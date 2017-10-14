@@ -7,7 +7,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 
 import java.io.File;
 
@@ -17,11 +17,11 @@ public class SingletonUtils {
     /**
      * 定义ClearableCookieJar
      */
-    private static ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(XXApplication.getContext()));
+    private static ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(MyApplication.getContext()));
     /**
      * 定义缓存文件目录
      */
-    private static File cacheDir = XXApplication.getContext().getCacheDir();
+    private static File cacheDir = MyApplication.getContext().getCacheDir();
 
     public static ClearableCookieJar getCookieJar() {
         return cookieJar;

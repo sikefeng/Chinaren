@@ -5,18 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityUpdatepwdBinding;
-import com.sikefeng.chinaren.entity.event.MainEvent;
 import com.sikefeng.chinaren.entity.event.UpdatePwdEvent;
 import com.sikefeng.chinaren.presenter.UpdatePwdPresenter;
 import com.sikefeng.chinaren.presenter.vm.UpdatePwdViewModel;
 import com.sikefeng.chinaren.utils.Constants;
-import com.sikefeng.chinaren.utils.LoginUtil;
-import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
@@ -34,7 +30,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * @version v0.1  <br>
  * @since JDK 1.8
  */
-@Route(path = Constants.UPDATE_PWD_URL, group = Constants.APP_GOUP)
+@Route(path = Constants.UPDATE_PWD_URL)
 public class UpdatePwdActivity extends BaseActivity<ActivityUpdatepwdBinding> implements View.OnClickListener {
 
 
@@ -54,14 +50,7 @@ public class UpdatePwdActivity extends BaseActivity<ActivityUpdatepwdBinding> im
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(UpdatePwdEvent event) {
-        String type = event.getType();
-        if (type.equals(sendCodeSuccess)) {
-            ARouter.getInstance().build(Constants.LOGIN_URL, Constants.APP_GOUP).navigation();
-            LoginUtil.exitLogin();
-            SharePreferenceUtils.put(this,Constants.NEWPASSWORD,"");
-            this.finish();
-            EventBus.getDefault().post(new MainEvent().withType("finish"));
-        }
+
     }
     @Override
     protected int getLayoutId() {
@@ -82,14 +71,7 @@ public class UpdatePwdActivity extends BaseActivity<ActivityUpdatepwdBinding> im
         EventBus.getDefault().register(this);
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
-        getBinding().toolbar.setNavigationIcon(R.mipmap.return_icon);
-        getBinding().toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        getBinding().btnSave.setOnClickListener(this);
+        setToolbar(getBinding().toolbar);
     }
 
     @Override

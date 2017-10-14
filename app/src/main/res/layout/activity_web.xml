@@ -24,7 +24,7 @@
             android:id="@+id/pb"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="2.3dp"
+            android:layout_height="2dp"
             android:progressDrawable="@drawable/progress_bar_states" />
 
         <com.sikefeng.chinaren.widget.webview.FastScrollWebView

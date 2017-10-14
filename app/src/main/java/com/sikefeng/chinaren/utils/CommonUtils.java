@@ -4,7 +4,7 @@
 package com.sikefeng.chinaren.utils;
 
 
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class CommonUtils {
      * @return int dp的值
      */
     public static int px2dp(float pxValue) {
-        float scale = XXApplication.getContext().getResources().getDisplayMetrics().density;
+        float scale = MyApplication.getContext().getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
@@ -27,7 +27,7 @@ public class CommonUtils {
      * @return px的值
      */
     public static int dp2px(float dipValue) {
-        float scale = XXApplication.getContext().getResources().getDisplayMetrics().density;
+        float scale = MyApplication.getContext().getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
 
@@ -37,7 +37,7 @@ public class CommonUtils {
      * @return 输出sp的值
      */
     public static int px2sp(float pxValue) {
-        float fontScale = XXApplication.getContext().getResources().getDisplayMetrics().scaledDensity;
+        float fontScale = MyApplication.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
 
@@ -47,7 +47,7 @@ public class CommonUtils {
      * @return 输出px的值
      */
     public static int sp2px(float spValue) {
-        float fontScale = XXApplication.getContext().getResources().getDisplayMetrics().scaledDensity;
+        float fontScale = MyApplication.getContext().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 

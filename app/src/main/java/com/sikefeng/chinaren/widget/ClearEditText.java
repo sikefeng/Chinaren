@@ -8,13 +8,20 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
-import android.view.animation.Animation;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.TranslateAnimation;
 
 import com.sikefeng.chinaren.R;
 
 
+/**
+ * 文件名：ClearEditText <br>
+ * 创建时间： 27/7/17 下午PM6:09 <br>
+ * 文件描述：<br>
+ * 带清除按钮的EditText
+ *
+ * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a> <br>
+ * @version v0.1  <br>
+ * @since JDK 1.8
+ */
 public class ClearEditText extends android.support.v7.widget.AppCompatEditText implements
         OnFocusChangeListener, TextWatcher {
 
@@ -37,21 +44,49 @@ public class ClearEditText extends android.support.v7.widget.AppCompatEditText i
      */
     private boolean hasFoucs;
 
+    /**
+     * 功能描述：ClearEditText构造方法
+     * <br>创建时间： 2017-07-27 18:10:05
+     *
+     * @param context 上下文
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     */
     public ClearEditText(Context context) {
         this(context, null);
     }
 
+    /**
+     * 功能描述：这里构造方法也很重要，不加这个很多属性不能再XML里面定义
+     * <br>创建时间： 2017-07-27 18:11:47
+     *
+     * @param context 上下文
+     * @param attrs   属性
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     */
     public ClearEditText(Context context, AttributeSet attrs) {
-//这里构造方法也很重要，不加这个很多属性不能再XML里面定义
         this(context, attrs, android.R.attr.editTextStyle);
     }
 
+    /**
+     * 功能描述：ClearEditText构造方法
+     * <br>创建时间： 2017-07-27 18:13:16
+     *
+     * @param context  上下文
+     * @param attrs    属性
+     * @param defStyle 样式
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     */
     public ClearEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-
+    /**
+     * 功能描述：设置清除图片
+     * <br>创建时间： 2017-07-27 18:12:16
+     *
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     */
     private void init() {
 //获取EditText的DrawableRight,假如没有设置我们就使用默认的图片
         mClearDrawable = getCompoundDrawables()[2];
@@ -105,16 +140,20 @@ public class ClearEditText extends android.support.v7.widget.AppCompatEditText i
         }
     }
 
+    /**
+     * three_num
+     */
+    private final int threeNum = 3;
 
     /**
      * 设置清除图标的显示与隐藏，调用setCompoundDrawables为EditText绘制上去
      *
-     * @param visible
+     * @param visible 是否显示清除图标
      */
     protected void setClearIconVisible(boolean visible) {
         Drawable right = visible ? mClearDrawable : null;
         setCompoundDrawables(getCompoundDrawables()[0],
-                getCompoundDrawables()[1], right, getCompoundDrawables()[3]);
+                getCompoundDrawables()[1], right, getCompoundDrawables()[threeNum]);
     }
 
 
@@ -140,32 +179,37 @@ public class ClearEditText extends android.support.v7.widget.AppCompatEditText i
 
     }
 
+    /**
+     * fiveNum
+     */
+    private final int fiveNum = 5;
 
     /**
      * 设置晃动动画
      */
-    public void setShakeAnimation() {
-        this.setAnimation(shakeAnimation(5));
-    }
+//    public void setShakeAnimation() {
+//        this.setAnimation(shakeAnimation(fiveNum));
+//    }
 
 
     /**
      * 晃动动画
      *
-     * @param counts 1秒钟晃动多少下
-     * @return
+     * 1秒钟晃动多少下
+     *
      */
-    public static Animation shakeAnimation(int counts) {
-        Animation translateAnimation = new TranslateAnimation(0, 10, 0, 0);
-        translateAnimation.setInterpolator(new CycleInterpolator(counts));
-        translateAnimation.setDuration(1000);
-        return translateAnimation;
-    }
+//    public static Animation shakeAnimation(int counts) {
+//        Animation translateAnimation = new TranslateAnimation(0, 10, 0, 0);
+//        translateAnimation.setInterpolator(new CycleInterpolator(counts));
+//        translateAnimation.setDuration(1000);
+//        return translateAnimation;
+//    }
+
     @Override
     protected void onSelectionChanged(int selStart, int selEnd) {
         super.onSelectionChanged(selStart, selEnd);
         //保证光标始终在最后面
-        if(selStart==selEnd){//防止不能多选
+        if (selStart == selEnd) {//防止不能多选
             setSelection(getText().length());
         }
 

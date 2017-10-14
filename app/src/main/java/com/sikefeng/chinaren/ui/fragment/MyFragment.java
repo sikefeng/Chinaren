@@ -3,6 +3,7 @@
  */
 package com.sikefeng.chinaren.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -15,12 +16,13 @@ import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
+import com.sikefeng.chinaren.ui.activity.BaseMapActivity;
+import com.sikefeng.chinaren.ui.activity.LocationActivity;
+import com.sikefeng.chinaren.ui.activity.WebActivity;
 import com.sikefeng.chinaren.utils.Constants;
-import com.sikefeng.chinaren.utils.SharePreferenceUtils;
+import com.sikefeng.chinaren.widget.zxing.activity.CaptureActivity;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
 import com.zhy.changeskin.SkinManager;
-
-import static com.hss01248.dialog.StyledDialog.context;
 
 /**
  * 文件名：MyFragment <br>
@@ -84,26 +86,27 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-                        String token = (String) SharePreferenceUtils.get(context, Constants.TOKEN, "");
-                        presenter.exitLogin(token);
+//                        String token = (String) SharePreferenceUtils.get(context, Constants.TOKEN, "");
+//                        presenter.exitLogin(token);
+                        startActivity(new Intent(getActivity(), BaseMapActivity.class));
                     }
 
                     @Override
                     public void onSecond() {
-
+                        startActivity(new Intent(getActivity(), LocationActivity.class));
                     }
 
 
                 }).setBtnText("确定", "取消").show();
                 break;
             case R.id.personalData:
-
+                startActivity(new Intent(getActivity(), WebActivity.class));
                 break;
             case R.id.updatePwd:
-                ARouter.getInstance().build(Constants.UPDATE_PWD_URL, Constants.APP_GOUP).navigation();
+                ARouter.getInstance().build(Constants.UPDATE_PWD_URL).navigation();
                 break;
             case R.id.checkWorkAres:
-
+                startActivity(new Intent(getActivity(), CaptureActivity.class));
                 break;
             case R.id.workStuas:
 

@@ -17,4 +17,7 @@
     <declare-styleable name="startTakePhotoView">
         <attr name="src" format="reference" />
     </declare-styleable>
+
+
+
 </resources>

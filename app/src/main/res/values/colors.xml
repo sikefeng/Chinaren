@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/theme_color</color>
+    <color name="colorPrimaryDark">@color/theme_color</color>
+    <color name="colorAccent">@color/theme_color</color>
 
-    <color name="theme_color">#1c8bcc</color>
-    <color name="withe">#fff</color>
+    <color name="theme_color">#669900</color>
+    <color name="white">#fff</color>
     <color name="black">#000000</color>
 
-    <color name="bg_color">#eeeeee</color>
-    <color name="bg_color_night">#504f4f</color>
-
     <color name="text_color">#222222</color>
+    <color name="bg_color_night">#504f4f</color>
     <color name="text_color_night">#FFFFFF</color>
 
     <color name="load_more">#888888</color>
@@ -23,7 +21,7 @@
     <color name="ripple_color">#20000000</color>
     <color name="text_title_color">#222222</color>
     <color name="text_content_color">#20000000</color>
-    <color name="text_hint_color">#9b9b9b</color>
+
     <integer-array name="refresh_colors">
         <item>@color/black</item>
         <item>@color/black</item>
@@ -47,5 +45,15 @@
     <color name="color_ffba00">#ffba00 </color>
     <color name="color_white_tran_99">#99ffffff</color>
     <color name="color_f5f5f5">#f5f5f5</color>
-
+    <color name="colorPrimaryNight">#1A1A1B</color>
+    <color name="colorPrimaryDarkNight">#1E1F21</color>
+    <color name="gray">#AAAAAA</color>
+    <!--自定义按钮颜色-->
+    <color name="btn_normal">@color/theme_color</color>
+    <color name="btn_press">#8bb140</color>
+    <!--自定义字体颜色-->
+    <color name="text_color_normal">#222222</color>
+    <color name="text_hint_color">#9b9b9b</color>
+    <!--自定义背景颜色-->
+    <color name="bg_color">#eeeeee</color>
 </resources>

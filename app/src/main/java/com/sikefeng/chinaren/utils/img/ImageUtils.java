@@ -13,7 +13,6 @@ import android.view.View;
 import com.sikefeng.chinaren.utils.img.glide.DownCallBack;
 
 
-
 public final class ImageUtils implements ImgLoadStrategy {
 
     /**
@@ -145,5 +144,7 @@ public final class ImageUtils implements ImgLoadStrategy {
             imageLoader.cleanAll(context);
         }
     }
+
+
 
 }

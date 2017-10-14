@@ -7,9 +7,6 @@
 
         <import type="android.view.View" />
 
-        <import type="com.sikefeng.chinaren.presenter.LoginPresenter" />
-
-        <import type="com.sikefeng.chinaren.presenter.vm.LoginViewModel" />
 
         <variable
             name="user"
@@ -17,170 +14,129 @@
 
         <variable
             name="presenter"
-            type="LoginPresenter" />
+            type="com.sikefeng.chinaren.presenter.LoginPresenter" />
 
         <variable
             name="viewModel"
-            type="LoginViewModel" />
+            type="com.sikefeng.chinaren.presenter.vm.LoginViewModel" />
     </data>
 
     <LinearLayout
+        android:background="@mipmap/bg_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="match_parent"
+            android:layout_height="84px"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="173px"
+            android:layout_marginRight="178px"
+            android:layout_marginTop="299px"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/bg_login"
             android:orientation="vertical">
-
-            <LinearLayout
+            <android.support.v7.widget.CardView
+                android:layout_marginLeft="47px"
+                android:layout_marginRight="48px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:orientation="vertical">
+                android:layout_marginTop="80px"
+                app:cardCornerRadius="10px"
+                app:cardElevation="10px"
+                app:cardPreventCornerOverlap="true">
 
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/logo"
-                    android:layout_marginTop="30dp"
-                    android:paddingLeft="24dip"
-                    android:paddingRight="24dip">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/app_logo"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginBottom="10dp"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="20dp"
-                            android:layout_toRightOf="@id/app_logo"
-                            android:text="@string/login_title"
-                            android:textColor="@color/withe"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-                    </RelativeLayout>
+                    android:orientation="vertical">
 
                     <com.sikefeng.chinaren.widget.ClearEditText
                         android:id="@+id/loginName"
                         style="@style/editTextStyle"
-                        android:layout_width="fill_parent"
-                        android:layout_height="44.6dip"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="60dip"
-                        android:background="@color/withe"
-                        android:drawablePadding="18dip"
+                        android:layout_width="match_parent"
+                        android:layout_height="114px"
+                        android:background="@color/white"
+                        android:drawableLeft="@mipmap/login_user"
+                        android:drawablePadding="20px"
                         android:hint="@string/phone_hint"
                         android:inputType="phone"
-                        android:paddingLeft="10dip"
-                        android:paddingRight="10dip"
-                        android:maxLength="11"/>
+                        android:maxLength="11"
+                        android:textCursorDrawable="@drawable/color_cursor"
+                        android:paddingLeft="20px"
+                        android:paddingRight="50px"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line"
+                        android:background="@color/line" />
 
                     <com.sikefeng.chinaren.widget.ClearEditText
-                        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:maxLength="25"
                         android:id="@+id/newPassword"
                         style="@style/editTextStyle"
-                        android:layout_width="fill_parent"
-                        android:layout_height="44.6dip"
-                        android:layout_below="@id/loginName"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/withe"
-                        android:drawablePadding="18dip"
-                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="114px"
+                        android:background="@color/white"
+                        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:drawableLeft="@mipmap/login_clock"
+                        android:drawablePadding="20px"
                         android:hint="@string/password_hint"
                         android:inputType="textPassword"
-                        android:paddingLeft="10dip"
-                        android:paddingRight="10dip" />
-                </RelativeLayout>
+                        android:textCursorDrawable="@drawable/color_cursor"
+                        android:paddingLeft="20px"
+                        android:paddingRight="50px"/>
 
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="45dp"
-                    android:layout_below="@+id/password"
-                    android:layout_marginLeft="22dip"
-                    android:layout_marginRight="22dip"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/btn_login"
-                    android:text="@string/login_btn"
-                    android:textColor="@color/withe"
-                    android:textSize="18sp" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvForgetPwd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="20dip"
-                        android:layout_marginRight="20dip"
-                        android:text="@string/forget_pwd"
-                        android:textColor="@color/theme_color" />
-
-                    <TextView
-                        android:id="@+id/tvRegister"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="20dip"
-                        android:layout_marginRight="20dip"
-                        android:text="@string/new_user"
-                        android:textColor="@color/theme_color" />
-                </RelativeLayout>
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <Button
+                android:layout_marginLeft="47px"
+                android:layout_marginRight="48px"
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="93px"
+                android:layout_marginTop="50px"
+                android:background="@drawable/btn_login"
+                android:text="@string/login_btn"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <RelativeLayout
+                android:layout_marginLeft="47px"
+                android:layout_marginRight="48px"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:padding="10dp"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
-        </RelativeLayout>
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/loginName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{user.loginName}" />
-            <TextView
-                android:id="@+id/loginNameTips"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvForgetPwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90px"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="20dip"
+                    android:text="@string/forget_pwd"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/tvRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90px"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="20dip"
+                    android:text="@string/new_user"
+                    android:textColor="@color/text_color" />
+            </RelativeLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> presenter.login(user)}"
-            android:text="SUBMIT" />-->
+
     </LinearLayout>
 </layout>

@@ -18,9 +18,9 @@
                 <corners android:radius="0dp" />
 
                 <gradient
-                    android:centerColor="#f79f1b"
-                    android:endColor="#fe9800"
-                    android:startColor="#f7aa36" />
+                    android:centerColor="@color/btn_press"
+                    android:endColor="@color/btn_normal"
+                    android:startColor="@color/btn_press" />
             </shape>
         </clip>
     </item>

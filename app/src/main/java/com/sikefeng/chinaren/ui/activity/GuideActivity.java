@@ -34,9 +34,9 @@ public class GuideActivity extends AppCompatActivity {
         String token = (String) SharePreferenceUtils.get(context, Constants.TOKEN, "");
         LogUtils.i(isLogin+"-------------"+token);
         if (isLogin && !TextUtils.isEmpty(token)) {
-            ARouter.getInstance().build(Constants.MAIN_URL, Constants.APP_GOUP).navigation();
+            ARouter.getInstance().build(Constants.MAIN_URL).navigation();
         } else {
-            ARouter.getInstance().build(Constants.LOGIN_URL, Constants.APP_GOUP).navigation();
+            ARouter.getInstance().build(Constants.LOGIN_URL).navigation();
         }
         finish();
     }

@@ -109,7 +109,7 @@
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="@string/personal_data"
+                            android:text="@string/baidu_com"
                             android:textColor="@color/text_color"
                             android:textSize="16sp" />
 
@@ -202,7 +202,7 @@
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="@string/check_work_area"
+                            android:text="@string/scan_text"
                             android:textColor="@color/text_color"
                             android:textSize="16sp" />
 

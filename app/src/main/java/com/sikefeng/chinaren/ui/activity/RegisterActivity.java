@@ -10,7 +10,7 @@ import android.widget.CompoundButton;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.sikefeng.chinaren.R;
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityRegisterBinding;
 import com.sikefeng.chinaren.entity.event.RegisterEvent;
@@ -37,7 +37,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * @version v0.1  <br>
  * @since JDK 1.8
  */
-@Route(path = Constants.REGISTER_URL, group = Constants.APP_GOUP)
+@Route(path = Constants.REGISTER_URL)
 public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> implements View.OnClickListener {
     /**
      * 用户实体类
@@ -94,13 +94,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
         getBinding().setUserBean(userBean);
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
-        getBinding().toolbar.setNavigationIcon(R.mipmap.return_icon);
-        getBinding().toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        setToolbar(getBinding().toolbar);
         getBinding().btnSendCode.setOnClickListener(this);
         getBinding().cbVisiblePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -146,8 +140,8 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
                     ToastUtils.showShort(R.string.pwd_length_tips);
                     return;
                 }
-                if (!Network.isAvailable(XXApplication.getContext())) {
-                    ToastUtils.showShort(XXApplication.getContext().getString(R.string.network_disconnect));
+                if (!Network.isAvailable(MyApplication.getContext())) {
+                    ToastUtils.showShort(MyApplication.getContext().getString(R.string.network_disconnect));
                     return;
                 }
                 userBean.setLoginName(loginName);
@@ -165,8 +159,8 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSendCode:
-                if (!Network.isAvailable(XXApplication.getContext())) {
-                    ToastUtils.showShort(XXApplication.getContext().getString(R.string.network_disconnect));
+                if (!Network.isAvailable(MyApplication.getContext())) {
+                    ToastUtils.showShort(MyApplication.getContext().getString(R.string.network_disconnect));
                     return;
                 }
                 String loginName = getBinding().loginName.getText().toString();

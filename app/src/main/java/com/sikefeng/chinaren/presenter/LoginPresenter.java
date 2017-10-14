@@ -59,7 +59,7 @@ public class LoginPresenter extends BasePresenter<IRBaseView, LoginViewModel> {
                             bean.setLoginName(userBean.getLoginName());
                             bean.setNewPassword(userBean.getNewPassword());
                             LoginUtil.saveUserData(getContext(), bean);
-                            ARouter.getInstance().build(Constants.MAIN_URL, Constants.APP_GOUP).navigation();
+                            ARouter.getInstance().build(Constants.MAIN_URL).navigation();
                             getContext().finish();
                         } else {
                             ToastUtils.showShort(msg);

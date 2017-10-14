@@ -11,7 +11,7 @@ import android.support.annotation.IntegerRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 
-import com.sikefeng.chinaren.XXApplication;
+import com.sikefeng.chinaren.MyApplication;
 
 
 
@@ -25,7 +25,8 @@ public class ResUtils {
      * @return 颜色的INT
      */
     public static int getColor(@ColorRes int colorId){
-        return ContextCompat.getColor(XXApplication.getContext(), colorId);
+        return ContextCompat.getColor(MyApplication.getContext(), colorId);
+
     }
 
     /**
@@ -34,7 +35,7 @@ public class ResUtils {
      * @return 字符串名称
      */
     public static String getString(@StringRes int strId){
-        return XXApplication.getContext().getString(strId);
+        return MyApplication.getContext().getString(strId);
     }
 
     /**
@@ -43,7 +44,7 @@ public class ResUtils {
      * @return int
      */
     public static int getInteger(@IntegerRes int integerId){
-        return XXApplication.getContext().getResources().getInteger(integerId);
+        return MyApplication.getContext().getResources().getInteger(integerId);
     }
 
     /**
@@ -52,7 +53,7 @@ public class ResUtils {
      * @return String[]
      */
     public static String[] getArrStr(int arrId){
-        return XXApplication.getContext().getResources().getStringArray(arrId);
+        return MyApplication.getContext().getResources().getStringArray(arrId);
     }
 
     /**
@@ -61,7 +62,7 @@ public class ResUtils {
      * @return int[]
      */
     public static int[] getArrInt(int arrId){
-        return XXApplication.getContext().getResources().getIntArray(arrId);
+        return MyApplication.getContext().getResources().getIntArray(arrId);
     }
 
     /**
@@ -70,7 +71,7 @@ public class ResUtils {
      * @return Drawable
      */
     public static Drawable getDrawable(@DrawableRes int imgId){
-        return ContextCompat.getDrawable(XXApplication.getContext(), imgId);
+        return ContextCompat.getDrawable(MyApplication.getContext(), imgId);
     }
 
     /**
@@ -79,6 +80,6 @@ public class ResUtils {
      * @return float数值
      */
     public static float getDimen(@DimenRes int dimenId){
-        return XXApplication.getContext().getResources().getDimension(dimenId);
+        return MyApplication.getContext().getResources().getDimension(dimenId);
     }
 }

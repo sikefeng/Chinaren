@@ -2,10 +2,14 @@
 package com.sikefeng.chinaren.entity.model;
 
 
-public class UserBean {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class UserBean extends RealmObject {
     /**
      * 用户ID
      */
+    @PrimaryKey
     private String userId;
     /**
      * 用户token

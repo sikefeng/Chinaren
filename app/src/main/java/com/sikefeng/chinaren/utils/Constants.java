@@ -7,13 +7,12 @@ package com.sikefeng.chinaren.utils;
 public class Constants {
 
     //界面常量值
-    public static final String APP_GOUP = "se";
-    public static final String MAIN_URL = "/main";
-    public static final String NEXT_URL = "/next";
-    public static final String REGISTER_URL = "/register"; //注册界面
-    public static final String FORGET_URL = "/forget"; //忘记密码界面
-    public static final String LOGIN_URL = "/login"; //登录界面
-    public static final String UPDATE_PWD_URL = "/updatePwd"; //修改密码界面
+    public static final String MAIN_URL = "/se/main";
+    public static final String NEXT_URL = "/se/next";
+    public static final String REGISTER_URL = "/se/register"; //注册界面
+    public static final String FORGET_URL = "/se/forget"; //忘记密码界面
+    public static final String LOGIN_URL = "/se/login"; //登录界面
+    public static final String UPDATE_PWD_URL = "/se/updatePwd"; //修改密码界面
 
     //用户常量
     public static final String IS_EXIT = "isExit";// 标记是否手动退出
@@ -51,6 +50,7 @@ public class Constants {
     public static final int VALUE_25 = 25;
     public static final int VALUE_255 = 255;
     public static final int VALUE_100 = 100;
+    public static final int VALUE_104 = 104;
     public static final int VALUE_400 = 400;
     public static final int VALUE_90 = 90;
     public static final int VALUE_24 = 24;

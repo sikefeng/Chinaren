@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewHolder"
+            type="cn.bingoogolapple.androidcommon.adapter.BGABindingViewHolder" />
+
+        <variable
+            name="itemEventHandler"
+            type="com.sikefeng.chinaren.presenter.ContactsPresenter" />
+
+        <variable
+            name="viewModel"
+            type="com.sikefeng.chinaren.presenter.vm.ContactsViewModel" />
+
+        <variable
+            name="model"
+            type="com.sikefeng.chinaren.entity.model.GradeBean" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:clickable="true"
+        app:onNoDoubleClick="@{() -> itemEventHandler.onClickItem(viewHolder, model)}"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="25px"
+        app:cardBackgroundColor="@color/theme_color"
+        app:cardCornerRadius="10px"
+        app:cardElevation="10px">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+           >
+
+            <ImageView
+                android:id="@+id/bgImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/aaa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text='@{model.gradeName}'
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="30px"
+                android:layout_marginRight="30px"
+                android:text='@{String.valueOf(model.peopleNumber)}'
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>
