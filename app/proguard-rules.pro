@@ -160,7 +160,7 @@
 # Application classes that will be serialized/deserialized over Gson
 -keep class com.google.gson.** { *; }
 -keep class com.google.gson.stream.** { *; }
--keep class com.sikefeng.chinaren.entity.** { *; }
+-keep class com.sikefeng.chinaren.entity.model.** { *; }
 
 -dontwarn com.alibaba.fastjson.**
 -keep class com.alibaba.fastjson.** { *; }
@@ -249,6 +249,3 @@
     java.lang.Object readResolve();
 }
 
-# 讯飞语音
--dontwarn com.iflytek.**
--keep class com.iflytek.** {*;}

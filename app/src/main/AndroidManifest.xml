@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -18,45 +17,34 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <!-- 4.2以上的手机需要的权限 -->
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
-    <!-- 在SD卡中创建文件与删除文件权限 -->
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <!-- 传感器 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- 摄像头权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="com.meilapp.meila.permission.MIPUSH_RECEIVE" />
-    <!--允许程序打开网络套接字-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--允许程序设置内置sd卡的写权限-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--允许程序获取网络状态-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--允许程序访问WiFi网络信息-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--允许程序读写手机状态和身份-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
-        android:name="com.sikefeng.chinaren.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="false"
         android:icon="@mipmap/app_logoo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_logoo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <!--高德地图key-->
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="b15f852c0770cdc1be5e11c97ad51379">
-        </meta-data>
-        <!--高德地图定位服务-->
-        <service android:name="com.amap.api.location.APSService"/>
+
+        <!-- 高德地图key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b15f852c0770cdc1be5e11c97ad51379" />
+        <!-- 高德地图定位服务 -->
+        <service android:name="com.amap.api.location.APSService" />
+
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.GuideActivity"
+            android:name=".ui.activity.GuideActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,37 +53,54 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.WebActivity"
+            android:name=".ui.activity.WebActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentAppTheme" />
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.ImagesActivity"
+            android:name=".ui.activity.ImagesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TranslucentNoAnimAppTheme" />
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.RegisterActivity"
+            android:name=".ui.activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.sikefeng.chinaren.ui.activity.ForgetPwdActivity"
+            android:name=".ui.activity.ForgetPwdActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name="com.sikefeng.chinaren.ui.activity.UpdatePwdActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.LocationActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.BaseMapActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.sikefeng.chinaren.widget.zxing.activity.CaptureActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.TestActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.UpdatePwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.BaseMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".widget.zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.Login2Activity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".widget.qrcode.CaptureActivity" />
+
+        <!-- 视图自适应 -->
+        <meta-data
+            android:name="design_width"
+            android:value="768"></meta-data>
+        <meta-data
+            android:name="design_height"
+            android:value="1280"></meta-data>
     </application>
 
 </manifest>

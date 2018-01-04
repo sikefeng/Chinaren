@@ -13,6 +13,7 @@ import android.view.WindowManager;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.jude.swipbackhelper.SwipeBackHelper;
+import com.sikefeng.chinaren.utils.DavikActivityUtils;
 import com.sikefeng.mvpvmlib.base.RBaseActivity;
 import com.zhy.changeskin.SkinManager;
 
@@ -41,7 +42,8 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
             EventBus.getDefault().register(this);
         }
         SkinManager.getInstance().register(this); //皮肤管理，可以切换白天和晚上的样式
-
+        //加入Activity管理队列
+        DavikActivityUtils.getScreenManager().addActivity(this);
         if(null != getToolbar()){
             getToolbar().setTitle("");
             setSupportActionBar(getToolbar());
@@ -163,6 +165,10 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
     //是否启用EventBus
     protected boolean isEnableEventBus(){
         return false;
+    }
+
+    public void initView(){
+
     }
 
 }
