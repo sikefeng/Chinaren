@@ -3,6 +3,7 @@
  */
 package com.sikefeng.chinaren.ui.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -47,7 +48,13 @@ public class WebActivity extends BaseActivity<ActivityWebBinding> {
 //            }
 //            getBinding().webView.loadUrl(url);
 //        }
-        getBinding().webView.loadUrl("http://www.baidu.com");
+        Intent intent=this.getIntent();
+        String resultURL=intent.getStringExtra("URL");
+        if (resultURL==null){
+            getBinding().webView.loadUrl("http://www.baidu.com");
+        }else{
+            getBinding().webView.loadUrl(resultURL);
+        }
         getBinding().webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

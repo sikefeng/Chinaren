@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alipay.euler.andfix.patch.PatchManager;
 import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
 import com.sikefeng.chinaren.utils.Cockroach;
@@ -57,12 +58,15 @@ public class MyApplication extends Application {
         MyApplication.instance = instance;
     }
 
+    public static PatchManager mPatchManager;
+
     @Override
     public void onCreate() {
         super.onCreate();
         this.setInstance(MyApplication.this);
         init();
-        initARCA();
+        initARCA();//崩溃信息收集
+        initAndFix();//AndFix热修复
         Cockroach.install(new Cockroach.ExceptionHandler() {
             // handlerException内部建议手动try{  你的异常处理逻辑  }catch(Throwable e){ } ，以防handlerException内部再次抛出异常，导致循环调用handlerException
             @Override
@@ -78,7 +82,7 @@ public class MyApplication extends Application {
                             //建议使用下面方式在控制台打印异常，这样就可以在Error级别看到红色log
                             Log.e("AndroidRuntime","--->CockroachException:"+thread+"<---",throwable);
                             Toast.makeText(MyApplication.this, "Exception Happend\n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
-//                        throw new RuntimeException("..."+(i++));
+//                          throw new RuntimeException("..."+(i++));
                         } catch (Throwable e) {
 
                         }
@@ -86,8 +90,28 @@ public class MyApplication extends Application {
                 });
             }
         });
+
+
+
     }
 
+    /**
+     *  AndFix热修复
+     */
+    private void initAndFix(){
+        // 初始化patch管理类
+        mPatchManager = new PatchManager(this);
+        // 初始化patch版本
+        mPatchManager.init("1.0");
+//        String appVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+//        mPatchManager.init(appVersion);
+        // 加载已经添加到PatchManager中的patch
+        mPatchManager.loadPatch();
+
+    }
+    public PatchManager getPatchManager() {
+        return mPatchManager;
+    }
     /**
      * 初始化
      */

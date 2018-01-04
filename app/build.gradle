@@ -85,12 +85,12 @@ android {
     productFlavors {
         dev {
             applicationId "com.sikefeng.chinaren"
-            resValue "string", "app_name", "Chinaren1"
+            resValue "string", "app_name", "Chinaren"
             resValue "string", "http_server_url", "http://192.168.2.129:9090/api/"
         }
         sit {
             applicationId "com.sikefeng.chinaren"
-            resValue "string", "app_name", "Chinaren2"
+            resValue "string", "app_name", "Chinaren"
             resValue "string", "http_server_url", "http://192.168.2.129:9090/api/"
         }
     }
@@ -104,16 +104,7 @@ dependencies {
     })
     //直接使用引入libs下所有jar包的方式
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:1.10.19'
-    testCompile 'org.hamcrest:hamcrest-all:1.3'
-    testCompile 'org.robolectric:robolectric:3.3.2'
-    testCompile 'org.assertj:assertj-core:1.7.0'
     // PowerMock brings in the mockito dependency
-    testCompile 'org.powermock:powermock-module-junit4:1.6.5'
-    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.5'
-    testCompile 'org.powermock:powermock-api-mockito:1.6.5'
-    testCompile 'org.powermock:powermock-classloading-xstream:1.6.5'
     compile project(':mvpvmlib')
     compile(rootProject.ext.support["support-v4"]) {
         exclude module: 'support-annotations'
@@ -124,8 +115,16 @@ dependencies {
     compile(rootProject.ext.support["design"]) {
         exclude module: 'support-annotations'
     }
-
-
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'org.robolectric:robolectric:3.3.2'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+    testCompile 'org.powermock:powermock-module-junit4:1.6.5'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.5'
+    testCompile 'org.powermock:powermock-api-mockito:1.6.5'
+    testCompile 'org.powermock:powermock-classloading-xstream:1.6.5'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
     /*compile (rootProject.ext.dependencies["autolayout"]) {
                         exclude group: 'com.android.support'
                     }*/
@@ -137,39 +136,42 @@ dependencies {
     //tools
     compile rootProject.ext.dependencies["eventbus"]
     //支持多种状态的自定义View,可以方便的切换到：加载中视图、错误视图、空数据视图、网络异常视图、内容视图
-    compile 'com.classic.common:multiple-status-view:1.2'
     //cookie管理
-    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'
     //首页Tab库
+    //滑动退出activity
+    //状态栏相关
+    //对话框相关
+    //打印网络返回日志
+    //统一URL
+    //WebSocket客户端
+    //相机相关
+    compile files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')
+    //崩溃处理，可以上传到服务器
+    //圆形头像
+    compile 'com.classic.common:multiple-status-view:1.2'
+    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'
     compile 'eu.long1:spacetablayout:1.0.4'
     compile 'com.zhy:changeskin:4.0.2'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'com.github.renygit:LoadMoreRecycle:0.0.1'
-    //滑动退出activity
     compile 'com.jude:swipebackhelper:3.1.2'
-    //状态栏相关
     compile 'com.gyf.barlibrary:barlibrary:2.2.5'
-    //对话框相关
     compile 'com.github.hss01248:DialogUtil:1.1.6'
-    //打印网络返回日志
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'q.rorbin:badgeview:1.1.2'
-    //统一URL
     compile 'com.alibaba:arouter-api:1.2.1.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
-    //WebSocket客户端
     compile 'com.neovisionaries:nv-websocket-client:1.31'
-    //相机相关
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0@aar'
-    compile files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')
-    //崩溃处理，可以上传到服务器
     compile 'com.faendir:acra:4.10.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'pub.devrel:easypermissions:0.3.0'
-    compile 'com.google.zxing:core:3.3.0'
+//    compile 'com.google.zxing:core:3.3.0'
     compile 'cn.bingoogolapple:bga-adapter:1.1.5@aar'
     compile 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'
     compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'
     compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
+    compile 'cn.yipianfengye.android:zxing-library:1.5'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.alipay.euler:andfix:0.5.0@aar'
 }

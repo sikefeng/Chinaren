@@ -4,6 +4,7 @@
     <string-array name="tabTitles">
         <item>主页</item>
         <item>联系人</item>
+        <item>发现</item>
         <item>我</item>
     </string-array>
 
@@ -126,7 +127,6 @@
     <string name="oldGeoFence_dec">旧版地理围栏，不建议使用</string>
 
 
-
     <string name="title_assistantLocation">H5辅助定位</string>
     <string name="assistantLocation">H5辅助定位</string>
     <string name="assistantLocation_dec">展示H5辅助定位功能</string>
@@ -204,9 +204,6 @@
     <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
     <string name="setting">设置</string>
     <string name="cancel">取消</string>
-
-
-
 
 
     <string name="errorCodeInfo">

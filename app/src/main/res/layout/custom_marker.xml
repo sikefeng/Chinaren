@@ -17,8 +17,8 @@
 
     <com.sikefeng.chinaren.widget.RoundImageView
         android:id="@+id/headview"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/empty_photo"
         imagecontrol:border_inside_color="@color/white"
         imagecontrol:border_outside_color="@color/white"

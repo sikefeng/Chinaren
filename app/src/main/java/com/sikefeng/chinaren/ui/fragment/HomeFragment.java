@@ -12,7 +12,6 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
-import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
@@ -22,6 +21,7 @@ import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.entity.model.MarkerBean;
 import com.sikefeng.chinaren.ui.adapter.CustomInfoWindow;
+import com.sikefeng.chinaren.utils.DataUtils;
 import com.sikefeng.chinaren.utils.NetImageUtils;
 import com.sikefeng.chinaren.widget.RoundImageView;
 
@@ -36,9 +36,6 @@ public class HomeFragment extends android.support.v4.app.Fragment implements AMa
 
     public AMapLocationClient mLocationClient;
     private AMapLocationClientOption mLocationOption;
-    private UiSettings uiSettings;
-    private Marker oldMarker;
-    private LatLng myLatLng;
     private MapView mapView;
     private AMap aMap;
     private View mapLayout;
@@ -82,8 +79,8 @@ public class HomeFragment extends android.support.v4.app.Fragment implements AMa
 
     private void addMarkersToMap(){
         ArrayList<MarkerOptions> markerOptionsList=new ArrayList<MarkerOptions>();
-//        List<MarkerBean> data=getMakerData();
-        List<MarkerBean> data=new ArrayList<>();
+        List<MarkerBean> data= DataUtils.getMarkerData();
+//        List<MarkerBean> data=new ArrayList<>();
         for (MarkerBean bean: data) {
             System.out.println(bean.toString());
             LatLng latLng = new LatLng(bean.getLat(),bean.getLng());

@@ -65,4 +65,7 @@ public class NavigationUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
     }
+
+
+
 }

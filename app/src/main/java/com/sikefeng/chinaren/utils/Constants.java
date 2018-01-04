@@ -13,6 +13,7 @@ public class Constants {
     public static final String FORGET_URL = "/se/forget"; //忘记密码界面
     public static final String LOGIN_URL = "/se/login"; //登录界面
     public static final String UPDATE_PWD_URL = "/se/updatePwd"; //修改密码界面
+    public static final String SETTINGS_URL = "/se/settings"; //设置界面
 
     //用户常量
     public static final String IS_EXIT = "isExit";// 标记是否手动退出

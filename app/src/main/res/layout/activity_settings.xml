@@ -31,40 +31,56 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
-
+            android:paddingTop="@dimen/status_bar_height">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400px"
-                    android:background="@color/theme_color">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <com.sikefeng.chinaren.widget.RoundImageView
-                        android:id="@+id/headView"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/tou"
-                        imagecontrol:border_inside_color="@color/white"
-                        imagecontrol:border_outside_color="@color/white"
-                        imagecontrol:border_thickness="0.5dp" />
 
-                    <TextView
-                        android:padding="10px"
-                        android:background="@drawable/bg_shape_round"
-                        android:layout_marginTop="20px"
-                        style="@style/textViewSystle2"
-                        android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/headView"
-                        android:layout_centerHorizontal="true"
-                        android:text="登录/注册" />
-                </RelativeLayout>
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="50dp"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="换肤"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/switchBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/ColorSwitchStyle" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line"
+                        android:background="@color/line" />
+
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -115,6 +131,51 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/line" />
+
+                    <LinearLayout
+                        android:id="@+id/workStuas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="50dp"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="开关"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:button="@drawable/checkbox_bg" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line"
+                        android:background="@color/line" />
+
+                </LinearLayout>
 
 
             </LinearLayout>

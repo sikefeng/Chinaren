@@ -23,12 +23,9 @@
             type="com.sikefeng.chinaren.presenter.vm.UpdatePwdViewModel" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
-
+            android:background="@color/bg_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -226,5 +223,5 @@
 
 
         </LinearLayout>
-    </ScrollView>
+
 </layout>

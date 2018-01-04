@@ -5,45 +5,32 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
-import com.sikefeng.chinaren.databinding.ActivityLoginBinding;
+import com.sikefeng.chinaren.databinding.ActivitySettingsBinding;
 import com.sikefeng.chinaren.entity.event.PermissionEvent;
-import com.sikefeng.chinaren.entity.model.UserBean;
-import com.sikefeng.chinaren.presenter.LoginPresenter;
-import com.sikefeng.chinaren.presenter.vm.LoginViewModel;
+import com.sikefeng.chinaren.presenter.SettingsPresenter;
+import com.sikefeng.chinaren.presenter.vm.SettingsViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.PermissionUtils;
-import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
+import com.zhy.changeskin.SkinManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-/**
- * 文件名：LoginActivity <br>
- * 创建时间： 2017/7/21 0021 下午16:27 <br>
- * 文件描述：<br>
- * 用户登录类
- *
- * @author <a href="mailto:sikefeng.xu@sikefeng.com">Richard</a> <br>
- * @version v0.1  <br>
- * @since JDK 1.8
- */
-@Route(path = Constants.LOGIN_URL)
-public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements View.OnClickListener {
-    /**
-     * 用户实体类
-     */
-    private UserBean userBean;
+@Route(path = Constants.SETTINGS_URL)
+public class SettingsActivity extends BaseActivity<ActivitySettingsBinding> implements View.OnClickListener {
+
     /**
      * 用户登录数据协调器
      */
-    private LoginPresenter presenter;
+    private SettingsPresenter presenter;
 
     /**
      * 显示权限设置
@@ -52,7 +39,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_settings;
     }
 
 
@@ -74,7 +61,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
     @Override
     protected RBasePresenter getPresenter() {
         if (null == presenter) {
-            presenter = new LoginPresenter(this, new LoginViewModel());
+            presenter = new SettingsPresenter(this, new SettingsViewModel());
         }
         return presenter;
     }
@@ -86,43 +73,27 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
                 .setSwipeBackEnable(false);//设置是否可滑动
         ARouter.getInstance().inject(this);
 
-        userBean = new UserBean();
-        getBinding().setUser(userBean);
-        getBinding().setPresenter(presenter);
-        getBinding().setViewModel(presenter.getViewModel());
-//        SharePreferenceUtils.get(MyApplication.getContext(), Constants.TOKEN, "");
-//        SharePreferenceUtils.get(MyApplication.getContext(), Constants.ISLOGIN, false);
-//        String loginName = (String) SharePreferenceUtils.get(context, Constants.LOGINNAME, "");
-//        String newPassword = (String) SharePreferenceUtils.get(context, Constants.NEWPASSWORD, "");
-//        getBinding().loginName.setText(loginName);
-//        getBinding().newPassword.setText(newPassword);
-
-        getBinding().tvRegister.setOnClickListener(this);
-        getBinding().tvForgetPwd.setOnClickListener(this);
-
-
-        getBinding().btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build(Constants.MAIN_URL).navigation();
-                ToastUtils.showBottom("登录成功！！！");
-            }
-        });
-//        ARouter.getInstance().build(Constants.MAIN_URL).navigation();
-//        startActivity(new Intent(LoginActivity.this,CaptureActivity.class));
+        initView();
     }
 
+    @Override
+    public void initView() {
+        super.initView();
+        //未保存switch状态
+        getBinding().switchBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SkinManager.getInstance().changeSkin(isChecked ? "night" : "");
+            }
+        });
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             //注册
             case R.id.tvRegister:
-                ARouter.getInstance().build(Constants.REGISTER_URL).navigation();
-                break;
-            //忘记密码
-            case R.id.tvForgetPwd:
-                ARouter.getInstance().build(Constants.FORGET_URL).navigation();
+
                 break;
             default:
                 break;

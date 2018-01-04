@@ -1,6 +1,8 @@
 package com.sikefeng.chinaren.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +12,6 @@ import android.widget.TextView;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.model.Marker;
 import com.sikefeng.chinaren.R;
-import com.sikefeng.chinaren.utils.NavigationUtils;
 
 /**
  * Created by Richard on 1/10/17.
@@ -62,8 +63,14 @@ public class CustomInfoWindow implements AMap.InfoWindowAdapter , View.OnClickLi
         int id = v.getId();
         switch (id){
             case R.id.navigation_LL:  //点击导航
-                if (mMarker!=null){
-                    NavigationUtils.Navigation(mMarker.getPosition());
+//                if (mMarker!=null){
+//                    NavigationUtils.Navigation(mMarker.getPosition());
+//                }
+                if (mMarker!=null) {
+                    String address = mMarker.getTitle();
+                    Uri mUri = Uri.parse("geo:" + mMarker.getPosition().latitude + "," + mMarker.getPosition().longitude + "?q=" + address);
+                    Intent mIntent = new Intent(Intent.ACTION_VIEW, mUri);
+                    mcontext.startActivity(mIntent);
                 }
                 break;
 
@@ -77,4 +84,8 @@ public class CustomInfoWindow implements AMap.InfoWindowAdapter , View.OnClickLi
             }
         }
     }
+
+
+
+
 }

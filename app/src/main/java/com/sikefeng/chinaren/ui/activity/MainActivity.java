@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.BuildConfig;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,8 +24,9 @@ import com.sikefeng.chinaren.entity.event.MainEvent;
 import com.sikefeng.chinaren.entity.event.RvScrollEvent;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
-import com.sikefeng.chinaren.ui.fragment.HomeFragment;
+import com.sikefeng.chinaren.ui.fragment.DiscoverFragment;
 import com.sikefeng.chinaren.ui.fragment.MyFragment;
+import com.sikefeng.chinaren.utils.AppExit2Back;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ResUtils;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
@@ -55,7 +57,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     /**
      * 图片数组
      */
-    private int[] mImgs = new int[]{R.drawable.selector_tab_weixin, R.drawable.selector_tab_friends,
+    private int[] mImgs = new int[]{R.drawable.selector_tab_weixin, R.drawable.selector_tab_friends,R.drawable.selector_tab_search,
             R.drawable.selector_tab_me};
 
     /**
@@ -107,8 +109,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 .setSwipeBackEnable(false);//设置是否可滑动
         SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(false);
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new HomeFragment());
+//        fragmentList.add(new HomeFragment());
         fragmentList.add(new ContactsFragment());
+        fragmentList.add(new ContactsFragment());
+        fragmentList.add(new DiscoverFragment());
         fragmentList.add(new MyFragment());
         getBinding().viewpager.setOffscreenPageLimit(fragmentList.size());
         pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, java.util.Arrays.asList(tabTitles));
@@ -160,7 +164,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         });
 
     }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AppExit2Back.exitApp(MainActivity.this);//双击退出应用程序
+        }
+        return false;
+    }
 
 
 }
