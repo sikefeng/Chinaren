@@ -30,6 +30,18 @@ public class GradeBean {
      * 班级人数
      */
     private int peopleNumber;
+    /**
+     * 背景图片
+     */
+    private String bgPhoto;
+
+    public String getBgPhoto() {
+        return bgPhoto;
+    }
+
+    public void setBgPhoto(String bgPhoto) {
+        this.bgPhoto = bgPhoto;
+    }
 
     public ArrayList<String> getGradeAlbums() {
         return gradeAlbums;

@@ -25,12 +25,13 @@
     <string name="str_load_more_no_network">没有网络，点击重试</string>
     <string name="no_storage">没有可用的存储设备</string>
     <string name="no_permission_WRITE_EXTERNAL">缺少存储权限</string>
-    <string name="test_test">TEST TEST</string>
     <string name="sys_exit_tip">再按一次退出程序</string>
     <string name="connectting">正在连接服务器...</string>
     <string name="init_error_code_msg">初始化失败,错误码：</string>
 
     <!--登录 注册 忘记密码-->
+    <string name="user_name">用户名</string>
+    <string name="password">密码</string>
     <string name="register">用户注册</string>
     <string name="input_tips">请输入以下信息注册服务易用户账号</string>
     <string name="phone_number">账号(手机号) :</string>
@@ -204,6 +205,8 @@
     <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
     <string name="setting">设置</string>
     <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="scan_image">图片浏览</string>
 
 
     <string name="errorCodeInfo">

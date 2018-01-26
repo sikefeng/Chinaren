@@ -78,22 +78,16 @@
                 android:background="#DFDFDF"/>
             <LinearLayout
                 android:layout_marginTop="9dp"
-                android:id="@+id/call_LL"
+                android:id="@+id/cancal_LL"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 >
-                <ImageView
-                    android:layout_marginLeft="23dp"
-                    android:layout_width="19dp"
-                    android:layout_height="18dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/inforwindow_call"/>
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="打电话"
+                    android:text="@string/cancel"
                     android:textSize="14sp"
                     android:textColor="@color/text_color"/>
             </LinearLayout>

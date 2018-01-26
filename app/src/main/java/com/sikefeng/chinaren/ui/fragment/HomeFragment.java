@@ -1,5 +1,6 @@
 package com.sikefeng.chinaren.ui.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,13 +18,13 @@ import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.entity.model.MarkerBean;
 import com.sikefeng.chinaren.ui.adapter.CustomInfoWindow;
 import com.sikefeng.chinaren.utils.DataUtils;
 import com.sikefeng.chinaren.utils.NetImageUtils;
-import com.sikefeng.chinaren.widget.RoundImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,10 +90,8 @@ public class HomeFragment extends android.support.v4.app.Fragment implements AMa
             markerOption.title(bean.getUserName()).snippet(latLng.toString());
             markerOption.draggable(true);//设置Marker可拖动
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_marker, null);
-            RoundImageView imageView=(RoundImageView)view.findViewById(R.id.headview);
-//            CircleImageView imageView2=(CircleImageView)view.findViewById(R.id.headview2);
-            NetImageUtils.displayImage(imageView,bean.getIcon());
-//            ImageUtils.displayImage(imageView2,bean.getIcon());
+            SimpleDraweeView imageView=(SimpleDraweeView)view.findViewById(R.id.headview);
+            imageView.setImageURI(Uri.parse(bean.getIcon()));
             markerOption.icon(BitmapDescriptorFactory.fromView(view));
             // 将Marker设置为贴地显示，可以双指下拉地图查看效果
             markerOption.setFlat(true);//设置marker平贴地图效果

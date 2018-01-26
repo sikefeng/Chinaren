@@ -48,7 +48,7 @@ public class CustomInfoWindow implements AMap.InfoWindowAdapter , View.OnClickLi
         waitNum.setText(marker.getTitle());
 
         LinearLayout navigation = (LinearLayout) view.findViewById(R.id.navigation_LL);
-        LinearLayout call = (LinearLayout) view.findViewById(R.id.call_LL);
+        LinearLayout call = (LinearLayout) view.findViewById(R.id.cancal_LL);
         navigation.setOnClickListener(this);
         call.setOnClickListener(this);
     }
@@ -74,7 +74,7 @@ public class CustomInfoWindow implements AMap.InfoWindowAdapter , View.OnClickLi
                 }
                 break;
 
-            case R.id.call_LL:  //点击打电话
+            case R.id.cancal_LL:  //点击取消
 
                 break;
         }

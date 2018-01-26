@@ -3,6 +3,12 @@
  */
 package com.sikefeng.chinaren.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
@@ -12,6 +18,7 @@ import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,11 +32,13 @@ import com.sikefeng.chinaren.entity.event.RvScrollEvent;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
 import com.sikefeng.chinaren.ui.fragment.DiscoverFragment;
+import com.sikefeng.chinaren.ui.fragment.HomeFragment;
 import com.sikefeng.chinaren.ui.fragment.MyFragment;
 import com.sikefeng.chinaren.utils.AppExit2Back;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ResUtils;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
+import com.trycatch.mysnackbar.TSnackbar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -42,7 +51,7 @@ import java.util.List;
 @Route(path = Constants.MAIN_URL)
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
-
+    private TSnackbar snackBar;
     /**
      * TAB名称集合
      */
@@ -109,8 +118,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 .setSwipeBackEnable(false);//设置是否可滑动
         SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(false);
         List<Fragment> fragmentList = new ArrayList<>();
-//        fragmentList.add(new HomeFragment());
-        fragmentList.add(new ContactsFragment());
+        fragmentList.add(new HomeFragment());
         fragmentList.add(new ContactsFragment());
         fragmentList.add(new DiscoverFragment());
         fragmentList.add(new MyFragment());
@@ -134,8 +142,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             }
         }
 
-//        TabLayout.Tab itemTab = getBinding().tablayout.getTabAt(0);
-//        new QBadgeView(this).bindTarget(itemTab.getCustomView()).setBadgeNumber(5).setGravityOffset(10, 0, false);
         getBinding().tablayout.getTabAt(0).getCustomView().setSelected(true);
 
         //演示“发送事件” （功能可以用FragmentA的实例调用内部方法实现滑动到顶部，eg: fragmentA.scrollToTop(); 在FragmentA中实现滚动方法即可）
@@ -162,7 +168,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
+        test();
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -172,5 +178,32 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         return false;
     }
 
+
+    private void test(){
+        //网络监听
+        IntentFilter intentFilter = new IntentFilter();
+        //addAction
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkChangeReceive(), intentFilter);
+    }
+    //网络连接监听
+    class NetworkChangeReceive extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isAvailable()) {
+                final ViewGroup viewGroup = (ViewGroup) getActivity().findViewById(android.R.id.content).getRootView();
+                snackBar = TSnackbar.make(viewGroup, "网络已连接!", TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
+                snackBar.setBackgroundColor(R.color.text_title_color);
+                snackBar.show();
+            } else {
+                final ViewGroup viewGroup = (ViewGroup) getActivity().findViewById(android.R.id.content).getRootView();
+                snackBar = TSnackbar.make(viewGroup, "网络已断开,请重新连接!", TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
+                snackBar.setBackgroundColor(R.color.text_title_color);
+                snackBar.show();
+            }
+        }
+    }
 
 }

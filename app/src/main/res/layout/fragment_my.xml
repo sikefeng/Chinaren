@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:imagecontrol="http://schemas.android.com/tools">
+    >
 
     <data>
 
@@ -40,19 +40,20 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400px"
+                    android:layout_height="250dp"
                     android:background="@color/theme_color">
 
-                    <com.sikefeng.chinaren.widget.RoundImageView
+                    <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/headView"
+                        app:placeholderImage="@mipmap/tou"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:layout_centerInParent="true"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/tou"
-                        imagecontrol:border_inside_color="@color/white"
-                        imagecontrol:border_outside_color="@color/white"
-                        imagecontrol:border_thickness="0.5dp" />
+                        app:actualImageScaleType="centerCrop"
+                        app:roundAsCircle="true"
+                        app:roundingBorderColor="@color/white"
+                        app:roundingBorderWidth="2dp"/>
+
 
                     <TextView
                         android:padding="10px"

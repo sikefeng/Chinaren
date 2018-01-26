@@ -93,7 +93,7 @@
             android:name=".ui.activity.Login2Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".widget.qrcode.CaptureActivity" />
-
+        <activity android:name=".ui.activity.ScanImageActivity"/>
         <!-- 视图自适应 -->
         <meta-data
             android:name="design_width"

@@ -11,6 +11,7 @@
         android:layout_height="26dp" />
 
     <TextView
+        android:textSize="@dimen/title_size"
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

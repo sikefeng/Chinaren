@@ -1,17 +1,15 @@
 package com.sikefeng.chinaren.utils;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.sikefeng.chinaren.R;
-import com.squareup.picasso.Picasso;
 import com.yanzhenjie.album.Album;
 
 import java.util.ArrayList;
-
-import static com.hss01248.dialog.StyledDialog.context;
 
 /**
  * Created by Richard on 26/9/17.
@@ -31,13 +29,21 @@ public class NetImageUtils {
 
     }
 
+    /**
+     * 功能描述：TODO: 这里对方法的描述
+     * <br>创建时间： 2018-01-07 14:51:47
 
-    public static void displayImage(ImageView mImageView, String url){
-        Picasso.with(context)
-                .load(url)
-                .resize(100, 100)
-                .centerCrop()
-                .into(mImageView);
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     * @param mImageView
+     * @param url
+     */
+    public static void displayImage(SimpleDraweeView mImageView, String url){
+          mImageView.setImageURI(Uri.parse(url));
+//        Picasso.with(context)
+//                .load(url)
+//                .resize(100, 100)
+//                .centerCrop()
+//                .into(mImageView);
 
     }
 }

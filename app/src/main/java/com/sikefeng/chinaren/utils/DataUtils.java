@@ -32,6 +32,7 @@ public class DataUtils {
             bean.setGradeName("初中("+(i+1)+")班");
             bean.setPeopleNumber(10+i);
             bean.setGradeAlbums(albums);
+            bean.setBgPhoto(albums.get(1));
             list.add(bean);
         }
         return list;

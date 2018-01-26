@@ -55,7 +55,7 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
     private View initView() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.custom_infowindow, null);
         navigation = (LinearLayout) view.findViewById(R.id.navigation_LL);
-        call = (LinearLayout) view.findViewById(R.id.call_LL);
+        call = (LinearLayout) view.findViewById(R.id.cancal_LL);
         nameTV = (TextView) view.findViewById(R.id.name);
         addrTV = (TextView) view.findViewById(R.id.agent_addr);
 
@@ -76,7 +76,7 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
                 NavigationUtils.Navigation(latLng);
                 break;
 
-            case R.id.call_LL:  //点击打电话
+            case R.id.cancal_LL:  //点击打电话
 
                 break;
         }

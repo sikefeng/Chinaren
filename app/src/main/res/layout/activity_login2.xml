@@ -94,17 +94,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/icon"
                 android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/app_logoo"
-                android:layout_height="100dp" />
+                android:src="@mipmap/app_logoo" />
+
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_edittext"
                 android:hint="用户名"
                 android:paddingBottom="12dp"
@@ -177,6 +179,16 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:scrollbars="none"
+            />
     </LinearLayout>
 
 </LinearLayout>

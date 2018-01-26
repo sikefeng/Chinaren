@@ -3,10 +3,12 @@
  */
 package com.sikefeng.chinaren.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.StyledDialog;
@@ -17,14 +19,14 @@ import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
-import com.sikefeng.chinaren.ui.activity.BaseMapActivity;
-import com.sikefeng.chinaren.ui.activity.LocationActivity;
+import com.sikefeng.chinaren.ui.adapter.RecyclerGridAdapter;
+import com.sikefeng.chinaren.utils.ImageUtils;
+import com.sikefeng.chinaren.widget.PopupDialog;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import java.io.File;
 import java.io.IOException;
-
-import static android.R.attr.path;
+import java.util.ArrayList;
 
 /**
  * 文件名：MyFragment <br>
@@ -37,11 +39,12 @@ import static android.R.attr.path;
  * @since JDK 1.8
  */
 public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.OnClickListener {
-
+    public static final String SHARED_ELEMENT_NAME = "SHARED_ELEMENT_NAME";
     /**
      * 我界面数据协调器
      */
     private MyFragmentPresenter presenter;
+
 
 
     @Override
@@ -75,6 +78,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
+        ImageUtils.scanImage(getActivity(),getBinding().headView);
 
     }
 
@@ -85,13 +89,16 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-                        startActivity(new Intent(getActivity(), BaseMapActivity.class));
+//                        startActivity(new Intent(getActivity(), BaseMapActivity.class));
+                        initShare(view);
                     }
 
                     @Override
                     public void onSecond() {
-                        startActivity(new Intent(getActivity(), LocationActivity.class));
-                    }
+//                        startActivity(new Intent(getActivity(), LocationActivity.class));
+
+
+                  }
                 }).setBtnText("确定", "取消").show();
                 break;
             case R.id.updatePwd:
@@ -103,7 +110,9 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 break;
         }
     }
+
     private static final String APATCH_PATH = "/fix.apatch"; // 补丁文件名
+
     /**
      * 动态更新，加载补丁文件
      */
@@ -127,6 +136,47 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
             Log.e("Test", "have no patch");
         }
     }
+
+    /**
+     * 功能描述  ShareSDK分享
+     * <br>创建时间： 2018-01-17 23:01:52
+
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     * @param view
+     */
+    private void initShare(View view) {
+        PopupDialog shareDialog = new PopupDialog(getActivity(), R.layout.popup_share);
+        shareDialog.setAnimation(android.R.style.Animation_InputMethod);
+        shareDialog.showAtLocation(view, Gravity.CENTER);
+        RecyclerView mRecyclerView = shareDialog.getView(R.id.recyclerView);
+        ArrayList<RecyclerGridAdapter.ShareBean> lists = new ArrayList<RecyclerGridAdapter.ShareBean>();
+
+        RecyclerGridAdapter.ShareBean bean=new RecyclerGridAdapter.ShareBean();
+        bean.setImgRes(R.mipmap.share_qq);
+        bean.setShareName("QQ");
+        lists.add(bean);
+
+        RecyclerGridAdapter.ShareBean bean2=new RecyclerGridAdapter.ShareBean();
+        bean2.setImgRes(R.mipmap.share_wx);
+        bean2.setShareName("微信");
+        lists.add(bean2);
+
+        RecyclerGridAdapter.ShareBean bean3=new RecyclerGridAdapter.ShareBean();
+        bean3.setImgRes(R.mipmap.share_wb);
+        bean3.setShareName("微博");
+        lists.add(bean3);
+
+        // 两列
+        int spanCount = 2;
+        // StaggeredGridLayoutManager管理RecyclerView的布局。
+        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        RecyclerGridAdapter mAdapter = new RecyclerGridAdapter(lists);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+
 
 
 }
