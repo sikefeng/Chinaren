@@ -206,7 +206,7 @@
     <string name="setting">设置</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
-    <string name="scan_image">图片浏览</string>
+    <string name="scan_image">图片预览</string>
 
 
     <string name="errorCodeInfo">

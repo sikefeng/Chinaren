@@ -16,15 +16,13 @@ import com.alipay.euler.andfix.patch.PatchManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
+import com.mob.MobSDK;
 import com.sikefeng.chinaren.utils.Cockroach;
 import com.sikefeng.chinaren.utils.CrashApphandler;
 import com.sikefeng.chinaren.utils.FileUtils;
 import com.sikefeng.chinaren.utils.img.ImageUtils;
 import com.sikefeng.chinaren.utils.img.glide.GlideLoadStrategy;
-import com.sikefeng.chinaren.widget.imageloder.GlideImageLoader;
 import com.sikefeng.mvpvmlib.utils.LogUtils;
-import com.yanzhenjie.album.Album;
-import com.yanzhenjie.album.AlbumConfig;
 import com.zhy.changeskin.SkinManager;
 
 import org.acra.ACRA;
@@ -34,8 +32,6 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
-
-import java.util.Locale;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -94,7 +90,9 @@ public class MyApplication extends Application {
         initRealm();//初始化Realm数据库
         Fresco.initialize(this);//初始化Fresco
         initCockroach();
+        MobSDK.init(this);//初始化ShareSDK
     }
+
 
     /**
      *  AndFix热修复
@@ -123,15 +121,7 @@ public class MyApplication extends Application {
                 .build();
         Realm.setDefaultConfiguration(config);
     }
-    //初始化相册
-    private void initAlbum(){
 
-        Album.initialize(new AlbumConfig.Build()
-                .setImageLoader(new GlideImageLoader())
-                .setLocale(Locale.getDefault())
-                .build()
-        );
-    }
 
     //初始化崩溃日志收集
     private void initARCA(){

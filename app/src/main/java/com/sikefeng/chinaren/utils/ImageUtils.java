@@ -21,7 +21,7 @@ import static com.sikefeng.chinaren.ui.fragment.MyFragment.SHARED_ELEMENT_NAME;
 
 public class ImageUtils {
 
-    public static void scanImage(Activity activity,ImageView imageView) {
+    public static void scanImage(Activity activity,ImageView imageView,String url) {
         ViewCompat.setTransitionName(imageView, SHARED_ELEMENT_NAME);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +46,9 @@ public class ImageUtils {
                                 }
                             }
                         });
-
-                ActivityCompat.startActivity(activity,
-                        new Intent(activity, ScanImageActivity.class),
-                        optionsCompat.toBundle());
+                Intent intent=new Intent(activity, ScanImageActivity.class);
+                intent.putExtra("path",url);
+                ActivityCompat.startActivity(activity,intent , optionsCompat.toBundle());
             }
         });
     }

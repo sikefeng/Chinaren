@@ -2,11 +2,10 @@ package com.sikefeng.chinaren.ui.activity;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.SlidingDrawer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -18,7 +17,6 @@ import com.sikefeng.chinaren.entity.event.PermissionEvent;
 import com.sikefeng.chinaren.entity.model.UserBean;
 import com.sikefeng.chinaren.presenter.LoginPresenter;
 import com.sikefeng.chinaren.presenter.vm.LoginViewModel;
-import com.sikefeng.chinaren.ui.adapter.RecyclerGridAdapter;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.PermissionUtils;
 import com.sikefeng.chinaren.utils.ToastUtils;
@@ -27,7 +25,15 @@ import com.sikefeng.mvpvmlib.base.RBasePresenter;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.PlatformDb;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 /**
  * 文件名：LoginActivity <br>
@@ -49,12 +55,12 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
      * 用户登录数据协调器
      */
     private LoginPresenter presenter;
-
+    private Platform loginPlatform;
     /**
      * 显示权限设置
      */
     private boolean showAuth = true;
-
+    private Boolean isOpenDrawer = false;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
@@ -88,7 +94,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
     @Override
     protected void init(Bundle savedInstanceState) {
         SwipeBackHelper.getCurrentPage(this)//获取当前页面
-.setSwipeBackEnable(false);//设置是否可滑动
+        .setSwipeBackEnable(false);//设置是否可滑动
         ARouter.getInstance().inject(this);
 
         userBean = new UserBean();
@@ -99,6 +105,10 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         getBinding().tvRegister.setOnClickListener(this);
         getBinding().tvForgetPwd.setOnClickListener(this);
 
+        getBinding().ibLoginQq.setOnClickListener(this);
+        getBinding().ibLoginWx.setOnClickListener(this);
+        getBinding().ibLoginWeibo.setOnClickListener(this);
+
 
         getBinding().btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +117,23 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
                 ToastUtils.showBottom("登录成功！！！");
             }
         });
-        share();
-//        ARouter.getInstance().build(Constants.MAIN_URL).navigation();
-//          startActivity(new Intent(this,Login2Activity.class));
+        getBinding().slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
+            @Override
+            public void onDrawerOpened() {
+                isOpenDrawer = true;
+            }
+
+        });
+
+        getBinding().slidingDrawer.setOnDrawerCloseListener(new SlidingDrawer.OnDrawerCloseListener() {
+
+            @Override
+            public void onDrawerClosed() {
+                isOpenDrawer = false;
+            }
+
+        });
+//        startActivity(new Intent(this, com.sikefeng.chinaren.ui.MainActivity.class));
     }
 
 
@@ -123,6 +147,15 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             //忘记密码
             case R.id.tvForgetPwd:
                 ARouter.getInstance().build(Constants.FORGET_URL).navigation();
+                break;
+            case R.id.ib_login_qq:
+                threeLogin(0);
+                break;
+            case R.id.ib_login_wx:
+                threeLogin(1);
+                break;
+            case R.id.ib_login_weibo:
+                threeLogin(2);
                 break;
             default:
                 break;
@@ -148,34 +181,60 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         return super.onTouchEvent(event);
     }
 
-    private void share(){
-        RecyclerView mRecyclerView = getBinding().recyclerView;
-        ArrayList<RecyclerGridAdapter.ShareBean> lists = new ArrayList<RecyclerGridAdapter.ShareBean>();
 
-        RecyclerGridAdapter.ShareBean bean=new RecyclerGridAdapter.ShareBean();
-        bean.setImgRes(R.mipmap.share_qq);
-        bean.setShareName("QQ");
-        lists.add(bean);
+    private void threeLogin(int platformType) {
 
-        RecyclerGridAdapter.ShareBean bean2=new RecyclerGridAdapter.ShareBean();
-        bean2.setImgRes(R.mipmap.share_wx);
-        bean2.setShareName("微信");
-        lists.add(bean2);
+        if (platformType==0){
+            loginPlatform = ShareSDK.getPlatform(QQ.NAME);
+        }else if (platformType==1){
+            loginPlatform = ShareSDK.getPlatform(Wechat.NAME);
+        }else {
+            loginPlatform = ShareSDK.getPlatform(SinaWeibo.NAME);
+        }
+        //回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
+        loginPlatform.setPlatformActionListener(new PlatformActionListener() {
+            @Override
+            public void onError(Platform platform, int arg1, Throwable arg2) {
+                // TODO Auto-generated method stub
+                arg2.printStackTrace();
+                System.out.println("arg2="+arg2);
+            }
 
-        RecyclerGridAdapter.ShareBean bean3=new RecyclerGridAdapter.ShareBean();
-        bean3.setImgRes(R.mipmap.share_wb);
-        bean3.setShareName("微博");
-        lists.add(bean3);
+            @Override
+            public void onComplete(Platform platform, int arg1, HashMap<String, Object> arg2) {
+                // TODO Auto-generated method stub
+                //输出所有授权信息
+                String data = platform.getDb().exportData();
+                PlatformDb platDB = platform.getDb();//获取数平台数据DB
+                //通过DB获取各种数据
+                String token = platDB.getToken();
+                String gender = platDB.getUserGender();
+                String userIcon = platDB.getUserIcon();
+                String userId = platDB.getUserId();
+                String userName = platDB.getUserName();
+                System.out.println("=====" + data);
+                System.out.println("=====" + token);
+                System.out.println("=====" + gender);
+                System.out.println("=====" + userIcon);
+                System.out.println("=====" + userId);
+                System.out.println("=====" + userName);
+                //移除授权
+                loginPlatform.removeAccount(true);
+            }
 
+            @Override
+            public void onCancel(Platform platform, int arg1) {
+                // TODO Auto-generated method stub
 
-        int spanCount = 3; // 3列
-        // StaggeredGridLayoutManager管理RecyclerView的布局。
-        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setNestedScrollingEnabled(false);
-        RecyclerGridAdapter mAdapter = new RecyclerGridAdapter(lists);
-        mRecyclerView.setAdapter(mAdapter);
+            }
+        });
+        //authorize与showUser单独调用一个即可
+//        weixin.authorize();//单独授权,OnComplete返回的hashmap是空的
+        loginPlatform.showUser(null);//授权并获取用户信息
+
     }
+
+
 
 }
 

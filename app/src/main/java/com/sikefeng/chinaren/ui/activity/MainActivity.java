@@ -206,4 +206,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         }
     }
 
+//    private MyHandler myHandler = new MyHandler(this);
+//    private static class MyHandler extends Handler {
+//        private WeakReference<Activity> reference;
+//        public MyHandler(Activity activity) {
+//            reference = new WeakReference<>(activity);
+//        }
+//        @Override
+//        public void handleMessage(Message msg) {
+//            Activity activity = reference.get();
+//            if(activity == null){
+//                return;
+//            }
+//        }
+//    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        myHandler.removeCallbacksAndMessages(null);
+//    }
+
+
+
 }

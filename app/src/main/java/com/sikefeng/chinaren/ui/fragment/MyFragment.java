@@ -3,12 +3,12 @@
  */
 package com.sikefeng.chinaren.ui.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 
 import com.hss01248.dialog.StyledDialog;
@@ -21,7 +21,7 @@ import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
 import com.sikefeng.chinaren.ui.adapter.RecyclerGridAdapter;
 import com.sikefeng.chinaren.utils.ImageUtils;
-import com.sikefeng.chinaren.widget.PopupDialog;
+import com.sikefeng.chinaren.widget.dialog.CommomDialog;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import java.io.File;
@@ -46,7 +46,6 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
     private MyFragmentPresenter presenter;
 
 
-
     @Override
     protected RBasePresenter getPresenter() {
         if (null == presenter) {
@@ -62,13 +61,12 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 
         getBinding().exitLogin.setOnClickListener(this);
         getBinding().updatePwd.setOnClickListener(this);
+        getBinding().tvLogin.setOnClickListener(this);
 
-        getBinding().headView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        String url_path = "http://img1.imgtn.bdimg.com/it/u=3525092935,1107570256&fm=27&gp=0.jpg";
+        getBinding().headView.setImageURI(Uri.parse(url_path));
 
-            }
-        });
+        ImageUtils.scanImage(getActivity(), getBinding().headView, url_path);
     }
 
     @Override
@@ -76,9 +74,9 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         return R.layout.fragment_my;
     }
 
+
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
-        ImageUtils.scanImage(getActivity(),getBinding().headView);
 
     }
 
@@ -98,12 +96,15 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 //                        startActivity(new Intent(getActivity(), LocationActivity.class));
 
 
-                  }
+                    }
                 }).setBtnText("确定", "取消").show();
                 break;
             case R.id.updatePwd:
 //                ARouter.getInstance().build(Constants.UPDAT_PWD_URL).navigation();
                 update();
+                break;
+            case R.id.tvLogin:
+
                 break;
 
             default:
@@ -140,34 +141,33 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
     /**
      * 功能描述  ShareSDK分享
      * <br>创建时间： 2018-01-17 23:01:52
-
-     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
+     *
      * @param view
+     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
      */
     private void initShare(View view) {
-        PopupDialog shareDialog = new PopupDialog(getActivity(), R.layout.popup_share);
-        shareDialog.setAnimation(android.R.style.Animation_InputMethod);
-        shareDialog.showAtLocation(view, Gravity.CENTER);
-        RecyclerView mRecyclerView = shareDialog.getView(R.id.recyclerView);
+        CommomDialog commomDialog = CommomDialog.getInstance();
+        commomDialog.show(getActivity(), R.layout.popup_share);
+        RecyclerView mRecyclerView = commomDialog.getView(R.id.recyclerView);
         ArrayList<RecyclerGridAdapter.ShareBean> lists = new ArrayList<RecyclerGridAdapter.ShareBean>();
 
-        RecyclerGridAdapter.ShareBean bean=new RecyclerGridAdapter.ShareBean();
+        RecyclerGridAdapter.ShareBean bean = new RecyclerGridAdapter.ShareBean();
         bean.setImgRes(R.mipmap.share_qq);
         bean.setShareName("QQ");
         lists.add(bean);
 
-        RecyclerGridAdapter.ShareBean bean2=new RecyclerGridAdapter.ShareBean();
+        RecyclerGridAdapter.ShareBean bean2 = new RecyclerGridAdapter.ShareBean();
         bean2.setImgRes(R.mipmap.share_wx);
         bean2.setShareName("微信");
         lists.add(bean2);
 
-        RecyclerGridAdapter.ShareBean bean3=new RecyclerGridAdapter.ShareBean();
+        RecyclerGridAdapter.ShareBean bean3 = new RecyclerGridAdapter.ShareBean();
         bean3.setImgRes(R.mipmap.share_wb);
         bean3.setShareName("微博");
         lists.add(bean3);
 
         // 两列
-        int spanCount = 2;
+        int spanCount = 3;
         // StaggeredGridLayoutManager管理RecyclerView的布局。
         RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -175,7 +175,6 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         RecyclerGridAdapter mAdapter = new RecyclerGridAdapter(lists);
         mRecyclerView.setAdapter(mAdapter);
     }
-
 
 
 

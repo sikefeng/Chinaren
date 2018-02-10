@@ -1,83 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg_login"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/titleBar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/back_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/toolbar_left_iv"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:id="@+id/toolbar_left_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-              />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLength="12"
-            android:singleLine="true"
-            android:text="@null"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/right_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal"
-            android:paddingRight="10dp">
-
-            <TextView
-                android:id="@+id/toolbar_righ_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="返回"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/toolbar_righ_iv"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@null"
-                android:visibility="gone" />
-        </LinearLayout>
-
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -180,15 +109,74 @@
             </LinearLayout>
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="25dp"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/recyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:scrollbars="none"
-            />
-    </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <com.sikefeng.chinaren.widget.WrappingSlidingDrawer
+            android:id="@+id/slidingdrawer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:content="@+id/content"
+            android:handle="@+id/handle">
+
+            <ImageButton
+                android:visibility="invisible"
+                android:id="@+id/handle"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_login_thirdpart" />
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ib_login_weibo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:contentDescription="@null"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/share_qq" />
+
+                <ImageView
+                    android:id="@+id/ib_login_wx"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:contentDescription="@null"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/share_wx" />
+
+                <ImageView
+                    android:id="@+id/ib_login_qq"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:contentDescription="@null"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/share_wb" />
+
+
+            </LinearLayout>
+
+        </com.sikefeng.chinaren.widget.WrappingSlidingDrawer>
+    </LinearLayout>
+</RelativeLayout>

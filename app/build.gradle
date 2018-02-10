@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'realm-android'
+apply plugin: 'com.mob.sdk'
 android {
     signingConfigs {
         release {
-            storeFile file("/androidtest.jks")
+            storeFile file("../android.jks")
             storePassword "android"
-            keyAlias "android"
+            keyAlias "android.jks"
             keyPassword "android"
         }
         debug {
@@ -29,6 +30,7 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -125,29 +127,12 @@ dependencies {
     testCompile 'org.powermock:powermock-api-mockito:1.6.5'
     testCompile 'org.powermock:powermock-classloading-xstream:1.6.5'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
-    /*compile (rootProject.ext.dependencies["autolayout"]) {
-                        exclude group: 'com.android.support'
-                    }*/
     compile(rootProject.ext.dependencies["photoview"]) {
         exclude group: 'com.android.support'
     }
-    compile rootProject.ext.dependencies["album"]
     compile rootProject.ext.dependencies["glide"]
-    //tools
     compile rootProject.ext.dependencies["eventbus"]
-    //支持多种状态的自定义View,可以方便的切换到：加载中视图、错误视图、空数据视图、网络异常视图、内容视图
-    //cookie管理
-    //首页Tab库
-    //滑动退出activity
-    //状态栏相关
-    //对话框相关
-    //打印网络返回日志
-    //统一URL
-    //WebSocket客户端
-    //相机相关
     compile files('libs/Android_Map3D_SDK_V5.4.0_20170928.jar')
-    //崩溃处理，可以上传到服务器
-    //圆形头像
     compile 'com.classic.common:multiple-status-view:1.2'
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'
     compile 'eu.long1:spacetablayout:1.0.4'
@@ -158,22 +143,48 @@ dependencies {
     compile 'com.gyf.barlibrary:barlibrary:2.2.5'
     compile 'com.github.hss01248:DialogUtil:1.1.6'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'q.rorbin:badgeview:1.1.2'  //添加角标
-    compile 'com.alibaba:arouter-api:1.2.1.1'  //阿里路由
-    compile 'com.neovisionaries:nv-websocket-client:1.31'  //WebSocket
+    compile 'q.rorbin:badgeview:1.1.2'
+    compile 'com.alibaba:arouter-api:1.2.1.1'
+    compile 'com.neovisionaries:nv-websocket-client:1.31'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.3.0@aar'
-    compile 'com.faendir:acra:4.10.0'  //崩溃信息收集
-    compile 'com.squareup.picasso:picasso:2.5.2'  //网络图片加载组件
-    compile 'pub.devrel:easypermissions:0.3.0'  //权限申请组件
-    compile 'cn.bingoogolapple:bga-adapter:1.1.5@aar'   //适配器组件
-    compile 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'  //图片选择组件
-    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'  //扫描二维码组件
-    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar' //扫描二维码组件
-    compile 'cn.yipianfengye.android:zxing-library:1.5' //扫描二维码组件
+    compile 'com.faendir:acra:4.10.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'pub.devrel:easypermissions:0.3.0'
+    compile 'cn.bingoogolapple:bga-adapter:1.1.5@aar'
+    compile 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
+    compile 'cn.yipianfengye.android:zxing-library:1.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.alipay.euler:andfix:0.5.0@aar'
     compile 'com.facebook.fresco:fresco:1.7.1'
-    compile 'me.relex:photodraweeview:1.1.3'  //图片加载组件（依赖Fresco）
-    compile 'com.trycatch.android:mysnackbar:1.2.2' //顶部弹出SnackBar
+    compile 'me.relex:photodraweeview:1.1.3'
+    compile 'com.trycatch.android:mysnackbar:1.2.2'
+
+}
+MobSDK {
+    appKey "242e6902be090"
+    appSecret "de18cdf5fa2e0332183a89d597111397"
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            Wechat {
+//                appId "wx2ac0bc0098721af3"
+//                appSecret "52b85a672ed55be5c9f5c3fe15a268bc"
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            QQ {
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+            }
+            SinaWeibo {
+                appKey "568898243"
+                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+        }
+    }
 
 }

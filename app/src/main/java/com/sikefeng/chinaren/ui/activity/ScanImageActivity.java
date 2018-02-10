@@ -44,7 +44,9 @@ public class ScanImageActivity extends AppCompatActivity {
         initTitleBar();
         PhotoDraweeView draweeView = layoutBinding.photoDraweeView;
         ViewCompat.setTransitionName(draweeView, MyFragment.SHARED_ELEMENT_NAME);
-        draweeView.setPhotoUri(Uri.parse("res:///" + R.mipmap.tou));
+//        draweeView.setPhotoUri(Uri.parse("res:///" + R.mipmap.tou));
+        String path=this.getIntent().getStringExtra("path");
+        draweeView.setPhotoUri(Uri.parse(path));
         draweeView.setOnPhotoTapListener(new OnPhotoTapListener() {
             @Override public void onPhotoTap(View view, float x, float y) {
                 onBackPressed();

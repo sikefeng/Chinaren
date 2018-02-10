@@ -6,10 +6,10 @@ import com.sikefeng.chinaren.entity.model.GradeBean;
 import com.sikefeng.chinaren.entity.model.GradeListData;
 import com.sikefeng.chinaren.presenter.vm.ContactsViewModel;
 import com.sikefeng.chinaren.utils.DataUtils;
-import com.sikefeng.chinaren.utils.NetImageUtils;
 import com.sikefeng.mvpvmlib.base.IRBaseView;
 
 import cn.bingoogolapple.androidcommon.adapter.BGABindingViewHolder;
+import cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity;
 
 
 public class ContactsPresenter extends BasePresenter<IRBaseView, ContactsViewModel> {
@@ -24,8 +24,7 @@ public class ContactsPresenter extends BasePresenter<IRBaseView, ContactsViewMod
         super(view, viewModel);
     }
     public void onClickItem(BGABindingViewHolder holder, GradeBean model) {
-        NetImageUtils.previewImage(getContext(),0,model.getGradeAlbums());
-//        getContext().startActivity(BGAPhotoPreviewActivity.newIntent(getContext(),  null, model.getGradeAlbums(), 1));
+        getContext().startActivity(BGAPhotoPreviewActivity.newIntent(getContext(),  null, model.getGradeAlbums(), 1));
     }
     @Override
     public void onCreate() {

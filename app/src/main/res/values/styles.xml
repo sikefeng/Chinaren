@@ -9,25 +9,22 @@
         <!--<item name="android:windowBackground">@color/transparent</item>-->
     </style>
 
-    <!--<style name="SwitchTheme1" parent="Theme.AppCompat.Light.NoActionBar">-->
-        <!--<item name="colorValue">#FF00FF00</item>-->
-        <!--<item name="floatValue">0.35</item>-->
-        <!--<item name="integerValue">33</item>-->
-        <!--<item name="booleanValue">true</item>-->
-        <!--<item name="dimensionValue">76dp</item>-->
-        <!--&lt;!&ndash; 如果string类型不是填的引用而是直接放一个字符串,在布局文件中使用正常,但代码里获取的就有问题 &ndash;&gt;-->
-        <!--<item name="stringValue">@string/hello_world</item>-->
-        <!--<item name="referenceValue">@drawable/hand</item>-->
-    <!--</style>-->
-    <!--<style name="SwitchTheme2" parent="Theme.AppCompat.Light.NoActionBar">-->
-        <!--<item name="colorValue">#FFFFFF00</item>-->
-        <!--<item name="floatValue">1.44</item>-->
-        <!--<item name="integerValue">55</item>-->
-        <!--<item name="booleanValue">false</item>-->
-        <!--<item name="dimensionValue">76px</item>-->
-        <!--<item name="stringValue">@string/action_settings</item>-->
-        <!--<item name="referenceValue">@drawable/ic_launcher</item>-->
-    <!--</style>-->
+    <style name="common_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--模糊-->
+
+    </style>
+
 
     <declare-styleable name="roundedimageview">
         <attr name="border_thickness" format="dimension" />
@@ -109,6 +106,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
     </style>
+
 
 
 </resources>

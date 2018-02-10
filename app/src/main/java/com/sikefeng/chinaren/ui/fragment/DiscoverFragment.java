@@ -5,20 +5,20 @@ package com.sikefeng.chinaren.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentDiscoverBinding;
 import com.sikefeng.chinaren.presenter.DiscoverPresenter;
 import com.sikefeng.chinaren.presenter.vm.DiscoverViewModel;
-import com.sikefeng.chinaren.utils.ResUtils;
-import com.sikefeng.chinaren.widget.PopupDialog;
-import com.sikefeng.chinaren.widget.WheelView;
+import com.sikefeng.chinaren.widget.dialog.CommomDialog;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 import com.sikefeng.mvpvmlib.base.RBasePresenter;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 文件名：Discover <br>
@@ -52,7 +52,7 @@ public class DiscoverFragment extends BaseFragment<FragmentDiscoverBinding> impl
         getBinding().setViewModel(presenter.getViewModel());
 
         getBinding().baiduLayout.setOnClickListener(this);
-        getBinding().checkWorkAres.setOnClickListener(this);
+        getBinding().scanCode.setOnClickListener(this);
 
     }
 
@@ -69,12 +69,13 @@ public class DiscoverFragment extends BaseFragment<FragmentDiscoverBinding> impl
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-
             case R.id.baiduLayout:
-//                startActivity(new Intent(getActivity(), WebActivity.class));
-                showWheelView(view);
+                CommomDialog commomDialog= CommomDialog.getInstance();
+                commomDialog.show(getActivity(),R.layout.dialog_commom);
+                TextView textView=commomDialog.getView(R.id.tv_title);
+                textView.setText("KKK");
                 break;
-            case R.id.checkWorkAres:
+            case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
                 break;
             default:
@@ -82,29 +83,14 @@ public class DiscoverFragment extends BaseFragment<FragmentDiscoverBinding> impl
         }
     }
 
-    private void showWheelView(View view){
-        PopupDialog popupDialog = new PopupDialog(getActivity(), R.layout.popup_wheelview);
-        popupDialog.setAnimation(android.R.style.Animation_InputMethod);
-        popupDialog.showAtLocation(view, Gravity.CENTER);
-        WheelView wheelView=popupDialog.getView(R.id.wheel);
-        wheelView.setTextColor(ResUtils.getColor(R.color.theme_color));
-        wheelView.addData("轰趴馆");
-        wheelView.addData("台球");
-        wheelView.addData("密室逃脱");
-        wheelView.addData("卡丁车");
-        wheelView.addData("桌游");
-        wheelView.addData("真人CS");
-        wheelView.addData("DIY");
-        wheelView.setCenterItem(4);
 
-        popupDialog.getView(R.id.right).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogUtils.i("nowData--->"+wheelView.getCenterItem());
-            }
-        });
-
+    private boolean reg(String regex,String content){
+        Pattern pattern=Pattern.compile("");
+        Matcher matcher=pattern.matcher(content);
+        return matcher.find();
     }
+
+
 
 }
 

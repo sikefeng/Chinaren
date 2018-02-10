@@ -56,5 +56,5 @@
     <color name="text_color_normal">#222222</color>
     <color name="text_hint_color">#9b9b9b</color>
     <!--自定义背景颜色-->
-    <color name="bg_color">#eeeeee</color>
+    <color name="bg_color">#f7f7f7</color>
 </resources>

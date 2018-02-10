@@ -16,23 +16,29 @@ public class DataUtils {
     //班级数据
     public static List<GradeBean> getGradClass(){
         ArrayList<String> albums=new ArrayList<>();
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767922&di=8e00a06e1683e87cc06b1f034849eb83&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2F2015%2Fa1%2F120%2Fd%2F23.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477704444&di=017bb5bc6b54b6e226161b2640b3697b&imgtype=0&src=http%3A%2F%2Fimg05.tooopen.com%2Fimages%2F20141027%2Fsy_73473478236.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477704799&di=09341a8e85329434c41fa22c25412687&imgtype=0&src=http%3A%2F%2Fpic9.photophoto.cn%2F20081013%2F0034034469050270_b.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767930&di=da325c85d377e3bd249024e65af38e64&imgtype=0&src=http%3A%2F%2Fpic23.photophoto.cn%2F20120522%2F0034034416383757_b.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767930&di=7c26d601168faf55f4de4fa5e3b618a8&imgtype=0&src=http%3A%2F%2Fpic34.photophoto.cn%2F20150314%2F0034034878331717_b.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767929&di=a251d7511e65eecf349c0e046bddccae&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F13%2F71%2F49%2F28558PICCfv_1024.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767925&di=b1d486b9c77e7cff9add3cfd1e49971f&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140817%2F0034034463193076_b.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767924&di=e53a2392cc31e361809db71711015840&imgtype=0&src=http%3A%2F%2Fpic20.photophoto.cn%2F20110902%2F0034034471873095_b.jpg");
-            albums.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507477767923&di=5e003fdcd7a4e4925669cf1649dee3fa&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130706%2F8821914_141208752148_2.jpg");
-        List<GradeBean> list=new ArrayList<GradeBean>();
-        for (int i = 0; i < 10; i++) {
+            albums.add("http://static.xialv.com/cover/2013/08/20/9d/13769934725482jnlzg_490X285.jpg");
+            albums.add("http://www.ljyz.org/General/UploadFiles_5719/201106/2011062016113790.jpg");
+            albums.add("http://img0.imgtn.bdimg.com/it/u=2055345719,1372590361&fm=27&gp=0.jpg");
+            albums.add("http://pic18.nipic.com/20111031/8708076_114014306000_2.jpg");
+            albums.add("http://image.cnpp.cn/upload/images/20170711/15443416745_700x466.jpg");
+            albums.add("http://img4.imgtn.bdimg.com/it/u=3448633739,1452275249&fm=214&gp=0.jpg");
+            albums.add("http://img2.imgtn.bdimg.com/it/u=3606080340,1870876656&fm=27&gp=0.jpg");
+            albums.add("http://pic29.nipic.com/20130508/11918471_133030369170_2.jpg");
+            albums.add("http://img0.imgtn.bdimg.com/it/u=1974474198,3145686328&fm=27&gp=0.jpg");
+            albums.add("http://imgsrc.baidu.com/forum/w=580/sign=c50eae6aa8ec8a13141a57e8c7029157/dd22249b033b5bb55bc8aa7b37d3d539b600bc2b.jpg");
+            albums.add("http://img5.imgtn.bdimg.com/it/u=4278707509,1321244264&fm=27&gp=0.jpg");
+            albums.add("http://img2.imgtn.bdimg.com/it/u=2273697327,2112964007&fm=214&gp=0.jpg");
+            albums.add("http://img2.imgtn.bdimg.com/it/u=33959737,3708939958&fm=214&gp=0.jpg");
+            albums.add("http://img5.imgtn.bdimg.com/it/u=712290449,510755658&fm=27&gp=0.jpg");
+            albums.add("http://img3.imgtn.bdimg.com/it/u=1008506640,3776531443&fm=27&gp=0.jpg");
+            List<GradeBean> list=new ArrayList<GradeBean>();
+        for (int i = 0; i < 12; i++) {
             GradeBean bean=new GradeBean();
             bean.setId(String.valueOf(i));
             bean.setGradeName("初中("+(i+1)+")班");
             bean.setPeopleNumber(10+i);
             bean.setGradeAlbums(albums);
-            bean.setBgPhoto(albums.get(1));
+            bean.setBgPhoto(albums.get(i));
             list.add(bean);
         }
         return list;
@@ -50,7 +56,7 @@ public class DataUtils {
         data.add(mMarker);
 
         MarkerBean mMarker2=new MarkerBean();
-        mMarker2.setIcon("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506885833574&di=690061a7f2b841c0ec5f444bda73e4a6&imgtype=0&src=http%3A%2F%2Ff2.topitme.com%2F2%2F8f%2F49%2F1184405753dea498f2o.jpg");
+        mMarker2.setIcon("http://img.tupianzj.com/uploads/allimg/150911/9-150911194G0-50.jpg");
         mMarker2.setLat(23.117055306224895);
         mMarker2.setLng(113.2759952545166);
         mMarker2.setUserName("李敏镐");

@@ -97,7 +97,7 @@
                         android:background="@color/line" />
 
                     <LinearLayout
-                        android:id="@+id/checkWorkAres"
+                        android:id="@+id/scanCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ripple_bg"
