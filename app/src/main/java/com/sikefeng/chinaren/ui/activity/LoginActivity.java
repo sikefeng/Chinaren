@@ -133,7 +133,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             }
 
         });
-//        startActivity(new Intent(this, com.sikefeng.chinaren.ui.MainActivity.class));
+//        startActivity(new Intent(this, CropActivity.class));
     }
 
 

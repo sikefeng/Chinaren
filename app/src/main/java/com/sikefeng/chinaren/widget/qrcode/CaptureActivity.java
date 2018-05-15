@@ -26,6 +26,7 @@ import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.ui.activity.WebActivity;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.widget.PopupDialog;
+import com.sikefeng.chinaren.widget.dialog.CommomDialog;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -183,12 +184,18 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
 //            resultIntent.putExtra("data",result);
 //            CaptureActivity.this.setResult(RESULT_OK, resultIntent);
 //            startActivity(resultIntent);
-            CaptureActivity.this.finish();
+//            CaptureActivity.this.finish();
             Toast.makeText(CaptureActivity.this, "解析结果:" + result, Toast.LENGTH_LONG).show();
             if (result.contains("http") || result.contains("https")) {
                 Intent intent = new Intent(CaptureActivity.this, WebActivity.class);
                 intent.putExtra("URL", result);
                 startActivity(intent);
+                CaptureActivity.this.finish();
+            }else {
+                CommomDialog commomDialog = CommomDialog.getInstance();
+                commomDialog.show(CaptureActivity.this, R.layout.dialog_scan_result);
+                TextView tvResult=commomDialog.getView(R.id.tv_scan_result);
+                tvResult.setText(result);
             }
         }
 
