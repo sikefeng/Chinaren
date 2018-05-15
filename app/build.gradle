@@ -157,10 +157,11 @@ dependencies {
     compile 'cn.yipianfengye.android:zxing-library:1.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.alipay.euler:andfix:0.5.0@aar'
-    compile 'com.facebook.fresco:fresco:1.7.1'
+     compile 'com.facebook.fresco:fresco:1.7.1'
     compile 'me.relex:photodraweeview:1.1.3'
     compile 'com.trycatch.android:mysnackbar:1.2.2'
-
+    compile 'net.oschina.common:common:0.2.1'
+    compile 'cn.jzvd:jiaozivideoplayer:6.2.3'
 }
 MobSDK {
     appKey "242e6902be090"
@@ -169,10 +170,8 @@ MobSDK {
         //平台配置信息
         devInfo {
             Wechat {
-//                appId "wx2ac0bc0098721af3"
-//                appSecret "52b85a672ed55be5c9f5c3fe15a268bc"
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                appId "wx2ac0bc0098721af3"
+                appSecret "52b85a672ed55be5c9f5c3fe15a268bc"
             }
             QQ {
                 appId "100371282"
