@@ -2,7 +2,8 @@ package com.sikefeng.chinaren.utils;
 
 import android.app.Activity;
 
-import com.sikefeng.mvpvmlib.utils.LogUtils;
+
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 
 import java.util.Stack;
 

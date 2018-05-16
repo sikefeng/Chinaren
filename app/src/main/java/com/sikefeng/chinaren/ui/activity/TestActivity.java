@@ -6,25 +6,21 @@ import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityTestBinding;
 import com.sikefeng.chinaren.entity.event.PermissionEvent;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.TestPresenter;
 import com.sikefeng.chinaren.presenter.vm.TestViewModel;
 import com.sikefeng.chinaren.utils.PermissionUtils;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
-
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity;
 import cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout;
 import pub.devrel.easypermissions.AfterPermissionGranted;

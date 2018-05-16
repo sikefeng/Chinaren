@@ -2,8 +2,8 @@
 package com.sikefeng.chinaren.presenter;
 
 import com.sikefeng.chinaren.core.BasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.presenter.vm.TestViewModel;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
 
 
 public class TestPresenter extends BasePresenter<IRBaseView, TestViewModel> {

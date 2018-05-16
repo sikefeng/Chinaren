@@ -12,13 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityImagesBinding;
 import com.sikefeng.chinaren.entity.other.ImgsInfo;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.base.RBaseViewModel;
 import com.sikefeng.chinaren.ui.adapter.SimpleSheetAdapter;
 import com.sikefeng.chinaren.utils.DateTimeUtils;
 import com.sikefeng.chinaren.utils.FileUtils;
@@ -28,13 +29,9 @@ import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.utils.img.ImageUtils;
 import com.sikefeng.chinaren.utils.img.glide.DownCallBack;
 import com.sikefeng.chinaren.widget.DividerItemDecoration;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
-import com.sikefeng.mvpvmlib.base.RBaseViewModel;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import io.reactivex.observers.DisposableObserver;
 

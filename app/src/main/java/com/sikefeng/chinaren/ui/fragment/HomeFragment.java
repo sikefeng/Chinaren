@@ -24,7 +24,6 @@ import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.entity.model.MarkerBean;
 import com.sikefeng.chinaren.ui.adapter.CustomInfoWindow;
 import com.sikefeng.chinaren.utils.DataUtils;
-import com.sikefeng.chinaren.utils.NetImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;

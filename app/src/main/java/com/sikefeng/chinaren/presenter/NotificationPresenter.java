@@ -9,10 +9,10 @@ import com.sikefeng.chinaren.core.ServiceHelper;
 import com.sikefeng.chinaren.entity.model.UserBean;
 import com.sikefeng.chinaren.entity.model.UserListData;
 import com.sikefeng.chinaren.entity.other.ImgsInfo;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.presenter.vm.NotificationViewModel;
 import com.sikefeng.chinaren.ui.activity.ImagesActivity;
 import com.sikefeng.chinaren.utils.ResUtils;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,13 +15,13 @@ import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityForgetpwdBinding;
 import com.sikefeng.chinaren.entity.event.ForgetPwdvent;
 import com.sikefeng.chinaren.entity.model.UserBean;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.ForgetPwdPresenter;
 import com.sikefeng.chinaren.presenter.vm.ForgetPwdViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.Network;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.utils.VerificationUtil;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -14,11 +14,11 @@ import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivitySettingsBinding;
 import com.sikefeng.chinaren.entity.event.PermissionEvent;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.SettingsPresenter;
 import com.sikefeng.chinaren.presenter.vm.SettingsViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.PermissionUtils;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 import com.zhy.changeskin.SkinManager;
 
 import org.greenrobot.eventbus.Subscribe;

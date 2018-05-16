@@ -5,16 +5,14 @@ package com.sikefeng.chinaren.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentNotificationBinding;
 import com.sikefeng.chinaren.entity.event.RvScrollEvent;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.presenter.NotificationPresenter;
 import com.sikefeng.chinaren.presenter.vm.NotificationViewModel;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
-
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 

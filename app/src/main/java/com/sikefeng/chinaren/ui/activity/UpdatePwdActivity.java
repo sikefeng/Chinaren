@@ -10,11 +10,11 @@ import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityUpdatepwdBinding;
 import com.sikefeng.chinaren.entity.event.UpdatePwdEvent;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.UpdatePwdPresenter;
 import com.sikefeng.chinaren.presenter.vm.UpdatePwdViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ToastUtils;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

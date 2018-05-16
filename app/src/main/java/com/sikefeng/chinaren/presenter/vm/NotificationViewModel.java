@@ -9,8 +9,8 @@ import com.sikefeng.chinaren.databinding.FragmentNotificationBinding;
 import com.sikefeng.chinaren.databinding.ItemFragmentNotificationBinding;
 import com.sikefeng.chinaren.entity.model.UserBean;
 import com.sikefeng.chinaren.entity.model.UserListData;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.CommonUtils;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
 
 import cn.bingoogolapple.androidcommon.adapter.BGABindingRecyclerViewAdapter;
 

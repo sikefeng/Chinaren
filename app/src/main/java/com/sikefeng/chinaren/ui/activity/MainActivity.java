@@ -29,6 +29,7 @@ import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityMainBinding;
 import com.sikefeng.chinaren.entity.event.MainEvent;
 import com.sikefeng.chinaren.entity.event.RvScrollEvent;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
 import com.sikefeng.chinaren.ui.fragment.DiscoverFragment;
@@ -37,7 +38,6 @@ import com.sikefeng.chinaren.ui.fragment.MyFragment;
 import com.sikefeng.chinaren.utils.AppExit2Back;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ResUtils;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 import com.trycatch.mysnackbar.TSnackbar;
 
 import org.greenrobot.eventbus.EventBus;

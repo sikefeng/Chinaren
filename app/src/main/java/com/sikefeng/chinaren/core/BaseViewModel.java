@@ -5,10 +5,11 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 
 import com.classic.common.MultipleStatusView;
+import com.sikefeng.chinaren.mvpvmlib.base.RBaseViewModel;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.Network;
 import com.sikefeng.chinaren.utils.ToastUtils;
-import com.sikefeng.mvpvmlib.base.RBaseViewModel;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
+
 
 
 public class BaseViewModel extends RBaseViewModel {

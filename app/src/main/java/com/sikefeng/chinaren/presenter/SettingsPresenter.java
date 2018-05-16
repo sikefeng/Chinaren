@@ -2,8 +2,8 @@
 package com.sikefeng.chinaren.presenter;
 
 import com.sikefeng.chinaren.core.BasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.presenter.vm.SettingsViewModel;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
 
 
 public class SettingsPresenter extends BasePresenter<IRBaseView, SettingsViewModel> {

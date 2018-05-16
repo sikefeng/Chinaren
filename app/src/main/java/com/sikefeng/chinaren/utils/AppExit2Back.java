@@ -5,7 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.sikefeng.chinaren.R;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
+
 
 import java.util.Timer;
 import java.util.TimerTask;

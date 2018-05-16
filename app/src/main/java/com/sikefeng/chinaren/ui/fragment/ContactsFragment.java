@@ -5,9 +5,9 @@ import android.os.Bundle;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentContactsBinding;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.ContactsPresenter;
 import com.sikefeng.chinaren.presenter.vm.ContactsViewModel;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 /**
  * Created by Richard on 24/9/17.

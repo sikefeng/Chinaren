@@ -4,9 +4,9 @@ package com.sikefeng.chinaren.presenter;
 import com.sikefeng.chinaren.core.BasePresenter;
 import com.sikefeng.chinaren.entity.model.GradeBean;
 import com.sikefeng.chinaren.entity.model.GradeListData;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.presenter.vm.ContactsViewModel;
 import com.sikefeng.chinaren.utils.DataUtils;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
 
 import cn.bingoogolapple.androidcommon.adapter.BGABindingViewHolder;
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity;

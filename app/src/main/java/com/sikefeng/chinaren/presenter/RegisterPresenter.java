@@ -8,12 +8,12 @@ import com.sikefeng.chinaren.core.ServiceHelper;
 import com.sikefeng.chinaren.entity.event.RegisterEvent;
 import com.sikefeng.chinaren.entity.model.UserBean;
 import com.sikefeng.chinaren.entity.model.UserData;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.presenter.vm.RegisterViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.LoginUtil;
 import com.sikefeng.chinaren.utils.ToastUtils;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 

@@ -4,8 +4,8 @@ package com.sikefeng.chinaren.core;
 import android.app.Activity;
 
 import com.classic.common.MultipleStatusView;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 
 
 public abstract class BasePresenter<V extends IRBaseView, VM extends BaseViewModel> extends RBasePresenter<V, VM> {

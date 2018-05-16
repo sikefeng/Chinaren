@@ -17,12 +17,12 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
 import com.mob.MobSDK;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.Cockroach;
 import com.sikefeng.chinaren.utils.CrashApphandler;
 import com.sikefeng.chinaren.utils.FileUtils;
 import com.sikefeng.chinaren.utils.img.ImageUtils;
 import com.sikefeng.chinaren.utils.img.glide.GlideLoadStrategy;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
 import com.zhy.changeskin.SkinManager;
 
 import org.acra.ACRA;

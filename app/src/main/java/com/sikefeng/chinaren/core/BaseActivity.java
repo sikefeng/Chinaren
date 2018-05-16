@@ -13,8 +13,8 @@ import android.view.WindowManager;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.jude.swipbackhelper.SwipeBackHelper;
+import com.sikefeng.chinaren.mvpvmlib.base.RBaseActivity;
 import com.sikefeng.chinaren.utils.DavikActivityUtils;
-import com.sikefeng.mvpvmlib.base.RBaseActivity;
 import com.zhy.changeskin.SkinManager;
 
 import org.greenrobot.eventbus.EventBus;

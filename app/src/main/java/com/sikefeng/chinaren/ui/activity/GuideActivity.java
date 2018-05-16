@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
 
 /**
  * 文件名：GuideActivity <br>

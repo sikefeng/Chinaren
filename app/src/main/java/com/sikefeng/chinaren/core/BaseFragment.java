@@ -4,7 +4,8 @@ package com.sikefeng.chinaren.core;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
-import com.sikefeng.mvpvmlib.base.RBaseFragment;
+
+import com.sikefeng.chinaren.mvpvmlib.base.RBaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
 

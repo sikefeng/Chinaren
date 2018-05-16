@@ -9,9 +9,9 @@ import android.support.v4.app.Fragment;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentMainBinding;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.utils.ResUtils;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;

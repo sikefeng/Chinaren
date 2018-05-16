@@ -15,12 +15,12 @@ import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityLoginBinding;
 import com.sikefeng.chinaren.entity.event.PermissionEvent;
 import com.sikefeng.chinaren.entity.model.UserBean;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.LoginPresenter;
 import com.sikefeng.chinaren.presenter.vm.LoginViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.PermissionUtils;
 import com.sikefeng.chinaren.utils.ToastUtils;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

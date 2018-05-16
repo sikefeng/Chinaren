@@ -3,9 +3,9 @@ package com.sikefeng.chinaren.api;
 
 import com.alibaba.android.arouter.utils.TextUtils;
 import com.sikefeng.chinaren.MyApplication;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
 
 import java.io.IOException;
 

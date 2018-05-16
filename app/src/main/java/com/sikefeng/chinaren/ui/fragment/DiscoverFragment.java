@@ -11,11 +11,11 @@ import android.widget.TextView;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentDiscoverBinding;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.DiscoverPresenter;
 import com.sikefeng.chinaren.presenter.vm.DiscoverViewModel;
 import com.sikefeng.chinaren.widget.dialog.CommomDialog;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

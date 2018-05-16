@@ -17,12 +17,12 @@ import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
 import com.sikefeng.chinaren.databinding.FragmentMyBinding;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
 import com.sikefeng.chinaren.ui.adapter.RecyclerGridAdapter;
 import com.sikefeng.chinaren.utils.ImageUtils;
 import com.sikefeng.chinaren.widget.dialog.CommomDialog;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,8 +1,8 @@
 package com.sikefeng.chinaren.presenter;
 
 import com.sikefeng.chinaren.core.BasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.presenter.vm.DiscoverViewModel;
-import com.sikefeng.mvpvmlib.base.IRBaseView;
 
 /**
  * 文件名：ForgetPwdPresenter <br>

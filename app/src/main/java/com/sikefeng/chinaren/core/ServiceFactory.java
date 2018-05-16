@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 
 import com.sikefeng.chinaren.api.APIConfig;
 import com.sikefeng.chinaren.api.XXNetInterceptor;
+import com.sikefeng.chinaren.mvpvmlib.http.SimpleServiceFactory;
+import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.SingletonUtils;
-import com.sikefeng.mvpvmlib.http.SimpleServiceFactory;
-import com.sikefeng.mvpvmlib.utils.LogUtils;
 
 import java.io.File;
 

@@ -17,7 +17,7 @@ import com.sikefeng.chinaren.BuildConfig;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityWebBinding;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 
 
 public class WebActivity extends BaseActivity<ActivityWebBinding> {

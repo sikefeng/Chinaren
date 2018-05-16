@@ -15,13 +15,13 @@ import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityRegisterBinding;
 import com.sikefeng.chinaren.entity.event.RegisterEvent;
 import com.sikefeng.chinaren.entity.model.UserBean;
+import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.RegisterPresenter;
 import com.sikefeng.chinaren.presenter.vm.RegisterViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.Network;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.utils.VerificationUtil;
-import com.sikefeng.mvpvmlib.base.RBasePresenter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
