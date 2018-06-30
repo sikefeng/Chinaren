@@ -14,8 +14,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -33,6 +35,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,android:name">
+
         <!-- 高德地图key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -49,8 +52,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -90,14 +94,15 @@
             android:name=".ui.activity.Login2Activity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".widget.qrcode.CaptureActivity" />
-        <activity android:name=".ui.activity.ScanImageActivity"/>
+        <activity android:name=".ui.activity.ScanImageActivity" />
         <!-- 视图自适应 -->
         <meta-data
             android:name="design_width"
-            android:value="768"></meta-data>
+            android:value="768" />
         <meta-data
             android:name="design_height"
-            android:value="1280"></meta-data>
+            android:value="1280" />
+
     </application>
 
 </manifest>

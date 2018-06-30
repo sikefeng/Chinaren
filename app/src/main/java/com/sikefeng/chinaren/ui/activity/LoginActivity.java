@@ -1,6 +1,7 @@
 package com.sikefeng.chinaren.ui.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -133,7 +134,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             }
 
         });
-//        startActivity(new Intent(this, CropActivity.class));
+
     }
 
 

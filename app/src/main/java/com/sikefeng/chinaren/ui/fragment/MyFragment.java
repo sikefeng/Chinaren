@@ -3,6 +3,7 @@
  */
 package com.sikefeng.chinaren.ui.fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
@@ -23,6 +25,7 @@ import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
 import com.sikefeng.chinaren.ui.adapter.RecyclerGridAdapter;
 import com.sikefeng.chinaren.utils.ImageUtils;
 import com.sikefeng.chinaren.widget.dialog.CommomDialog;
+import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,6 +62,8 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
 
+        getBinding().baiduLayout.setOnClickListener(this);
+        getBinding().scanCode.setOnClickListener(this);
         getBinding().exitLogin.setOnClickListener(this);
         getBinding().updatePwd.setOnClickListener(this);
         getBinding().tvLogin.setOnClickListener(this);
@@ -67,7 +72,10 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().headView.setImageURI(Uri.parse(url_path));
 
         ImageUtils.scanImage(getActivity(), getBinding().headView, url_path);
+
+
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -83,6 +91,15 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.baiduLayout:
+                CommomDialog commomDialog= CommomDialog.getInstance();
+                commomDialog.show(getActivity(),R.layout.dialog_commom);
+                TextView textView=commomDialog.getView(R.id.tv_title);
+                textView.setText("KKK");
+                break;
+            case R.id.scanCode:
+                startActivity(new Intent(getActivity(), CaptureActivity.class));
+                break;
             case R.id.exitLogin:
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override

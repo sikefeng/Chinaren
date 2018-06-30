@@ -3,10 +3,13 @@
  */
 package com.sikefeng.chinaren.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TextView;
 
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
@@ -14,11 +17,10 @@ import com.sikefeng.chinaren.databinding.FragmentDiscoverBinding;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.DiscoverPresenter;
 import com.sikefeng.chinaren.presenter.vm.DiscoverViewModel;
-import com.sikefeng.chinaren.widget.dialog.CommomDialog;
-import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
+import com.sikefeng.chinaren.test.newsFragment;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 文件名：Discover <br>
@@ -31,12 +33,12 @@ import java.util.regex.Pattern;
  * @since JDK 1.8
  */
 public class DiscoverFragment extends BaseFragment<FragmentDiscoverBinding> implements View.OnClickListener {
-
     /**
      * 我界面数据协调器
      */
     private DiscoverPresenter presenter;
-
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
 
     @Override
     protected RBasePresenter getPresenter() {
@@ -51,10 +53,73 @@ public class DiscoverFragment extends BaseFragment<FragmentDiscoverBinding> impl
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
 
-        getBinding().baiduLayout.setOnClickListener(this);
-        getBinding().scanCode.setOnClickListener(this);
-
+        initView(); // 初始化控件
+        initViewPager(); // 初始化ViewPager
     }
+
+    private void initViewPager() {
+        // 创建一个集合,装填Fragment
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        // 装填
+        fragments.add(new newsFragment());
+        fragments.add(new newsFragment());
+        fragments.add(new newsFragment());
+        fragments.add(new newsFragment());
+        // 创建ViewPager适配器
+        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getChildFragmentManager());
+        myPagerAdapter.setFragments(fragments);
+        // 给ViewPager设置适配器
+        mViewPager.setAdapter(myPagerAdapter);
+        // TabLayout 指示器 (记得自己手动创建4个Fragment,注意是 app包下的Fragment 还是 V4包下的 Fragment)
+        mTabLayout.addTab(mTabLayout.newTab());
+        mTabLayout.addTab(mTabLayout.newTab());
+        mTabLayout.addTab(mTabLayout.newTab());
+        mTabLayout.addTab(mTabLayout.newTab());
+        // 使用 TabLayout 和 ViewPager 相关联
+        mTabLayout.setupWithViewPager(mViewPager);
+        // TabLayout指示器添加文本
+        mTabLayout.getTabAt(0).setText("头条");
+        mTabLayout.getTabAt(1).setText("热点");
+        mTabLayout.getTabAt(2).setText("娱乐");
+        mTabLayout.getTabAt(3).setText("体育");
+    }
+
+    /**
+     * 初始化控件
+     */
+    private void initView() {
+        mTabLayout =getBinding().tvtablayout;
+        mViewPager = getBinding().tvviewpager;
+    }
+    //ViewPager适配器代码:
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+
+        private List<Fragment> mFragmentList;
+
+        public void setFragments(ArrayList<Fragment> fragments) {
+            mFragmentList = fragments;
+        }
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+
+            Fragment fragment = mFragmentList.get(position);
+
+            return fragment;
+        }
+
+        @Override
+        public int getCount() {
+
+            return mFragmentList.size();
+        }
+    }
+
+
 
     @Override
     protected int getLayoutId() {
@@ -69,26 +134,11 @@ public class DiscoverFragment extends BaseFragment<FragmentDiscoverBinding> impl
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.baiduLayout:
-                CommomDialog commomDialog= CommomDialog.getInstance();
-                commomDialog.show(getActivity(),R.layout.dialog_commom);
-                TextView textView=commomDialog.getView(R.id.tv_title);
-                textView.setText("KKK");
-                break;
-            case R.id.scanCode:
-                startActivity(new Intent(getActivity(), CaptureActivity.class));
-                break;
             default:
                 break;
         }
     }
 
-
-    private boolean reg(String regex,String content){
-        Pattern pattern=Pattern.compile("");
-        Matcher matcher=pattern.matcher(content);
-        return matcher.find();
-    }
 
 
 

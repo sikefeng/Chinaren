@@ -16,7 +16,7 @@ public class DataUtils {
     //班级数据
     public static List<GradeBean> getGradClass(){
         ArrayList<String> albums=new ArrayList<>();
-            albums.add("http://static.xialv.com/cover/2013/08/20/9d/13769934725482jnlzg_490X285.jpg");
+            albums.add("http://img2.imgtn.bdimg.com/it/u=33959737,3708939958&fm=214&gp=0.jpg");
             albums.add("http://www.ljyz.org/General/UploadFiles_5719/201106/2011062016113790.jpg");
             albums.add("http://img0.imgtn.bdimg.com/it/u=2055345719,1372590361&fm=27&gp=0.jpg");
             albums.add("http://pic18.nipic.com/20111031/8708076_114014306000_2.jpg");

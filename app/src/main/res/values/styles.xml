@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/theme_color</item>
         <item name="colorPrimaryDark">@color/theme_color</item>
         <item name="colorAccent">@color/theme_color</item>
-        <!--<item name="android:windowBackground">@color/transparent</item>-->
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="common_dialog" parent="@android:style/Theme.Dialog">
@@ -24,7 +24,21 @@
         <!--模糊-->
 
     </style>
+    <style name="TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/design_tab_max_width</item>
+        <item name="tabIndicatorColor">#FFFFFF</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">@color/theme_color</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
 
+    <style name="WindowAnimationFadeInOut">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
 
     <declare-styleable name="roundedimageview">
         <attr name="border_thickness" format="dimension" />

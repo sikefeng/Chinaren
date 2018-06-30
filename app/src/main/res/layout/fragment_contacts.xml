@@ -23,11 +23,11 @@
 
 
     <com.classic.common.MultipleStatusView
+        android:background="@color/white"
         android:id="@+id/multipleStatusView"
         android:paddingBottom="10px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/status_bar_height"
         app:emptyView="@layout/view_state_empty_view"
         app:errorView="@layout/view_state_error_view"
         app:loadingView="@layout/view_state_loading_view"

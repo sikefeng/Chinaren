@@ -58,7 +58,11 @@ public class CaptureActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initView() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
+            //给左上角图标的左边加上一个返回的图标
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        setSupportActionBar(mToolbar);
         //给左上角图标的左边加上一个返回的图标
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        mToolbar.setTitle("");

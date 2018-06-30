@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
 import com.mob.MobSDK;
 import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
+import com.sikefeng.chinaren.test.SettingUtil;
 import com.sikefeng.chinaren.utils.Cockroach;
 import com.sikefeng.chinaren.utils.CrashApphandler;
 import com.sikefeng.chinaren.utils.FileUtils;
@@ -32,6 +34,8 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
+
+import java.util.Calendar;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -91,6 +95,7 @@ public class MyApplication extends Application {
         Fresco.initialize(this);//初始化Fresco
         initCockroach();
         MobSDK.init(this);//初始化ShareSDK
+        initTheme();
     }
 
 
@@ -255,6 +260,43 @@ public class MyApplication extends Application {
                 });
             }
         });
+    }
+
+    private void initTheme() {
+        SettingUtil settingUtil = SettingUtil.getInstance();
+
+        // 获取是否开启 "自动切换夜间模式"
+        if (settingUtil.getIsAutoNightMode()) {
+
+            int nightStartHour = Integer.parseInt(settingUtil.getNightStartHour());
+            int nightStartMinute = Integer.parseInt(settingUtil.getNightStartMinute());
+            int dayStartHour = Integer.parseInt(settingUtil.getDayStartHour());
+            int dayStartMinute = Integer.parseInt(settingUtil.getDayStartMinute());
+
+            Calendar calendar = Calendar.getInstance();
+            int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+            int currentMinute = calendar.get(Calendar.MINUTE);
+
+            int nightValue = nightStartHour * 60 + nightStartMinute;
+            int dayValue = dayStartHour * 60 + dayStartMinute;
+            int currentValue = currentHour * 60 + currentMinute;
+
+            if (currentValue >= nightValue || currentValue <= dayValue) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                settingUtil.setIsNightMode(true);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                settingUtil.setIsNightMode(false);
+            }
+
+        } else {
+            // 获取当前主题
+            if (settingUtil.getIsNightMode()) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        }
     }
 
 }
