@@ -21,7 +21,7 @@ import static com.sikefeng.chinaren.ui.fragment.MyFragment.SHARED_ELEMENT_NAME;
 
 public class ImageUtils {
 
-    public static void scanImage(Activity activity,ImageView imageView,String url) {
+    public static void previewImage(Activity activity,ImageView imageView,String url) {
         ViewCompat.setTransitionName(imageView, SHARED_ELEMENT_NAME);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

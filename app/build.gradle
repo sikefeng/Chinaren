@@ -88,12 +88,12 @@ android {
     productFlavors {
         dev {
             applicationId "com.sikefeng.chinaren"
-            resValue "string", "app_name", "Chinaren"
+            resValue "string", "app_name", "AI智能生活"
             resValue "string", "http_server_url", "http://192.168.2.129:9090/api/"
         }
         sit {
             applicationId "com.sikefeng.chinaren"
-            resValue "string", "app_name", "Chinaren"
+            resValue "string", "app_name", "AI智能生活"
             resValue "string", "http_server_url", "http://192.168.2.129:9090/api/"
         }
     }
@@ -161,6 +161,7 @@ dependencies {
     compile 'me.relex:photodraweeview:1.1.3'
     compile 'net.oschina.common:common:0.2.1'
     compile 'cn.jzvd:jiaozivideoplayer:6.2.3'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
 
 
     compile(rootProject.ext.support["appcompat-v7"]) {

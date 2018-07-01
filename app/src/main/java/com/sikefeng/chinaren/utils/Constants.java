@@ -7,13 +7,13 @@ package com.sikefeng.chinaren.utils;
 public class Constants {
 
     //界面常量值
-    public static final String MAIN_URL = "/se/main";
-    public static final String NEXT_URL = "/se/next";
-    public static final String REGISTER_URL = "/se/register"; //注册界面
-    public static final String FORGET_URL = "/se/forget"; //忘记密码界面
-    public static final String LOGIN_URL = "/se/login"; //登录界面
-    public static final String UPDATE_PWD_URL = "/se/updatePwd"; //修改密码界面
-    public static final String SETTINGS_URL = "/se/settings"; //设置界面
+    public static final String MAIN_URL = "/skf/main";
+    public static final String NEXT_URL = "/skf/next";
+    public static final String REGISTER_URL = "/skf/register"; //注册界面
+    public static final String FORGET_URL = "/skf/forget"; //忘记密码界面
+    public static final String LOGIN_URL = "/skf/login"; //登录界面
+    public static final String UPDATE_PWD_URL = "/skf/updatePwd"; //修改密码界面
+    public static final String SETTINGS_URL = "/skf/settings"; //设置界面
 
     //用户常量
     public static final String IS_EXIT = "isExit";// 标记是否手动退出
@@ -33,6 +33,8 @@ public class Constants {
 
     //密码长度限制
     public static final int PWD_LENGTH = 6; //密码最小长度
+
+    public static final String ROBOT_VOICERNANE = "robotVoicerName";// 智能助理发音人
 
    //通用的值
     public static final int VALUE_800 = 800; //定义800的值

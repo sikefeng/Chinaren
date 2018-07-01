@@ -249,3 +249,6 @@
     java.lang.Object readResolve();
 }
 
+#科大讯飞语音
+-keep class com.iflytek.**{*;}
+-keepattributes Signature

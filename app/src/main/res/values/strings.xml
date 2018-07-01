@@ -31,7 +31,7 @@
     <string name="sys_exit_tip">再按一次退出程序</string>
     <string name="connectting">正在连接服务器...</string>
     <string name="init_error_code_msg">初始化失败,错误码：</string>
-
+    <string name="text_begin">请开始说话…</string>
     <!--登录 注册 忘记密码-->
     <string name="user_name">用户名</string>
     <string name="password">密码</string>

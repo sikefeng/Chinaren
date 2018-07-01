@@ -3,18 +3,18 @@
  */
 package com.sikefeng.chinaren.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
+import com.iflytek.cloud.SpeechError;
 import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
@@ -22,14 +22,15 @@ import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
-import com.sikefeng.chinaren.ui.adapter.RecyclerGridAdapter;
+import com.sikefeng.chinaren.ui.activity.NewNoteActivity;
 import com.sikefeng.chinaren.utils.ImageUtils;
+import com.sikefeng.chinaren.utils.speech.SpeechRecognizerUtils;
+import com.sikefeng.chinaren.utils.speech.SpeechSynthesizerUtils;
 import com.sikefeng.chinaren.widget.dialog.CommomDialog;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * 文件名：MyFragment <br>
@@ -48,6 +49,8 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
      */
     private MyFragmentPresenter presenter;
 
+    private Context mContext;
+
 
     @Override
     protected RBasePresenter getPresenter() {
@@ -59,6 +62,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        mContext=getActivity();
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
 
@@ -66,12 +70,12 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().scanCode.setOnClickListener(this);
         getBinding().exitLogin.setOnClickListener(this);
         getBinding().updatePwd.setOnClickListener(this);
-        getBinding().tvLogin.setOnClickListener(this);
+        getBinding().tvUsername.setOnClickListener(this);
 
         String url_path = "http://img1.imgtn.bdimg.com/it/u=3525092935,1107570256&fm=27&gp=0.jpg";
         getBinding().headView.setImageURI(Uri.parse(url_path));
 
-        ImageUtils.scanImage(getActivity(), getBinding().headView, url_path);
+        ImageUtils.previewImage(getActivity(), getBinding().headView, url_path);
 
 
     }
@@ -92,10 +96,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.baiduLayout:
-                CommomDialog commomDialog= CommomDialog.getInstance();
-                commomDialog.show(getActivity(),R.layout.dialog_commom);
-                TextView textView=commomDialog.getView(R.id.tv_title);
-                textView.setText("KKK");
+                SpeechSynthesizerUtils.getInstance(mContext).startSpeak("A-I智能生活");
                 break;
             case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
@@ -104,24 +105,23 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-//                        startActivity(new Intent(getActivity(), BaseMapActivity.class));
-                        initShare(view);
+
+
                     }
 
                     @Override
                     public void onSecond() {
-//                        startActivity(new Intent(getActivity(), LocationActivity.class));
 
 
                     }
                 }).setBtnText("确定", "取消").show();
                 break;
             case R.id.updatePwd:
-//                ARouter.getInstance().build(Constants.UPDAT_PWD_URL).navigation();
-                update();
-                break;
-            case R.id.tvLogin:
 
+
+                break;
+            case R.id.tvUsername:
+                startActivity(new Intent(mContext, NewNoteActivity.class));
                 break;
 
             default:
@@ -153,44 +153,6 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         } else {
             Log.e("Test", "have no patch");
         }
-    }
-
-    /**
-     * 功能描述  ShareSDK分享
-     * <br>创建时间： 2018-01-17 23:01:52
-     *
-     * @param view
-     * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
-     */
-    private void initShare(View view) {
-        CommomDialog commomDialog = CommomDialog.getInstance();
-        commomDialog.show(getActivity(), R.layout.popup_share);
-        RecyclerView mRecyclerView = commomDialog.getView(R.id.recyclerView);
-        ArrayList<RecyclerGridAdapter.ShareBean> lists = new ArrayList<RecyclerGridAdapter.ShareBean>();
-
-        RecyclerGridAdapter.ShareBean bean = new RecyclerGridAdapter.ShareBean();
-        bean.setImgRes(R.mipmap.share_qq);
-        bean.setShareName("QQ");
-        lists.add(bean);
-
-        RecyclerGridAdapter.ShareBean bean2 = new RecyclerGridAdapter.ShareBean();
-        bean2.setImgRes(R.mipmap.share_wx);
-        bean2.setShareName("微信");
-        lists.add(bean2);
-
-        RecyclerGridAdapter.ShareBean bean3 = new RecyclerGridAdapter.ShareBean();
-        bean3.setImgRes(R.mipmap.share_wb);
-        bean3.setShareName("微博");
-        lists.add(bean3);
-
-        // 两列
-        int spanCount = 3;
-        // StaggeredGridLayoutManager管理RecyclerView的布局。
-        RecyclerView.LayoutManager mLayoutManager = new StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setNestedScrollingEnabled(false);
-        RecyclerGridAdapter mAdapter = new RecyclerGridAdapter(lists);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
 

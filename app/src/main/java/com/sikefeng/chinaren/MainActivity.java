@@ -181,22 +181,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             }
         });
         checkNetWork();
-        getBinding().toolbarTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
-                int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                if (mode == Configuration.UI_MODE_NIGHT_YES) {
-                    SettingUtil.getInstance().setIsNightMode(false);
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    SettingUtil.getInstance().setIsNightMode(true);
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
-                recreate();
-            }
-        });
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -57,16 +57,15 @@
 
 
                     <TextView
-                        android:id="@+id/tvLogin"
+                        android:id="@+id/tvUsername"
                         style="@style/textViewSystle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/headView"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="20px"
-                        android:background="@drawable/bg_shape_round"
                         android:padding="10px"
-                        android:text="登录/注册" />
+                        android:text="斯客风" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -191,7 +190,7 @@
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:text="@string/update_pwd"
+                            android:text="记事本"
                             android:textColor="@color/text_color"
                             android:textSize="16sp" />
 
