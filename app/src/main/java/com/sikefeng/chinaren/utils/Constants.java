@@ -6,6 +6,11 @@ package com.sikefeng.chinaren.utils;
 
 public class Constants {
 
+    //*************************************
+    public static String userID="fb8ad03c5f9b44eba4a8382eeefcfbd8";
+    //*************************************
+
+
     //界面常量值
     public static final String MAIN_URL = "/skf/main";
     public static final String NEXT_URL = "/skf/next";

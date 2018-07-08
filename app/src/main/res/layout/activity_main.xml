@@ -11,82 +11,103 @@
     </data>
 
 
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <android.support.v4.widget.DrawerLayout
-            android:id="@+id/drawer_layout"
+        <!-- The main content view --><!-- 界面主要内容布局区 -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            tools:openDrawer="start">
+            android:orientation="vertical">
 
-            <!-- The main content view --><!-- 界面主要内容布局区 -->
-            <LinearLayout
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/AppBarLayout01"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="false"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                app:elevation="0dp">
 
-                <android.support.design.widget.AppBarLayout
-                    android:id="@+id/AppBarLayout01"
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fitsSystemWindows="false"
-                    android:theme="@style/AppTheme.AppBarOverlay"
-                    app:elevation="0dp">
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
 
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        app:layout_scrollFlags="scroll|enterAlways"
-                        app:popupTheme="@style/AppTheme.PopupOverlay">
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/title_size"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.Toolbar>
 
-                        <TextView
-                            android:id="@+id/toolbar_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Title"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/title_size"
-                            android:textStyle="bold" />
-                    </android.support.v7.widget.Toolbar>
-
-                </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.AppBarLayout>
 
 
-                <com.sikefeng.chinaren.widget.NoScrollViewPager
-                    android:id="@+id/viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+            <com.sikefeng.chinaren.widget.NoScrollViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="85dp">
+
 
                 <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="55dp"
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="#bebebe" />
 
                 <android.support.design.widget.TabLayout
+                    android:layout_alignParentBottom="true"
                     android:id="@+id/tablayout"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:background="@android:color/white" />
-            </LinearLayout>
+                    android:background="@color/white" />
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fabButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:clickable="true"
+                    android:scaleType="center"
+                    android:src="@mipmap/ai_main_voice"
+                    app:backgroundTint="@color/theme_color"
+                    app:borderWidth="0.0dip"
+                    app:fabSize="normal" />
+            </RelativeLayout>
 
-            <!-- The navigation drawer --><!-- 左边弹出布局区 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_marginLeft="50dp"
-                android:background="@mipmap/bg_login"
-                android:orientation="vertical"
-                android:paddingRight="5dp">
+        </LinearLayout>
 
-                <!--<include-->
-                <!--android:id="@+id/rl_menu"-->
-                <!--layout="@layout/layout_menu" />-->
-            </LinearLayout>
+        <!-- The navigation drawer --><!-- 左边弹出布局区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginLeft="50dp"
+            android:background="@mipmap/bg_login"
+            android:orientation="vertical"
+            android:paddingRight="5dp">
 
-        </android.support.v4.widget.DrawerLayout>
+            <!--<include-->
+            <!--android:id="@+id/rl_menu"-->
+            <!--layout="@layout/layout_menu" />-->
+        </LinearLayout>
+
+    </android.support.v4.widget.DrawerLayout>
 
 </layout>

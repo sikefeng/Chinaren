@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewHolder"
+            type="cn.bingoogolapple.androidcommon.adapter.BGABindingViewHolder" />
+
+        <variable
+            name="model"
+            type="com.sikefeng.chinaren.entity.model.NoteBean" />
+
+        <variable
+            name="itemEventHandler"
+            type="com.sikefeng.chinaren.presenter.NoteListPresenter" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        app:onNoDoubleClick="@{() -> itemEventHandler.onClickItem(viewHolder, model)}">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ai_notebg" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text='@{model.title}'
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:text='@{model.content}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="3"/>
+
+            <TextView
+                android:text='@{model.createDate}'
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/text_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                 />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

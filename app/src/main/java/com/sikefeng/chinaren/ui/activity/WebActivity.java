@@ -40,7 +40,7 @@ public class WebActivity extends BaseActivity<ActivityWebBinding> {
     @Override
     protected void init(Bundle savedInstanceState) {
         initWebViewSettings();
-
+         setToolbar(getToolbar());
 //        if (null != getIntent()) {
 //            String url = getIntent().getStringExtra("url");
 //            if (TextUtils.isEmpty(url)) {

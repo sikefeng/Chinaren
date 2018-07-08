@@ -3,10 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <item
-        android:id="@+id/menu_about"
-        android:icon="@null"
+    <item android:id="@+id/action_edit"
+        android:title="编辑"
+        android:enabled="true"
+        android:orderInCategory="80"
+        android:icon="@mipmap/ai_save"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_share"
+        android:title="分享"
+        android:orderInCategory="90"
+        android:enabled="true"
+        android:icon="@mipmap/ai_share"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_settings"
+        android:enabled="true"
+        android:title="更多"
         android:orderInCategory="100"
-        android:title="关于"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 </menu>

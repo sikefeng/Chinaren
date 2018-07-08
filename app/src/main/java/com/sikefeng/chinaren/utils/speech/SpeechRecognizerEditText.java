@@ -2,13 +2,10 @@ package com.sikefeng.chinaren.utils.speech;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
@@ -17,15 +14,7 @@ import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechRecognizer;
-import com.iflytek.cloud.ui.RecognizerDialogListener;
-import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.R;
-import com.sikefeng.chinaren.widget.dialog.AlarmDialog;
-import com.sikefeng.chinaren.widget.dialog.CommomDialog;
-import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -62,12 +51,12 @@ public class SpeechRecognizerEditText {
         initConfig();
     }
 
-    public static SpeechRecognizerEditText getInstance(Context mContext) {
-        // 使用时生成实例，提高了效率！
-        if (instance == null)
-            instance = new SpeechRecognizerEditText(mContext);
-        return instance;
-    }
+//    public static SpeechRecognizerEditText getInstance(Context mContext) {
+//        // 使用时生成实例，提高了效率！
+//        if (instance == null)
+//            instance = new SpeechRecognizerEditText(mContext);
+//        return instance;
+//    }
 
 
 
@@ -131,6 +120,9 @@ public class SpeechRecognizerEditText {
         public void onBeginOfSpeech() {
             // 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
             log("开始说话");
+            if (mListener != null) {
+                mListener.startSpeech();
+            }
         }
 
         @Override
@@ -245,10 +237,10 @@ public class SpeechRecognizerEditText {
         log(String.valueOf(waitTime));
 //        mIat.setParameter(SpeechConstant.VAD_BOS, mSharedPreferences.getString("iat_vadbos_preference", "10000"));
         // 设置语音后端点:后端点静音检测时间，即用户停止说话多长时间内即认为不再输入， 自动停止录音（0-10000毫秒）
-        mIat.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("iat_vadeos_preference", "2500"));
+        mIat.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("iat_vadeos_preference", "3500"));
 //        mIat.setParameter(SpeechConstant.VAD_EOS, "1000");
         // 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
-        mIat.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("iat_punc_preference", "0"));
+        mIat.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("iat_punc_preference", "1"));
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
         // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
         mIat.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
@@ -281,13 +273,16 @@ public class SpeechRecognizerEditText {
 
     //自定义语音录入回调接口
     public interface OnSpeechResultListener {
-        void onListenerResult(String result);
+
+        void startSpeech();
 
         void endOfSpeech();
 
         void speechError(SpeechError error);
 
         void onListenering(String result);
+
+        void onListenerResult(String result);
     }
 
 

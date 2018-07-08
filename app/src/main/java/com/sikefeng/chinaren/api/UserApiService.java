@@ -17,7 +17,7 @@ import retrofit2.http.Query;
 
 public interface UserApiService {
 
-    String BASE_URL = APIConfig.BASE_URL_DEFAULT;
+
 
     /**
      * 获取用户列表信息

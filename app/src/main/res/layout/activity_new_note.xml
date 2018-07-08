@@ -1,70 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.sikefeng.chinaren.ui.activity.NewNoteActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/AppBarLayout01"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="false"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="0dp">
+    <data>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+        <import type="android.view.View" />
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Title"
-                android:textColor="@color/white"
-                android:textSize="@dimen/title_size"
-                android:textStyle="bold" />
-        </android.support.v7.widget.Toolbar>
+        <import type="com.sikefeng.chinaren.presenter.NewNotePresenter" />
 
-    </android.support.design.widget.AppBarLayout>
+        <import type="com.sikefeng.chinaren.presenter.vm.NewNoteViewModel" />
+
+        <variable
+            name="noteBean"
+            type="com.sikefeng.chinaren.entity.model.NoteBean" />
+
+        <variable
+            name="presenter"
+            type="com.sikefeng.chinaren.presenter.NewNotePresenter" />
+
+        <variable
+            name="viewModel"
+            type="com.sikefeng.chinaren.presenter.vm.NewNoteViewModel" />
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:background="@color/white">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/AppBarLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="false"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/status_bar_height"
+                android:background="@color/colorPrimary" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="标题"
+                    android:textColor="@color/white"
+                     />
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/AppBarLayout01"
             android:layout_marginBottom="80dp"
             android:orientation="vertical">
 
-            <EditText
+            <com.sikefeng.chinaren.widget.VoiceEditText
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:hint="请输入标题"
+                android:paddingRight="10dp"
+                android:id="@+id/et_title"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/transparent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="left|center_vertical"
+                android:text='@{noteBean.title}' />
+
+            <include layout="@layout/line" />
+
+            <com.sikefeng.chinaren.widget.VoiceEditText
+                android:lineSpacingExtra="5dp"
+                android:textSize="16sp"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp"
+                android:hint="快来写点什么吧......"
                 android:id="@+id/et_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:background="@color/transparent"
-                android:focusable="false"
-                android:focusableInTouchMode="true"
-                android:gravity="left" />
-
+                android:gravity="left"
+                android:text='@{noteBean.content}' />
         </LinearLayout>
 
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/giv1"
+        <!--<pl.droidsonroids.gif.GifImageView-->
+        <!--android:id="@+id/giv1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@mipmap/talkbg"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:src="@drawable/talk" />-->
+        <View
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="1px"
             android:layout_alignParentBottom="true"
-            android:background="@mipmap/talkbg"
-            android:scaleType="fitXY"
-            android:src="@drawable/talk" />
+            android:layout_marginBottom="55dp"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ai_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ai_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ai_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ai_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ai_smile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+</layout>
+

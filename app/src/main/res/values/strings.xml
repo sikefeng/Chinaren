@@ -234,4 +234,7 @@
 	    18	飞行模式下关闭了WIFI开关，请关闭飞行模式或者打开WIFI开关\n
 	    19	没有检查到SIM卡，并且关闭了WIFI开关，请打开WIFI开关或者插入SIM卡\n
 	</string>
+
+    <string name="accessibility_app_name">超体智能（推荐）</string>
+    <string name="accessibility_description">启动智能辅助功能后,你可以轻松通过语音快捷的打开第三方应用。</string>
 </resources>

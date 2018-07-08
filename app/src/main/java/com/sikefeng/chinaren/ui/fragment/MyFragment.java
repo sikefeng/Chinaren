@@ -10,11 +10,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
-import com.iflytek.cloud.SpeechError;
 import com.sikefeng.chinaren.MyApplication;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseFragment;
@@ -22,11 +20,8 @@ import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
-import com.sikefeng.chinaren.ui.activity.NewNoteActivity;
+import com.sikefeng.chinaren.ui.activity.NoteListActivity;
 import com.sikefeng.chinaren.utils.ImageUtils;
-import com.sikefeng.chinaren.utils.speech.SpeechRecognizerUtils;
-import com.sikefeng.chinaren.utils.speech.SpeechSynthesizerUtils;
-import com.sikefeng.chinaren.widget.dialog.CommomDialog;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 
 import java.io.File;
@@ -69,8 +64,8 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().baiduLayout.setOnClickListener(this);
         getBinding().scanCode.setOnClickListener(this);
         getBinding().exitLogin.setOnClickListener(this);
-        getBinding().updatePwd.setOnClickListener(this);
-        getBinding().tvUsername.setOnClickListener(this);
+        getBinding().linearNote.setOnClickListener(this);
+
 
         String url_path = "http://img1.imgtn.bdimg.com/it/u=3525092935,1107570256&fm=27&gp=0.jpg";
         getBinding().headView.setImageURI(Uri.parse(url_path));
@@ -96,7 +91,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.baiduLayout:
-                SpeechSynthesizerUtils.getInstance(mContext).startSpeak("A-I智能生活");
+
                 break;
             case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
@@ -105,7 +100,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-
+                        startActivity(new Intent(mContext, NoteListActivity.class));
 
                     }
 
@@ -116,13 +111,11 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                     }
                 }).setBtnText("确定", "取消").show();
                 break;
-            case R.id.updatePwd:
-
+            case R.id.linear_note:
+                startActivity(new Intent(mContext, NoteListActivity.class));
 
                 break;
-            case R.id.tvUsername:
-                startActivity(new Intent(mContext, NewNoteActivity.class));
-                break;
+
 
             default:
                 break;

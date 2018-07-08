@@ -39,8 +39,13 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@mipmap/login_bg">
+                    android:layout_height="200dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/ai_minebg"
+                        android:scaleType="centerCrop" />
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/headView"
@@ -175,7 +180,7 @@
                         android:background="@color/line" />
 
                     <LinearLayout
-                        android:id="@+id/updatePwd"
+                        android:id="@+id/linear_note"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ripple_bg"

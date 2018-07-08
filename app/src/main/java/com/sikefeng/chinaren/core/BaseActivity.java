@@ -44,20 +44,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
         SkinManager.getInstance().register(this); //皮肤管理，可以切换白天和晚上的样式
         //加入Activity管理队列
         DavikActivityUtils.getScreenManager().addActivity(this);
-        if(null != getToolbar()){
-            getToolbar().setTitle("");
-            setSupportActionBar(getToolbar());
-            try {
-                //给左上角图标的左边加上一个返回的图标
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            }catch (NullPointerException e){}
-            getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBackPressed();
-                }
-            });
-        }
+        //kkk
     }
 
     @Override
@@ -151,6 +138,20 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
 
     public void setToolbar(Toolbar toolbar) {
         this.toolbar = toolbar;
+        if(null != getToolbar()){
+            getToolbar().setTitle("");
+            setSupportActionBar(toolbar);
+            try {
+                //给左上角图标的左边加上一个返回的图标
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }catch (NullPointerException e){}
+            getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
     }
 
     protected Toolbar getToolbar() {

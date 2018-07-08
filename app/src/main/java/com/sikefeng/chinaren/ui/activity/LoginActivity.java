@@ -1,7 +1,6 @@
 package com.sikefeng.chinaren.ui.activity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -134,6 +133,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             }
 
         });
+        ARouter.getInstance().build(Constants.MAIN_URL).navigation();
 
     }
 
