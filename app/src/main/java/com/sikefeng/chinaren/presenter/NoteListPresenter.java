@@ -14,7 +14,7 @@ import com.sikefeng.chinaren.entity.model.NoteListData;
 import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.presenter.vm.NoteListViewModel;
-import com.sikefeng.chinaren.ui.activity.WebActivity;
+import com.sikefeng.chinaren.ui.activity.NoteDeatilsActivity;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ResUtils;
 
@@ -101,9 +101,12 @@ public class NoteListPresenter extends BasePresenter<IRBaseView, NoteListViewMod
      * @param model  数据实体类
      */
     public void onClickItem(BGABindingViewHolder holder, NoteBean model) {
-        Intent intent = new Intent(getContext(), WebActivity.class);
-        intent.putExtra("URL", "http://192.168.0.102:8981/AIWeb/sharenote?nid="+model.getId());
+        Intent intent=new Intent(getContext(), NoteDeatilsActivity.class);
+        intent.putExtra("noteBean", model);
         getContext().startActivity(intent);
+//        Intent intent = new Intent(getContext(), WebActivity.class);
+//        intent.putExtra("URL", "http://192.168.0.102:8981/AIWeb/sharenote?nid="+model.getId());
+//        getContext().startActivity(intent);
     }
 
 }

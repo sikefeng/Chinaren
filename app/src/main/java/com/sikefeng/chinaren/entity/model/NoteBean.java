@@ -1,13 +1,14 @@
 package com.sikefeng.chinaren.entity.model;
 
 
+import java.io.Serializable;
 
 /**
  * @author Sikefeng
  * @description TODO:
  * @date 2018/6/27 22:06
  **/
-public class NoteBean{
+public class NoteBean implements Serializable {
 
     private String id; //ID
     private String createDate; //创建日期

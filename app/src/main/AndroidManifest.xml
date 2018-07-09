@@ -75,8 +75,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.WebActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ImagesActivity"
             android:screenOrientation="portrait"
@@ -119,9 +118,9 @@
 
         <activity
             android:name=".ui.activity.NewNoteActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.activity.NoteListActivity" />
 
-        <activity android:name=".ui.activity.NoteListActivity"></activity>
         <service
             android:name=".utils.speech.MyAccessibilityService"
             android:enabled="true"
@@ -136,6 +135,8 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/rob_service_config" />
         </service>
+
+        <activity android:name=".ui.activity.NoteDeatilsActivity"></activity>
     </application>
 
 </manifest>
