@@ -255,7 +255,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         popupDialog.showAtLocation(view, Gravity.BOTTOM);
         etResulting=popupDialog.getView(R.id.tv_result);
         etResulting.setText("");
-        speechRecognizerUtils.setWaitTime(5 * 1000);
+        speechRecognizerUtils.setWaitTime(2 * 1000);
         speechRecognizerUtils.start(true);
         ImageView imageView1 = popupDialog.getView(R.id.ivLeft);
         ImageView imageView2 = popupDialog.getView(R.id.ivRight);

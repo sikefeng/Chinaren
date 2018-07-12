@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding= "utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:paddingRight="20dp"
+    android:descendantFocusability="blocksDescendants">
+
+    <CheckBox
+        android:clickable="false"
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:button="@drawable/robot_checkbox"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_voicer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/checkBox"
+        android:text="华尔兹"
+        android:textColor="@color/white" />
+
+    <Button
+        android:textSize="12sp"
+        android:id="@+id/btn_select_voicer"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:minWidth="45dp"
+        android:text="播放"
+        android:textColor="@color/white"
+ />
+
+
+</RelativeLayout>

@@ -20,8 +20,12 @@ import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
+import com.sikefeng.chinaren.ui.activity.ImageListActivity;
 import com.sikefeng.chinaren.ui.activity.NoteListActivity;
+import com.sikefeng.chinaren.ui.activity.ThemeChangeActivity;
+import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
 import com.sikefeng.chinaren.utils.ImageUtils;
+import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 
 import java.io.File;
@@ -57,7 +61,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mContext=getActivity();
+        mContext = getActivity();
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
 
@@ -65,14 +69,18 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().scanCode.setOnClickListener(this);
         getBinding().exitLogin.setOnClickListener(this);
         getBinding().linearNote.setOnClickListener(this);
-
+        getBinding().tvTheme.setOnClickListener(this);
 
         String url_path = "http://img1.imgtn.bdimg.com/it/u=3525092935,1107570256&fm=27&gp=0.jpg";
         getBinding().headView.setImageURI(Uri.parse(url_path));
 
         ImageUtils.previewImage(getActivity(), getBinding().headView, url_path);
 
-
+        // 设置主题
+        String themeUrl = SharePreferenceUtils.get(mContext, "theme", "").toString();
+        if (!"".equals(themeUrl)) {
+            getBinding().ivBackground.setBackgroundResource(Integer.parseInt(themeUrl));
+        }
     }
 
 
@@ -90,8 +98,14 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_theme:
+                // 更换背景
+                Intent intent = new Intent(mContext, ThemeChangeActivity.class);
+                startActivityForResult(intent, 1001);
+                break;
             case R.id.baiduLayout:
-
+//                openServiceSetting();
+                startActivity(new Intent(getActivity(), ImageListActivity.class));
                 break;
             case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
@@ -100,14 +114,12 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-                        startActivity(new Intent(mContext, NoteListActivity.class));
-
+                        startActivity(new Intent(mContext, com.sikefeng.chinaren.widget.colorpalette.MainActivity.class));
                     }
 
                     @Override
                     public void onSecond() {
-
-
+                        startActivity(new Intent(mContext, VoicerListActivity.class));
                     }
                 }).setBtnText("确定", "取消").show();
                 break;
@@ -148,8 +160,24 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         }
     }
 
+    private void openServiceSetting() {
+        try {
+            Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1001 && resultCode == 1001) {
+            getBinding().ivBackground.setBackgroundResource(Integer.parseInt(data.getExtras().getString("img")));
+            SharePreferenceUtils.put(mContext, "theme", data.getExtras().getString("img"));
+        }
 
+    }
 }
 
 

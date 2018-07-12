@@ -42,10 +42,21 @@
                     android:layout_height="200dp">
 
                     <ImageView
+                        android:id="@+id/ivBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/ai_minebg"
                         android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/tv_theme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="主题"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"
+                        android:paddingTop="15dp"
+                        android:paddingRight="15dp"/>
 
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:id="@+id/headView"

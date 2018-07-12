@@ -1,6 +1,7 @@
 package com.sikefeng.chinaren.api;
 
 
+import com.sikefeng.chinaren.entity.model.ImageListData;
 import com.sikefeng.chinaren.entity.model.NoteBean;
 import com.sikefeng.chinaren.entity.model.NoteData;
 import com.sikefeng.chinaren.entity.model.NoteListData;
@@ -27,5 +28,8 @@ public interface NoteApiService {
 
     @GET("notebook/note_findlist")
     Observable<NoteListData> findList(@Query("userid") String userid, @Query("pageNo") String pageNo, @Query("pageSize") String pageSize, @Query("orderBy") String orderBy);
+
+    @GET("image/image_findlist")
+    Observable<ImageListData> imageList(@Query("pageNo") String pageNo, @Query("pageSize") String pageSize, @Query("orderBy") String orderBy);
 
 }

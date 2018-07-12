@@ -171,16 +171,14 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
      * 当输入框里面内容发生变化的时候回调的方法
      */
     @Override
-    public void onTextChanged(CharSequence s, int start, int count,
-                              int after) {
+    public void onTextChanged(CharSequence s, int start, int count, int after) {
         if (hasFoucs) {
             setClearIconVisible(s.length() > 0);
         }
     }
 
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count,
-                                  int after) {
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
     }
 
@@ -228,7 +226,7 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
     private PopupDialog popupDialog=null;
     private EditText etResulting;
 
-    private void showVoiceListener(){
+    public void showVoiceListener(){
         if (popupDialog==null){
             popupDialog= new PopupDialog(mContext, R.layout.popup_voicer);
         }
@@ -254,7 +252,7 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
 
     @Override
     public void startSpeech() {
-//            showVoiceListener();
+//          showVoiceListener();
     }
 
     @Override

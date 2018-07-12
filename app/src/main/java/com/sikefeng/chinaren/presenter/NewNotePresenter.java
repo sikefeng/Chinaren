@@ -77,6 +77,38 @@ public class NewNotePresenter extends BasePresenter<IRBaseView, NewNoteViewModel
         );
     }
 
+    public void updateNote(NoteBean noteBean) {
+        StyledDialog.buildLoading("保存中...").show();
+        addDisposable(ServiceHelper.getNoteAS().updateNote(noteBean)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<NoteData>() {
+                    @Override
+                    public void onNext(NoteData value) {
+                        int status = value.getStatus();
+                        String msg = value.getMsg();
+                        if (status == 0) {
+                            ToastUtils.showLong("保存成功");
+                            getContext().finish();
+                            return;
+                        } else {
+                            ToastUtils.showShort(msg);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        StyledDialog.dismissLoading();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        StyledDialog.dismissLoading();
+                    }
+                })
+        );
+    }
+
 
 
 

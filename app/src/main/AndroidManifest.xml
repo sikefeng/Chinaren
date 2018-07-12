@@ -136,7 +136,11 @@
                 android:resource="@xml/rob_service_config" />
         </service>
 
-        <activity android:name=".ui.activity.NoteDeatilsActivity"></activity>
+        <activity android:name=".ui.activity.NoteDeatilsActivity" />
+        <activity android:name=".ui.activity.ThemeChangeActivity" />
+        <activity android:name=".ui.activity.VoicerListActivity" />
+        <activity android:name=".widget.colorpalette.MainActivity" />
+        <activity android:name=".ui.activity.ImageListActivity"></activity>
     </application>
 
 </manifest>

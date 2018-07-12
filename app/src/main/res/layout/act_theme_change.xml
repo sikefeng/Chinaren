@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000a25"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/transparent" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:contentDescription="@android:string/no"
+            android:padding="8dp"
+            android:src="@mipmap/return_icon" >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="选择主题"
+            android:textColor="@color/white"
+            android:textSize="17sp" >
+        </TextView>
+    </RelativeLayout>
+
+    <com.sikefeng.chinaren.widget.GrapeGridView
+        android:id="@+id/gv_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:cacheColorHint="@color/transparent"
+        android:columnWidth="80dp"
+        android:horizontalSpacing="18dp"
+        android:listSelector="@color/transparent"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="24dp" >
+    </com.sikefeng.chinaren.widget.GrapeGridView>
+
+</LinearLayout>

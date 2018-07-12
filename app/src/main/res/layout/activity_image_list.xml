@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="presenter"
+            type="com.sikefeng.chinaren.presenter.ImageListPresenter" />
+
+        <variable
+            name="viewModel"
+            type="com.sikefeng.chinaren.presenter.vm.ImageListViewModel" />
+
+        <variable
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/AppBarLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="false"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/status_bar_height"
+                android:background="@color/colorPrimary" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="图片列表"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title_size"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.classic.common.MultipleStatusView
+                android:id="@+id/multipleStatusView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="0px"
+                app:emptyView="@layout/view_state_empty_view"
+                app:errorView="@layout/view_state_error_view"
+                app:loadingView="@layout/view_state_loading_view"
+                app:multiState="@{viewModel.stateViewType}"
+                app:noNetworkView="@layout/view_state_no_network_view"
+                app:presenter="@{presenter}">
+
+                <in.srain.cube.views.ptr.PtrFrameLayout
+                    style="@style/refreshStyle"
+                    android:visibility="@{viewModel.stateViewType == 0 ? View.VISIBLE : View.GONE}"
+                    app:loading="@{viewModel.getLoading()}"
+                    app:presenter="@{presenter}">
+
+                    <com.renygit.recycleview.RRecyclerView
+                        android:id="@+id/mRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:adapter="@{viewModel.adapter}"
+                        app:isError="@{viewModel.isError}"
+                        app:layoutManager="@{layoutManager}"
+                        app:loading="@{viewModel.loading}"
+                        app:noMore="@{viewModel.noMore}"
+                        app:presenter="@{presenter}" />
+
+                </in.srain.cube.views.ptr.PtrFrameLayout>
+
+            </com.classic.common.MultipleStatusView>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>
