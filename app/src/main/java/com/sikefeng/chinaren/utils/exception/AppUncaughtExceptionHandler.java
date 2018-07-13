@@ -1,10 +1,16 @@
 package com.sikefeng.chinaren.utils.exception;
 
 import android.os.Build;
+import android.os.Message;
 
 import com.sikefeng.chinaren.utils.DavikActivityUtils;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class AppUncaughtExceptionHandler implements UncaughtExceptionHandler{
 	
@@ -103,7 +109,42 @@ public class AppUncaughtExceptionHandler implements UncaughtExceptionHandler{
 		sbLog.append(VersionUtil.getVersionName());
 		return sbLog.toString();
 	}
-	
+
+	private void sendError(){
+		//开启线程来发起网络请求
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				HttpURLConnection connection=null;
+				try{
+					URL url=new URL("http://www.baidu.com");
+					connection=(HttpURLConnection)url.openConnection();
+					connection.setRequestMethod("GET");
+					connection.setConnectTimeout(8000);
+					connection.setReadTimeout(8000);
+					InputStream in=connection.getInputStream();
+					//下面对获取到的输入流进行读取
+					BufferedReader bufr=new BufferedReader(new InputStreamReader(in));
+					StringBuilder response=new StringBuilder();
+					String line=null;
+					while((line=bufr.readLine())!=null){
+						response.append(line);
+					}
+//					Message message=new Message();
+//					message.what=SHOW_RESPONSE;
+//					//将服务器返回的数据存放到Message中
+//					message.obj=response.toString();
+//					handler.sendMessage(message);
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally {
+					if(connection!=null){
+						connection.disconnect();
+					}
+				}
+			}
+		}).start();
+	}
 
 
 }
