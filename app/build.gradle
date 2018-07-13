@@ -107,10 +107,7 @@ dependencies {
     })
     //直接使用引入libs下所有jar包的方式
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    // PowerMock brings in the mockito dependency
-    compile(rootProject.ext.support["support-v4"]) {
-        exclude module: 'support-annotations'
-    }
+
     compile(rootProject.ext.support["cardview-v7"]) {
         exclude module: 'support-annotations'
     }
