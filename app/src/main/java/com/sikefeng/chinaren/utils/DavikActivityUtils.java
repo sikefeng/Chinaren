@@ -34,6 +34,9 @@ public class DavikActivityUtils {
         return instance;
     }
 
+    public Stack<Activity> getAllActivity(){
+        return activityStack;
+    }
 
     /**
      * 堆栈中销毁并移除

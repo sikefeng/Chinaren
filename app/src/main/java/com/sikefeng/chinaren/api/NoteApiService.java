@@ -32,4 +32,7 @@ public interface NoteApiService {
     @GET("image/image_findlist")
     Observable<ImageListData> imageList(@Query("pageNo") String pageNo, @Query("pageSize") String pageSize, @Query("orderBy") String orderBy);
 
+    @GET("crash/crash_save")
+    Observable<NoteData> saveCrash(@Query("content") String content);
+
 }

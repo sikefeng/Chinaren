@@ -1,5 +1,8 @@
 package com.sikefeng.chinaren.ui.activity;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +29,7 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
     private boolean isNewRecord = false;
     private ColorSelectDialog colorSelectDialog;
     private int lastColor;
-    VoiceEditText voiceEditText;
+    private VoiceEditText voiceEditText;
 
     @Override
     protected int getLayoutId() {
@@ -59,6 +62,21 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         getBinding().ivFontColor.setOnClickListener(this);
         getBinding().ivSpeech.setOnClickListener(this);
 
+
+        ClipboardManager mClipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //第一个参数，是描述复制的内容，也可以和内容一样。
+        ClipData clipData = ClipData.newPlainText("copy from demo", "第一个参数，是描述复制的内容，也可以和内容一样");
+        mClipboardManager.setPrimaryClip(clipData);
+
+        // 粘贴板有数据，并且是文本
+        if (mClipboardManager.hasPrimaryClip() && mClipboardManager.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+            ClipData.Item item = mClipboardManager.getPrimaryClip().getItemAt(0);
+            CharSequence text = item.getText();
+            if (text == null) {
+                return;
+            }
+            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkk="+text);
+        }
 
     }
 

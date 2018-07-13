@@ -102,22 +102,18 @@ public class ImageListPresenter extends BasePresenter<IRBaseView, ImageListViewM
      * @param model  数据实体类
      */
     public void onClickItem(BGABindingViewHolder holder, ImageBean model){
-        Gson gson=new Gson();
-        String images= null;
-        try {
-            images = URLEncoder.encode("[http://img0.ph.126.net/3q73pBthPNycdWz8XfGEZA==/6597824031635530833.jpg,http://img2.ph.126.net/TANL1coRj9e7Cnd13lMO5Q==/2603925009570594791.jpg,http://img2.ph.126.net/C7Yfuu0z91zpiFYAwI3eQ==/6599291879658164075.jpg,http://img2.ph.126.net/qa1elCi81Z4Aw4aWrXJRJw==/1287748018471572992.jpg,http://img1.ph.126.net/r9N-sqtRR5oR4Cu3NTVxWA==/1447625805323285290.jpg,http://img1.ph.126.net/tQU--OI6pMAXWNH5Wa6wxg==/1603844417397734017.jpg]", "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String[] arr=gson.fromJson(images,String[].class);
-        List<String> imageList2= Arrays.asList(arr);
-        System.out.println("kkkkkkkkkkkkkk="+arr[0]);
-        ArrayList<String> imageList=new ArrayList<>();
-        imageList.addAll(imageList2);
 //        Gson gson=new Gson();
 //        String[] arr=gson.fromJson(model.getImageList(),String[].class);
 //        List<String> imageList= Arrays.asList(arr);
 //        System.out.println("kkkkkkkkkkkkkk="+arr[0]);
+        String json = model.getImageList();
+//        json = URLEncoder.encode(json.trim(), "utf-8");
+        json = json.replaceAll(" ", "");
+        String[] arr = json.split(",");
+        System.out.println("kkkkkkkkkkkkkk=" + arr[0]);
+        List<String> imageList2= Arrays.asList(arr);
+        ArrayList<String> imageList=new ArrayList<>();
+        imageList.addAll(imageList2);
         getContext().startActivity(BGAPhotoPreviewActivity.newIntent(getContext(),  null, (ArrayList<String>) imageList, 1));
     }
 

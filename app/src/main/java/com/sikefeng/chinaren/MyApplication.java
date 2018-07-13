@@ -25,6 +25,7 @@ import com.sikefeng.chinaren.test.SettingUtil;
 import com.sikefeng.chinaren.utils.Cockroach;
 import com.sikefeng.chinaren.utils.CrashApphandler;
 import com.sikefeng.chinaren.utils.FileUtils;
+import com.sikefeng.chinaren.utils.exception.AppUncaughtExceptionHandler;
 import com.sikefeng.chinaren.utils.img.ImageUtils;
 import com.sikefeng.chinaren.utils.img.glide.GlideLoadStrategy;
 import com.zhy.changeskin.SkinManager;
@@ -70,6 +71,7 @@ public class MyApplication extends Application {
      * 初始化配置
      */
     private void initConfiguration() {
+        Thread.setDefaultUncaughtExceptionHandler(AppUncaughtExceptionHandler.getInstance()); //异常信息收集
         ImageUtils.getInstance().init(new GlideLoadStrategy());
         LogUtils.init(BuildConfig.DEBUG);
         SkinManager.getInstance().init(this);
