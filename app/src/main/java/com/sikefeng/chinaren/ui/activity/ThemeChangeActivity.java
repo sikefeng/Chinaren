@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 import com.sikefeng.chinaren.R;
-import com.sikefeng.chinaren.widget.GrapeGridView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import java.util.List;
 public class ThemeChangeActivity extends AppCompatActivity implements View.OnClickListener {
     private Context mContext;
     private ImageView back;
-    private GrapeGridView gv_gallery;
+    private GridView gv_gallery;
     // 存放各功能图片
     Integer[] mFunctionPics = {R.mipmap.beijing_1, R.mipmap.beijing_2, R.mipmap.beijing_3, R.mipmap.beijing_4, R.mipmap.beijing5,
             R.mipmap.beijing6, R.mipmap.beijing_7};
@@ -42,7 +42,7 @@ public class ThemeChangeActivity extends AppCompatActivity implements View.OnCli
     private void initView() {
         back = (ImageView) findViewById(R.id.iv_back);
         back.setOnClickListener(this);
-        gv_gallery = (GrapeGridView) findViewById(R.id.gv_gallery);
+        gv_gallery = (GridView) findViewById(R.id.gv_gallery);
 
     }
 

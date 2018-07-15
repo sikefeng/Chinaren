@@ -61,6 +61,16 @@
         </android.support.design.widget.AppBarLayout>
 
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/my_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/AppBarLayout01"
+            android:scaleType="fitXY"
+            app:actualImageScaleType="fitXY"
+            app:actualImageUri="@{noteBean.background}"
+            app:placeholderImageScaleType="fitXY" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -82,7 +92,8 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:text='@{noteBean.title}'
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:iconVisible="true" />
 
             <include layout="@layout/line" />
 
@@ -98,17 +109,11 @@
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
                 android:text='@{noteBean.content}'
-                android:textSize="16sp" />
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                app:iconVisible="true" />
         </LinearLayout>
 
-        <!--<pl.droidsonroids.gif.GifImageView-->
-        <!--android:id="@+id/giv1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:background="@mipmap/talkbg"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:src="@drawable/talk" />-->
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
@@ -131,6 +136,7 @@
                 android:src="@mipmap/ai_color" />
 
             <ImageView
+                android:id="@+id/ivPaste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
@@ -144,6 +150,7 @@
                 android:src="@drawable/voice_selector" />
 
             <ImageView
+                android:id="@+id/ivPicture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"

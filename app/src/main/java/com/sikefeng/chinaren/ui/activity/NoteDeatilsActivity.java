@@ -1,5 +1,7 @@
 package com.sikefeng.chinaren.ui.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -21,6 +23,7 @@ public class NoteDeatilsActivity extends AppCompatActivity {
     private ActivityNoteDeatilsBinding currentBinding;
     private NoteBean noteBean;
     private Context mContext;
+    private ClipboardManager mClipboardManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class NoteDeatilsActivity extends AppCompatActivity {
         currentBinding.setModel(noteBean);
         setToolbar(currentBinding.toolbar);
         currentBinding.toolbar.setOnMenuItemClickListener(onMenuItemClick);
+        mClipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
     }
 
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
@@ -52,6 +56,11 @@ public class NoteDeatilsActivity extends AppCompatActivity {
                     break;
                 case R.id.action_settings:
                     SpeechSynthesizerUtils.getInstance(mContext).startSpeak(noteBean.getContent());
+                    break;
+                case R.id.ivCopy:
+                    //第一个参数，是描述复制的内容，也可以和内容一样。
+                    ClipData clipData = ClipData.newPlainText("copy from demo", noteBean.getContent());
+                    mClipboardManager.setPrimaryClip(clipData);
                     break;
                 case R.id.action_open_web:
                     Intent intent = new Intent();
@@ -92,7 +101,7 @@ public class NoteDeatilsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (SpeechSynthesizerUtils.getInstance(mContext).isPlaying()){
+        if (SpeechSynthesizerUtils.getInstance(mContext).isPlaying()) {
             SpeechSynthesizerUtils.getInstance(mContext).stopSpeak();
         }
     }

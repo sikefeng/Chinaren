@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sikefeng.chinaren.ui.activity.PreviewActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/draweeView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            app:actualImageScaleType="centerCrop"
+            app:placeholderImage="@drawable/empty_photo"
+            app:placeholderImageScaleType="fitXY" />
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:alpha="0.3"
+            android:background="@drawable/btn_white_tran" />
+
+        <TextView
+            android:id="@+id/tv_background"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="设为背景"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/tv_background"
+            android:gravity="center"
+            android:text="预览"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

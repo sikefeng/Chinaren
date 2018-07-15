@@ -40,6 +40,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 如需使用人脸识别，还要添加：摄相头权限，拍照需要用到 -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".MyApplication"
@@ -116,9 +117,7 @@
             android:name="design_height"
             android:value="1280" />
 
-        <activity
-            android:name=".ui.activity.NewNoteActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.activity.NewNoteActivity" />
         <activity android:name=".ui.activity.NoteListActivity" />
 
         <service
@@ -140,7 +139,9 @@
         <activity android:name=".ui.activity.ThemeChangeActivity" />
         <activity android:name=".ui.activity.VoicerListActivity" />
         <activity android:name=".widget.colorpalette.MainActivity" />
-        <activity android:name=".ui.activity.ImageListActivity"></activity>
+        <activity android:name=".ui.activity.ImageListActivity" />
+        <activity android:name=".ui.activity.GridImageActivity" />
+        <activity android:name=".ui.activity.PreviewActivity"></activity>
     </application>
 
 </manifest>

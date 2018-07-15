@@ -8,9 +8,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
+        android:minHeight="200dp"
         android:orientation="vertical">
 
         <include layout="@layout/line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:src="@mipmap/ai_question" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingRight="15dp"
+                android:src="@mipmap/ai_close" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,22 +41,22 @@
             android:textColor="@color/text_gray" />
 
         <EditText
-            android:gravity="top|left"
-            android:textSize="14sp"
-            android:background="@color/transparent"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:enabled="false"
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
+            android:background="@color/transparent"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="top|left"
+            android:minHeight="80dp"
             android:text="明天星期几，明天广州的天气怎样？"
-            android:textColor="@color/text_black" />
+            android:textColor="@color/text_black"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +69,7 @@
                 android:id="@+id/ivLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/arrow_left_anim"  />
+                android:src="@drawable/arrow_left_anim" />
 
             <ImageView
                 android:layout_width="wrap_content"

@@ -31,4 +31,10 @@
         android:orderInCategory="100"
         android:title="浏览器打开"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/ivCopy"
+        android:enabled="true"
+        android:orderInCategory="100"
+        android:title="复制"
+        app:showAsAction="never" />
 </menu>

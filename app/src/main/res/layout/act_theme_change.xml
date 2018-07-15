@@ -35,19 +35,23 @@
         </TextView>
     </RelativeLayout>
 
-    <com.sikefeng.chinaren.widget.GrapeGridView
-        android:id="@+id/gv_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:cacheColorHint="@color/transparent"
-        android:columnWidth="80dp"
-        android:horizontalSpacing="18dp"
-        android:listSelector="@color/transparent"
-        android:numColumns="3"
-        android:scrollbars="none"
-        android:verticalSpacing="24dp" >
-    </com.sikefeng.chinaren.widget.GrapeGridView>
+
+            <GridView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/gv_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:cacheColorHint="@color/transparent"
+                android:columnWidth="80dp"
+                android:horizontalSpacing="18dp"
+                android:listSelector="@color/transparent"
+                android:numColumns="2"
+                android:scrollbars="none"
+                android:verticalSpacing="24dp" >
+            </GridView>
+
 
 </LinearLayout>

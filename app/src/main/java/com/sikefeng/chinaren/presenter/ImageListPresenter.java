@@ -3,7 +3,8 @@
  */
 package com.sikefeng.chinaren.presenter;
 
-import com.google.gson.Gson;
+import android.content.Intent;
+
 import com.hss01248.dialog.StyledDialog;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BasePresenter;
@@ -13,16 +14,10 @@ import com.sikefeng.chinaren.entity.model.ImageListData;
 import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.presenter.vm.ImageListViewModel;
+import com.sikefeng.chinaren.ui.activity.GridImageActivity;
 import com.sikefeng.chinaren.utils.ResUtils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import cn.bingoogolapple.androidcommon.adapter.BGABindingViewHolder;
-import cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -102,19 +97,19 @@ public class ImageListPresenter extends BasePresenter<IRBaseView, ImageListViewM
      * @param model  数据实体类
      */
     public void onClickItem(BGABindingViewHolder holder, ImageBean model){
-//        Gson gson=new Gson();
-//        String[] arr=gson.fromJson(model.getImageList(),String[].class);
-//        List<String> imageList= Arrays.asList(arr);
-//        System.out.println("kkkkkkkkkkkkkk="+arr[0]);
-        String json = model.getImageList();
-//        json = URLEncoder.encode(json.trim(), "utf-8");
-        json = json.replaceAll(" ", "");
-        String[] arr = json.split(",");
-        System.out.println("kkkkkkkkkkkkkk=" + arr[0]);
-        List<String> imageList2= Arrays.asList(arr);
-        ArrayList<String> imageList=new ArrayList<>();
-        imageList.addAll(imageList2);
-        getContext().startActivity(BGAPhotoPreviewActivity.newIntent(getContext(),  null, (ArrayList<String>) imageList, 1));
+
+        Intent intent=new Intent(getContext(), GridImageActivity.class);
+        intent.putExtra("imageList",model.getImageList());
+        intent.putExtra("title",model.getTitle());
+        getContext().startActivity(intent);
+
+//        String json = model.getImageList();
+//        json = json.replaceAll(" ", "");
+//        String[] arr = json.split(",");
+//        List<String> imageList2= Arrays.asList(arr);
+//        ArrayList<String> imageList=new ArrayList<>();
+//        imageList.addAll(imageList2);
+//        getContext().startActivity(BGAPhotoPreviewActivity.newIntent(getContext(),  null, (ArrayList<String>) imageList, 1));
     }
 
 

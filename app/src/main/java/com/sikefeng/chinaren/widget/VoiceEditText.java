@@ -1,6 +1,7 @@
 package com.sikefeng.chinaren.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Vibrator;
@@ -47,7 +48,7 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
     private boolean hasFoucs;
 
     private Context mContext;
-
+    private boolean iconVisible;
     /**
      * 功能描述：ClearEditText构造方法
      * <br>创建时间： 2017-07-27 18:10:05
@@ -56,7 +57,7 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
      * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
      */
     public VoiceEditText(Context context) {
-        this(context, null);
+        super(context);
         mContext=context;
     }
 
@@ -69,8 +70,12 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
      * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a>
      */
     public VoiceEditText(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.editTextStyle);
+        super(context, attrs);
         mContext=context;
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.VoiceEditTexStytle);
+        iconVisible = typedArray.getBoolean(R.styleable.VoiceEditTexStytle_iconVisible, false);
+        System.out.println("999999999999999999="+iconVisible);
+        typedArray.recycle();
     }
 
     /**
@@ -104,12 +109,17 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
 
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
 //默认设置隐藏图标
-        setClearIconVisible(false);
+         setClearIconVisible(iconVisible);
 //设置焦点改变的监听
         setOnFocusChangeListener(this);
 //设置输入框里面内容发生改变的监听
         addTextChangedListener(this);
 //        speechRecognizerEditText = SpeechRecognizerEditText.getInstance(mContext);
+        if (mContext==null){
+            System.out.println("111111111111111111111111");
+        }else {
+            System.out.println("2222222222222222222222222222");
+        }
         speechRecognizerEditText = new SpeechRecognizerEditText(mContext);
         speechRecognizerEditText.setOnSpeechResultListener(this);
 
@@ -143,11 +153,12 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         this.hasFoucs = hasFocus;
-        if (hasFocus) {
-            setClearIconVisible(getText().length() > 0);
-        } else {
-            setClearIconVisible(false);
-        }
+        setClearIconVisible(iconVisible);
+//        if (hasFocus) {
+//            setClearIconVisible(getText().length() > 0);
+//        } else {
+//            setClearIconVisible(false);
+//        }
     }
 
     /**
@@ -161,7 +172,8 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
      * @param visible 是否显示清除图标
      */
     protected void setClearIconVisible(boolean visible) {
-        visible=true;
+        System.out.println("kkkkkkkkkkkkk="+visible);
+//        visible=true;
         Drawable right = visible ? mClearDrawable : null;
         setCompoundDrawables(getCompoundDrawables()[0], getCompoundDrawables()[1], right, getCompoundDrawables()[threeNum]);
     }
@@ -172,9 +184,10 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
      */
     @Override
     public void onTextChanged(CharSequence s, int start, int count, int after) {
-        if (hasFoucs) {
-            setClearIconVisible(s.length() > 0);
-        }
+//        if (hasFoucs) {
+//            setClearIconVisible(s.length() > 0);
+//        }
+        setClearIconVisible(iconVisible);
     }
 
     @Override
@@ -227,13 +240,14 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
     private EditText etResulting;
 
     public void showVoiceListener(){
-        if (popupDialog==null){
-            popupDialog= new PopupDialog(mContext, R.layout.popup_voicer);
-        }
-        if (popupDialog.isShowing()){
-            popupDialog.dismiss();
-            return;
-        }
+        popupDialog= new PopupDialog(mContext, R.layout.popup_voicer);
+//        if (popupDialog==null){
+//            popupDialog= new PopupDialog(mContext, R.layout.popup_voicer);
+//        }
+//        if (popupDialog.isShowing()){
+//            popupDialog.dismiss();
+//            return;
+//        }
         popupDialog.setAnimation(android.R.style.Animation_InputMethod);
         popupDialog.showAtLocation(this, Gravity.BOTTOM);
         etResulting=popupDialog.getView(R.id.tv_result);

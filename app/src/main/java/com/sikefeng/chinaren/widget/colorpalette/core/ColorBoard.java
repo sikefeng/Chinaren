@@ -76,14 +76,14 @@ public class ColorBoard extends LinearLayout {
             }
         }
 
-        colorValue[0][0]=Color.RED;
-        colorValue[0][1]=Color.YELLOW;
-        colorValue[0][2]=Color.GREEN;
-        colorValue[0][3]=Color.GRAY;
-        colorValue[0][4]=Color.BLUE;
-        colorValue[1][0]=Color.LTGRAY;
-        colorValue[1][1]=Color.DKGRAY;
-        colorValue[1][2]=Color.MAGENTA;
+        colorValue[0][0]=Color.parseColor("#009dff");
+        colorValue[0][1]=Color.parseColor("#e76ae5");
+        colorValue[0][2]=Color.parseColor("#fe6664");
+        colorValue[0][3]=Color.parseColor("#38c8b5");
+        colorValue[0][4]=Color.parseColor("#9b81ea");
+        colorValue[1][0]=Color.parseColor("#a9b3ca");
+        colorValue[1][1]=Color.parseColor("#fdb13c");
+        colorValue[1][2]=Color.LTGRAY;
         colorValue[1][3]=Color.WHITE;
         colorValue[1][4]=Color.BLACK;
 

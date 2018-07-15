@@ -47,7 +47,7 @@ public class SpeechRecognizerEditText {
 
     public SpeechRecognizerEditText(Context mContext) {
 
-        this.mContext = mContext.getApplicationContext();
+        this.mContext = mContext;
         initConfig();
     }
 

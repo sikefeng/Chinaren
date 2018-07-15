@@ -99,10 +99,16 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:layout_marginLeft="50dp"
-            android:background="@mipmap/bg_login"
             android:orientation="vertical"
             android:paddingRight="5dp">
-
+            <android.support.design.widget.NavigationView
+                android:id="@+id/nv_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:headerLayout="@layout/nav_header_main"
+                app:insetForeground="@android:color/transparent"
+                app:menu="@menu/activity_main_drawer"/>
             <!--<include-->
             <!--android:id="@+id/rl_menu"-->
             <!--layout="@layout/layout_menu" />-->

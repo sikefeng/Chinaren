@@ -20,7 +20,6 @@ import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
-import com.sikefeng.chinaren.ui.activity.ImageListActivity;
 import com.sikefeng.chinaren.ui.activity.NoteListActivity;
 import com.sikefeng.chinaren.ui.activity.ThemeChangeActivity;
 import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
@@ -72,8 +71,8 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().tvTheme.setOnClickListener(this);
 
         String url_path = "http://img1.imgtn.bdimg.com/it/u=3525092935,1107570256&fm=27&gp=0.jpg";
-        getBinding().headView.setImageURI(Uri.parse(url_path));
 
+        getBinding().headView.setImageURI(Uri.parse(url_path));
         ImageUtils.previewImage(getActivity(), getBinding().headView, url_path);
 
         // 设置主题
@@ -105,7 +104,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 break;
             case R.id.baiduLayout:
 //                openServiceSetting();
-                startActivity(new Intent(getActivity(), ImageListActivity.class));
+
                 break;
             case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
@@ -114,7 +113,8 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-                        startActivity(new Intent(mContext, com.sikefeng.chinaren.widget.colorpalette.MainActivity.class));
+                        String test = null;
+                        test.equals("");
                     }
 
                     @Override

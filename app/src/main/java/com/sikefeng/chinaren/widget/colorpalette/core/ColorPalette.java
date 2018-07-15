@@ -127,6 +127,9 @@ public class ColorPalette extends LinearLayout{
         colorPicker.setOnColorSelectListener(new ColorPicker.OnColorSelectListener() {
             @Override
             public void onColorSelect(int color) {
+                if (onColorSelectListener!=null){
+                    onColorSelectListener.onColorSelect(color);
+                }
                 alpha=Color.alpha(color);
                 red=Color.red(color);
                 green=Color.green(color);
