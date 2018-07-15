@@ -257,10 +257,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
                 if (result.startsWith("打开")) {
                     for (AppBean bean : appList) {
                         if (result.contains(bean.getAppName())) {
-                            startAPP(bean.getAppPackageName());
                             if (popupDialog.isShowing()) {
                                 popupDialog.dismiss();
                             }
+                            startAPP(bean.getAppPackageName());
                             break;
                         }
                     }
@@ -269,6 +269,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
                     List<PhoneBean> phoneDtos = phoneUtil.getPhone();
                     for (PhoneBean bean : phoneDtos) {
                         if (result.contains(bean.getName()) || result.contains(bean.getTelPhone())) {
+                            if (popupDialog.isShowing()) {
+                                popupDialog.dismiss();
+                            }
                             phoneUtil.callPhone(MainActivity.this, bean.getTelPhone());
                             return;
                         }
