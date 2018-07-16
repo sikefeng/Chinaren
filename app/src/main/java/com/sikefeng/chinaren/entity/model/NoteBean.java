@@ -14,7 +14,8 @@ public class NoteBean implements Serializable {
     private String createDate; //创建日期
 
 
-
+    private String titleColor; //标题颜色
+    private String contentColor; //内容颜色
     private String userId; //用户ID
     private String title; //标题
     private String content; //内容
@@ -78,6 +79,22 @@ public class NoteBean implements Serializable {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getTitleColor() {
+        return titleColor;
+    }
+
+    public void setTitleColor(String titleColor) {
+        this.titleColor = titleColor;
+    }
+
+    public String getContentColor() {
+        return contentColor;
+    }
+
+    public void setContentColor(String contentColor) {
+        this.contentColor = contentColor;
     }
 }
 

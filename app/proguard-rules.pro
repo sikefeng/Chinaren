@@ -252,3 +252,8 @@
 #科大讯飞语音
 -keep class com.iflytek.**{*;}
 -keepattributes Signature
+
+#阿里OSS
+-keep class com.alibaba.sdk.android.oss.** { *; }
+-dontwarn okio.**
+-dontwarn org.apache.commons.codec.binary.**

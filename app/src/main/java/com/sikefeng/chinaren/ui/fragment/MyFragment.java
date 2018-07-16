@@ -5,9 +5,12 @@ package com.sikefeng.chinaren.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 
@@ -24,7 +27,8 @@ import com.sikefeng.chinaren.ui.activity.FeedBackActivity;
 import com.sikefeng.chinaren.ui.activity.NoteListActivity;
 import com.sikefeng.chinaren.ui.activity.ThemeChangeActivity;
 import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
-import com.sikefeng.chinaren.utils.ImageUtils;
+import com.sikefeng.chinaren.utils.FileUploadUtils;
+import com.sikefeng.chinaren.utils.PickerImageUtils;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 
@@ -50,7 +54,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 
     private Context mContext;
 
-
+    private PickerImageUtils imageUtils;
     @Override
     protected RBasePresenter getPresenter() {
         if (null == presenter) {
@@ -72,15 +76,30 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         getBinding().tvTheme.setOnClickListener(this);
 
         String url_path = "http://img1.imgtn.bdimg.com/it/u=3525092935,1107570256&fm=27&gp=0.jpg";
-
         getBinding().headView.setImageURI(Uri.parse(url_path));
-        ImageUtils.previewImage(getActivity(), getBinding().headView, url_path);
+//        ImageUtils.previewImage(getActivity(), getBinding().headView, url_path);
+        getBinding().headView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageUtils.selectPhoto(view);
+            }
+        });
 
         // 设置主题
         String themeUrl = SharePreferenceUtils.get(mContext, "theme", "").toString();
         if (!"".equals(themeUrl)) {
             getBinding().ivBackground.setBackgroundResource(Integer.parseInt(themeUrl));
         }
+        imageUtils=new PickerImageUtils(getActivity(),true);
+        imageUtils.setOnPictureSelectedListener(new PickerImageUtils.OnPictureSelectedListener() {
+            @Override
+            public void onPictureSelected(String result_path) {
+                System.out.println("-----------------------------result_path="+result_path);
+                Bitmap photo = BitmapFactory.decodeFile(result_path);
+                getBinding().headView.setImageBitmap(photo);
+                FileUploadUtils.uploadFile(result_path);
+            }
+        });
     }
 
 
@@ -147,8 +166,6 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         if (new File(patchFileStr).exists()) {
             Log.e("Test", "have some patch");
             try {
@@ -172,13 +189,23 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1001 && resultCode == 1001) {
             getBinding().ivBackground.setBackgroundResource(Integer.parseInt(data.getExtras().getString("img")));
             SharePreferenceUtils.put(mContext, "theme", data.getExtras().getString("img"));
+        }else {
+            imageUtils.setOnActivityResult(requestCode, resultCode, data);
         }
-
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        imageUtils.setOnRequestPermissionsResult(requestCode,permissions,grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+
 }
 
 

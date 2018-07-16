@@ -47,7 +47,7 @@ public class NewNotePresenter extends BasePresenter<IRBaseView, NewNoteViewModel
 
     public void saveNote(NoteBean noteBean) {
         StyledDialog.buildLoading("保存中...").show();
-        addDisposable(ServiceHelper.getNoteAS().saveNote(noteBean)
+        addDisposable(ServiceHelper.getNoteAPI().saveNote(noteBean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<NoteData>() {
@@ -79,7 +79,7 @@ public class NewNotePresenter extends BasePresenter<IRBaseView, NewNoteViewModel
 
     public void updateNote(NoteBean noteBean) {
         StyledDialog.buildLoading("保存中...").show();
-        addDisposable(ServiceHelper.getNoteAS().updateNote(noteBean)
+        addDisposable(ServiceHelper.getNoteAPI().updateNote(noteBean)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<NoteData>() {

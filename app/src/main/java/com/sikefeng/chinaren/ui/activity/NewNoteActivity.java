@@ -22,11 +22,12 @@ import com.sikefeng.chinaren.entity.model.NoteBean;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.NewNotePresenter;
 import com.sikefeng.chinaren.presenter.vm.NewNoteViewModel;
+import com.sikefeng.chinaren.utils.ColorUtils;
 import com.sikefeng.chinaren.utils.Constants;
+import com.sikefeng.chinaren.utils.ResUtils;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.widget.PopupDialog;
 import com.sikefeng.chinaren.widget.VoiceEditText;
-import com.sikefeng.chinaren.widget.colorpalette.ColorSelectDialog;
 import com.sikefeng.chinaren.widget.colorpalette.core.ColorPalette;
 
 public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implements View.OnClickListener {
@@ -34,11 +35,10 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
     private NewNotePresenter newNotePresenter;
     private NoteBean noteBean;
     private boolean isNewRecord = false;
-    private ColorSelectDialog colorSelectDialog;
-    private int lastColor;
     private VoiceEditText voiceEditText;
     private ClipboardManager mClipboardManager;
-    private PopupDialog popupDialog=null;
+    private PopupDialog popupDialog = null;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_new_note;
@@ -61,6 +61,8 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
             isNewRecord = true;
             noteBean = new NoteBean();
             noteBean.setBackground("");
+            noteBean.setTitleColor(ColorUtils.int2Hex(ResUtils.getColor(R.color.text_color)));
+            noteBean.setContentColor(ColorUtils.int2Hex(ResUtils.getColor(R.color.text_color)));
         } else {
             getBinding().etTitle.setText(noteBean.getTitle());
             getBinding().etContent.setText(noteBean.getContent());
@@ -76,24 +78,29 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         mClipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 
     }
+
     private ColorPalette colorPalette;
-    private int selectColor;
-    public void showSelectColorDialog(View view){
-        popupDialog= new PopupDialog(mContext, R.layout.aaa);
-        RelativeLayout rel_color=popupDialog.getView(R.id.rel_color);
-        TextView tv_title=popupDialog.getView(R.id.tv_title);
-        TextView tv_sure=popupDialog.getView(R.id.tv_sure);
-        ImageView iv_colse=popupDialog.getView(R.id.iv_colse);
+
+    public void showSelectColorDialog(View view) {
+        popupDialog = new PopupDialog(mContext, R.layout.aaa);
+        RelativeLayout rel_color = popupDialog.getView(R.id.rel_color);
+        TextView tv_title = popupDialog.getView(R.id.tv_title);
+        TextView tv_sure = popupDialog.getView(R.id.tv_sure);
+        ImageView iv_colse = popupDialog.getView(R.id.iv_colse);
         tv_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  getBinding().etContent.setTextColor(selectColor);
+                popupDialog.dismiss();
+//              noteBean.setContentColor(ColorUtils.int2Hex(colorPalette.getSelectColor()));
+                noteBean.setTitleColor(ColorUtils.int2Hex(colorPalette.getSelectColor()));
+                getBinding().etContent.setTextColor(colorPalette.getSelectColor());
+//                  tv_title.setTextColor(colorPalette.getSelectColor());
             }
         });
         iv_colse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    popupDialog.dismiss();
+                popupDialog.dismiss();
             }
         });
         colorPalette = new ColorPalette(mContext);
@@ -102,14 +109,6 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         tv_title.setTextColor(getBinding().etContent.getCurrentTextColor());
         popupDialog.setAnimation(android.R.style.Animation_InputMethod);
         popupDialog.showAtLocation(view, Gravity.TOP);
-        colorPalette.setOnColorSelectListener(new ColorPalette.OnColorSelectListener() {
-            @Override
-            public void onColorSelect(int color) {
-                selectColor=color;
-                tv_title.setText(color);
-            }
-        });
-
     }
 
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
@@ -153,19 +152,6 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         switch (view.getId()) {
             case R.id.ivFontColor:
                 showSelectColorDialog(view);
-//                if (colorSelectDialog == null) {
-//                    colorSelectDialog = new ColorSelectDialog(this);
-//                    colorSelectDialog.setOnColorSelectListener(new ColorSelectDialog.OnColorSelectListener() {
-//                        @Override
-//                        public void onSelectFinish(int selectColor) {
-//                            System.out.println("kkkkkkkkkkkkkkk=" + selectColor);
-//                            lastColor = selectColor;
-//                            voiceEditText.setTextColor(selectColor);
-//                        }
-//                    });
-//                }
-//                colorSelectDialog.setLastColor(lastColor);
-//                colorSelectDialog.show();
                 break;
             case R.id.ivSpeech:
                 voiceEditText.showVoiceListener();
@@ -181,8 +167,7 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
                     if (text == null) {
                         return;
                     }
-                    getBinding().etContent.setText(text);
-                    System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkk=" + text);
+                    getBinding().etContent.append(text);
                 }
                 break;
 

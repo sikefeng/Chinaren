@@ -51,6 +51,7 @@ import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
 import com.sikefeng.chinaren.ui.fragment.DiscoverFragment;
+import com.sikefeng.chinaren.ui.fragment.HomeFragment;
 import com.sikefeng.chinaren.ui.fragment.MyFragment;
 import com.sikefeng.chinaren.utils.AppExit2Back;
 import com.sikefeng.chinaren.utils.AppUtil;
@@ -92,6 +93,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
     private int[] mImgs = new int[]{R.drawable.selector_tab_weixin, R.drawable.selector_tab_friends, R.drawable.selector_tab_search,
             R.drawable.selector_tab_me};
 
+    private MyFragment myFragment;
     /**
      * 订阅事件
      *
@@ -182,17 +184,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         }
 //        SwipeBackUtils.disableSwipeActivity(this);
 
-        SwipeBackHelper.getCurrentPage(this)//获取当前页面
-                .setSwipeBackEnable(false);//设置是否可滑动
-        SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(false);
         List<Fragment> fragmentList = new ArrayList<>();
-//        fragmentList.add(new HomeFragment());
-        fragmentList.add(new MyFragment());
+        fragmentList.add(new HomeFragment());
+//        fragmentList.add(new MyFragment());
         fragmentList.add(new ContactsFragment());
 //        fragmentList.add(NewsTabLayout.getInstance());
         fragmentList.add(new DiscoverFragment());
 //        fragmentList.add(new newsFragment());
-        fragmentList.add(new MyFragment());
+        myFragment=new MyFragment();
+        fragmentList.add(myFragment);
         getBinding().viewpager.setOffscreenPageLimit(fragmentList.size());
         pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, java.util.Arrays.asList(tabTitles));
 
@@ -442,5 +442,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         unregisterReceiver(networkChangeReceive);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        myFragment.onActivityResult(requestCode,resultCode,data);
+    }
 }

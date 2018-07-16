@@ -219,13 +219,11 @@ public class ColorPalette extends LinearLayout{
         return selectColor;
     }
 
-    public static interface OnColorSelectListener{
-        public void onColorSelect(int color);
+    public  interface OnColorSelectListener{
+         void onColorSelect(int color);
     }
 
-    public OnColorSelectListener getOnColorSelectListener() {
-        return onColorSelectListener;
-    }
+
 
     public void setOnColorSelectListener(OnColorSelectListener onColorSelectListener) {
         this.onColorSelectListener = onColorSelectListener;

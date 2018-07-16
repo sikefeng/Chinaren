@@ -4,15 +4,18 @@ package com.sikefeng.chinaren;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.sdk.android.oss.ClientConfiguration;
+import com.alibaba.sdk.android.oss.OSS;
+import com.alibaba.sdk.android.oss.OSSClient;
+import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
+import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hss01248.dialog.MyActyManager;
@@ -21,7 +24,6 @@ import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.mob.MobSDK;
 import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
-import com.sikefeng.chinaren.test.SettingUtil;
 import com.sikefeng.chinaren.utils.Cockroach;
 import com.sikefeng.chinaren.utils.CrashApphandler;
 import com.sikefeng.chinaren.utils.FileUtils;
@@ -37,8 +39,6 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.HttpSender;
-
-import java.util.Calendar;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -67,6 +67,7 @@ public class MyApplication extends Application {
         this.setInstance(MyApplication.this);
         initConfiguration();
     }
+
     /**
      * 初始化配置
      */
@@ -99,14 +100,14 @@ public class MyApplication extends Application {
         //科大讯飞语音配置
         // 将“12345678”替换成您申请的APPID，申请地址：http://www.xfyun.cn
         // 请勿在“=”与appid之间添加任何空字符或者转义符
-        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5b387149");
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=5b387149");
     }
 
 
     /**
-     *  AndFix热修复
+     * AndFix热修复
      */
-    private void initAndFix(){
+    private void initAndFix() {
         // 初始化patch管理类
         mPatchManager = new PatchManager(this);
         // 初始化patch版本
@@ -117,11 +118,13 @@ public class MyApplication extends Application {
         mPatchManager.loadPatch();
 
     }
+
     public PatchManager getPatchManager() {
         return mPatchManager;
     }
+
     //初始化Realm数据库
-    private void initRealm(){
+    private void initRealm() {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("chinaren.realm")
@@ -133,7 +136,7 @@ public class MyApplication extends Application {
 
 
     //初始化崩溃日志收集
-    private void initARCA(){
+    private void initARCA() {
         final ACRAConfiguration _ACRACONFIG;
         try {
             _ACRACONFIG = new ConfigurationBuilder(this)
@@ -213,9 +216,7 @@ public class MyApplication extends Application {
     }
 
 
-
-
-    private void initCockroach(){
+    private void initCockroach() {
         Cockroach.install(new Cockroach.ExceptionHandler() {
             // handlerException内部建议手动try{  你的异常处理逻辑  }catch(Throwable e){ } ，以防handlerException内部再次抛出异常，导致循环调用handlerException
             @Override
@@ -229,7 +230,7 @@ public class MyApplication extends Application {
                     public void run() {
                         try {
                             //建议使用下面方式在控制台打印异常，这样就可以在Error级别看到红色log
-                            Log.e("AndroidRuntime","--->CockroachException:"+thread+"<---",throwable);
+                            Log.e("AndroidRuntime", "--->CockroachException:" + thread + "<---", throwable);
                             Toast.makeText(MyApplication.this, "Exception Happend\n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
 //                          throw new RuntimeException("..."+(i++));
                         } catch (Throwable e) {
@@ -239,6 +240,19 @@ public class MyApplication extends Application {
                 });
             }
         });
+    }
+
+    public static OSS getOSSClient() {
+        String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+// 在移动端建议使用STS的方式初始化OSSClient，更多信息参考：[访问控制]
+        OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("LTAI774euahqeQTf", "mLIIZBKELz9oO6XT6iXpSF79nNpGRm", "<StsToken.SecurityToken>");
+        ClientConfiguration conf = new ClientConfiguration();
+        conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
+        conf.setSocketTimeout(15 * 1000); // socket超时，默认15秒
+        conf.setMaxConcurrentRequest(5); // 最大并发请求书，默认5个
+        conf.setMaxErrorRetry(2); // 失败后最大重试次数，默认2次
+        OSS oss = new OSSClient(getContext(), endpoint, credentialProvider, conf);
+        return oss;
     }
 
 
