@@ -1,20 +1,17 @@
 package com.sikefeng.chinaren.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityFeedBackBinding;
-import com.sikefeng.chinaren.databinding.ActivityTestBinding;
 import com.sikefeng.chinaren.entity.event.PermissionEvent;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.FeedBackPresenter;
-import com.sikefeng.chinaren.presenter.TestPresenter;
 import com.sikefeng.chinaren.presenter.vm.FeedBackViewModel;
-import com.sikefeng.chinaren.presenter.vm.TestViewModel;
+import com.sikefeng.chinaren.utils.StringUtil;
 import com.sikefeng.chinaren.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -56,7 +53,7 @@ public class FeedBackActivity extends BaseActivity<ActivityFeedBackBinding> {
             @Override
             public void onClick(View v) {
                 String content = getBinding().etContent.getText().toString().trim();
-                if ("".equals(content)){
+                if (StringUtil.isBlank(content)) {
                     ToastUtils.showShort("请输入反馈内容");
                     return;
                 }
