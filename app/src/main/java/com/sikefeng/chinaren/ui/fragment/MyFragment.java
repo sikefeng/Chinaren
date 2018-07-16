@@ -20,6 +20,7 @@ import com.sikefeng.chinaren.databinding.FragmentMyBinding;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.presenter.MyFragmentPresenter;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
+import com.sikefeng.chinaren.ui.activity.FeedBackActivity;
 import com.sikefeng.chinaren.ui.activity.NoteListActivity;
 import com.sikefeng.chinaren.ui.activity.ThemeChangeActivity;
 import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
@@ -104,7 +105,7 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 break;
             case R.id.baiduLayout:
 //                openServiceSetting();
-
+                startActivity(new Intent(mContext, FeedBackActivity.class));
                 break;
             case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));

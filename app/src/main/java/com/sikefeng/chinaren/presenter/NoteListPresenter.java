@@ -63,7 +63,7 @@ public class NoteListPresenter extends BasePresenter<IRBaseView, NoteListViewMod
     @Override
     public void loadData(final boolean isRefresh) {
 
-        addDisposable(ServiceHelper.getNoteAS().findList(Constants.userID,String.valueOf(isRefresh ? 1 : page), String.valueOf(count),"updateDate")
+        addDisposable(ServiceHelper.getNoteAPI().findList(Constants.userID,String.valueOf(isRefresh ? 1 : page), String.valueOf(count),"updateDate")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<NoteListData>() {

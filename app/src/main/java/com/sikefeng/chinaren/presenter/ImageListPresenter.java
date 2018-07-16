@@ -61,7 +61,7 @@ public class ImageListPresenter extends BasePresenter<IRBaseView, ImageListViewM
     @Override
     public void loadData(final boolean isRefresh) {
 
-        addDisposable(ServiceHelper.getNoteAS().imageList(String.valueOf(isRefresh ? 1 : page), String.valueOf(count),"updateDate")
+        addDisposable(ServiceHelper.getNoteAPI().imageList(String.valueOf(isRefresh ? 1 : page), String.valueOf(count),"updateDate")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<ImageListData>() {
