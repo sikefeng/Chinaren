@@ -127,6 +127,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);//禁止MainActivity滑动退出APP
         mContext = this;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, getBinding().drawerLayout, getBinding().toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         getBinding().drawerLayout.addDrawerListener(toggle);
