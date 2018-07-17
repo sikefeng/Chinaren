@@ -3,6 +3,7 @@ package com.sikefeng.chinaren.ui.activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
@@ -20,7 +21,7 @@ import org.greenrobot.eventbus.ThreadMode;
 public class FeedBackActivity extends BaseActivity<ActivityFeedBackBinding> {
 
     private FeedBackPresenter presenter;
-
+    private String type="0"; //反馈类型 （0.意见反馈 1.Bug反馈）
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPermissionEvent(PermissionEvent event) {
 
@@ -57,7 +58,20 @@ public class FeedBackActivity extends BaseActivity<ActivityFeedBackBinding> {
                     ToastUtils.showShort("请输入反馈内容");
                     return;
                 }
-                presenter.feedBack(content);
+                presenter.feedBack(content,type);
+            }
+        });
+        RadioGroup radgroup = (RadioGroup) findViewById(R.id.radioGroup);
+        //第一种获得单选按钮值的方法
+        //为radioGroup设置一个监听器:setOnCheckedChanged()
+        radgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    if (checkedId==R.id.rb_fun){
+                        type="0";
+                    }else if (checkedId==R.id.rb_bug){
+                        type="1";
+                    }
             }
         });
     }

@@ -80,6 +80,8 @@ public class NoteListViewModel extends BaseViewModel {
             currentBinding.multipleStatusView.showContent();
         }
     }
+
+
 }
 
 

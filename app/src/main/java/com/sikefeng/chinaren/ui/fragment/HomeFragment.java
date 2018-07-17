@@ -19,7 +19,6 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.entity.model.MarkerBean;
 import com.sikefeng.chinaren.ui.adapter.CustomInfoWindow;
@@ -60,9 +59,6 @@ public class HomeFragment extends android.support.v4.app.Fragment implements AMa
         addMarkersToMap();
         initOperation();
 
-        SwipeBackHelper.getCurrentPage(getActivity())//获取当前页面
-                .setSwipeBackEnable(false);//设置是否可滑动
-        SwipeBackHelper.getCurrentPage(getActivity()).setSwipeRelateEnable(false);
         return mapLayout;
     }
 

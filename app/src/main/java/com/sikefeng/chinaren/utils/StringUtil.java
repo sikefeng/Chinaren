@@ -8,9 +8,9 @@ public class StringUtil {
 
     public static boolean isBlank(String txt) {
         if (txt == null || "".equals(txt)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

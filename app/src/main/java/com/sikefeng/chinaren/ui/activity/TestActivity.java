@@ -72,8 +72,7 @@ public class TestActivity extends BaseActivity<ActivityTestBinding> implements B
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        //获取当前页面.setSwipeBackEnable(false);//设置是否可滑动
-        SwipeBackHelper.getCurrentPage(this);
+
 
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());

@@ -18,7 +18,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
+
         <android.support.design.widget.AppBarLayout
             android:id="@+id/AppBarLayout01"
             android:layout_width="match_parent"
@@ -27,6 +29,10 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/status_bar_height"
+                android:background="@color/colorPrimary" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -36,25 +42,62 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <!--<TextView-->
-                    <!--android:id="@+id/title"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:text=""-->
-                    <!--android:textColor="@color/white"-->
-                    <!--android:textSize="18sp" />-->
+                <!--android:id="@+id/title"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:text=""-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="18sp" />-->
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_fun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="60dp"
+                android:checked="true"
+                android:text="功能建议" />
+
+            <RadioButton
+                android:id="@+id/rb_bug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:text="程序错误" />
+        </RadioGroup>
+
         <EditText
+            android:padding="8dp"
             android:id="@+id/et_content"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/bg_color"
+            android:gravity="left|top"
+            android:minHeight="200dp" />
 
         <Button
+            android:layout_marginLeft="22dip"
+            android:layout_marginRight="22dip"
+            style="@style/buttonSystle"
+            android:layout_marginTop="15dp"
             android:id="@+id/btn_save"
-            android:text="提交"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:text="提交" />
     </LinearLayout>
 </layout>

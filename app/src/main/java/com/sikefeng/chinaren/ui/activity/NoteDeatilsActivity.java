@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,10 @@ import android.view.View;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.databinding.ActivityNoteDeatilsBinding;
 import com.sikefeng.chinaren.entity.model.NoteBean;
+import com.sikefeng.chinaren.utils.StringUtil;
 import com.sikefeng.chinaren.utils.speech.SpeechSynthesizerUtils;
+
+import static com.sikefeng.chinaren.api.APIConfig.BASE_URL_WEBVIEW;
 
 public class NoteDeatilsActivity extends AppCompatActivity {
 
@@ -28,11 +32,14 @@ public class NoteDeatilsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
         currentBinding = DataBindingUtil.setContentView(this, R.layout.activity_note_deatils);
-        noteBean = (NoteBean) getIntent().getSerializableExtra("noteBean");
-        currentBinding.setModel(noteBean);
+        mContext = this;
         setToolbar(currentBinding.toolbar);
+        noteBean = (NoteBean) getIntent().getSerializableExtra("noteBean");
+        if (!StringUtil.isBlank(noteBean.getContentColor())){
+            currentBinding.tvContent.setTextColor(Color.parseColor(noteBean.getContentColor()));
+        }
+        currentBinding.setModel(noteBean);
         currentBinding.toolbar.setOnMenuItemClickListener(onMenuItemClick);
         mClipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
     }
@@ -50,7 +57,7 @@ public class NoteDeatilsActivity extends AppCompatActivity {
                 case R.id.action_share:
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, "http://120.78.79.198:8080/AIWeb/sharenote?nid=" + noteBean.getId());
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, BASE_URL_WEBVIEW+"sharenote?nid=" + noteBean.getId());
                     shareIntent.setType("text/plain");
                     startActivity(shareIntent);
                     break;
@@ -64,7 +71,7 @@ public class NoteDeatilsActivity extends AppCompatActivity {
                     break;
                 case R.id.action_open_web:
                     Intent intent = new Intent();
-                    intent.setData(Uri.parse("http://120.78.79.198:8080/AIWeb/sharenote?nid=" + noteBean.getId()));//Url 就是你要打开的网址
+                    intent.setData(Uri.parse(BASE_URL_WEBVIEW+"sharenote?nid=" + noteBean.getId()));//Url 就是你要打开的网址
                     intent.setAction(Intent.ACTION_VIEW);
                     startActivity(intent); //启动浏览器
                     break;

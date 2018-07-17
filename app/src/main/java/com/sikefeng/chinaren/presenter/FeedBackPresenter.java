@@ -5,16 +5,16 @@ import com.hss01248.dialog.StyledDialog;
 import com.sikefeng.chinaren.core.BasePresenter;
 import com.sikefeng.chinaren.core.ServiceHelper;
 import com.sikefeng.chinaren.entity.model.BaseData;
-import com.sikefeng.chinaren.entity.model.NoteListData;
 import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.presenter.vm.FeedBackViewModel;
-import com.sikefeng.chinaren.presenter.vm.TestViewModel;
-import com.sikefeng.chinaren.utils.Constants;
+import com.sikefeng.chinaren.utils.ToastUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.sikefeng.chinaren.utils.Constants.userID;
 
 
 public class FeedBackPresenter extends BasePresenter<IRBaseView, FeedBackViewModel> {
@@ -29,8 +29,8 @@ public class FeedBackPresenter extends BasePresenter<IRBaseView, FeedBackViewMod
 
     }
 
-    public void feedBack(String content){
-        addDisposable(ServiceHelper.getCommonAPI().feedBack(content)
+    public void feedBack(String content,String type){
+        addDisposable(ServiceHelper.getCommonAPI().feedBack(userID,content,type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<BaseData>() {
@@ -40,7 +40,8 @@ public class FeedBackPresenter extends BasePresenter<IRBaseView, FeedBackViewMod
                         String msg = value.getMsg();
                         LogUtils.i(status + "=========" + msg);
                         if (status == 0) {
-
+                            ToastUtils.showShort("反馈成功！");
+                            getContext().finish();
                         }
                     }
 

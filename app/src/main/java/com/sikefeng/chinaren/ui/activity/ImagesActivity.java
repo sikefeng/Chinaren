@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.sikefeng.chinaren.R;
@@ -24,14 +25,15 @@ import com.sikefeng.chinaren.ui.adapter.SimpleSheetAdapter;
 import com.sikefeng.chinaren.utils.DateTimeUtils;
 import com.sikefeng.chinaren.utils.FileUtils;
 import com.sikefeng.chinaren.utils.PermissionConstans;
-import com.sikefeng.chinaren.utils.SwipeBackUtils;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.utils.img.ImageUtils;
 import com.sikefeng.chinaren.utils.img.glide.DownCallBack;
 import com.sikefeng.chinaren.widget.DividerItemDecoration;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 import io.reactivex.observers.DisposableObserver;
 
@@ -58,7 +60,6 @@ public class ImagesActivity extends BaseActivity<ActivityImagesBinding> {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        SwipeBackUtils.disableSwipeActivity(this);
         getBinding().flRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

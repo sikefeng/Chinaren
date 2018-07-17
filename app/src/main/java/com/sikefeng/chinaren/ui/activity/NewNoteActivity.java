@@ -5,6 +5,7 @@ import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -25,6 +26,7 @@ import com.sikefeng.chinaren.presenter.vm.NewNoteViewModel;
 import com.sikefeng.chinaren.utils.ColorUtils;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.ResUtils;
+import com.sikefeng.chinaren.utils.StringUtil;
 import com.sikefeng.chinaren.utils.ToastUtils;
 import com.sikefeng.chinaren.widget.PopupDialog;
 import com.sikefeng.chinaren.widget.VoiceEditText;
@@ -56,6 +58,7 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
     protected void init(Bundle savedInstanceState) {
         mContext = this;
         voiceEditText = (VoiceEditText) getBinding().etContent;
+        voiceEditText.setIconVisible(false);
         noteBean = (NoteBean) getIntent().getSerializableExtra("noteBean");
         if (noteBean == null) {
             isNewRecord = true;
@@ -69,6 +72,12 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         }
         getBinding().setNoteBean(noteBean);
         setToolbar(getBinding().toolbar);
+        if (!StringUtil.isBlank(noteBean.getTitleColor())){
+            getBinding().title.setTextColor(Color.parseColor(noteBean.getTitleColor()));
+        }
+        if (!StringUtil.isBlank(noteBean.getContentColor())){
+            getBinding().etContent.setTextColor(Color.parseColor(noteBean.getContentColor()));
+        }
         getBinding().toolbar.setOnMenuItemClickListener(onMenuItemClick);
         getBinding().ivFontColor.setOnClickListener(this);
         getBinding().ivSpeech.setOnClickListener(this);
@@ -82,7 +91,7 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
     private ColorPalette colorPalette;
 
     public void showSelectColorDialog(View view) {
-        popupDialog = new PopupDialog(mContext, R.layout.aaa);
+        popupDialog = new PopupDialog(mContext, R.layout.popup_select_color);
         RelativeLayout rel_color = popupDialog.getView(R.id.rel_color);
         TextView tv_title = popupDialog.getView(R.id.tv_title);
         TextView tv_sure = popupDialog.getView(R.id.tv_sure);
@@ -91,9 +100,10 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
             @Override
             public void onClick(View view) {
                 popupDialog.dismiss();
-//              noteBean.setContentColor(ColorUtils.int2Hex(colorPalette.getSelectColor()));
+                noteBean.setContentColor(ColorUtils.int2Hex(colorPalette.getSelectColor()));
                 noteBean.setTitleColor(ColorUtils.int2Hex(colorPalette.getSelectColor()));
                 getBinding().etContent.setTextColor(colorPalette.getSelectColor());
+                getBinding().etTitle.setTextColor(colorPalette.getSelectColor());
 //                  tv_title.setTextColor(colorPalette.getSelectColor());
             }
         });
@@ -120,6 +130,8 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
                     noteBean.setUserId(Constants.userID);
                     noteBean.setTitle(getBinding().etTitle.getText().toString());
                     noteBean.setContent(getBinding().etContent.getText().toString());
+                    noteBean.setTitleColor(ColorUtils.int2Hex(getBinding().etTitle.getCurrentTextColor()));
+                    noteBean.setContentColor(ColorUtils.int2Hex(getBinding().etContent.getCurrentTextColor()));
                     if ("".equals(noteBean.getTitle())) {
                         ToastUtils.showShort("请输入标题");
                         return false;

@@ -33,9 +33,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-//        setTheme(R.style.SwitchTheme1);
         SwipeBackHelper.onCreate(this); //初始化右滑返回上一级界面
-//        SwipeBackUtils.enableSwipeActivity(this, 0.1f); //打开右滑事件
         super.onCreate(savedInstanceState);
         ImmersionBar.with(this).init(); //设置沉浸式状态栏样式
         if(isEnableEventBus() && !EventBus.getDefault().isRegistered(this)){
@@ -44,7 +42,6 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
         SkinManager.getInstance().register(this); //皮肤管理，可以切换白天和晚上的样式
         //加入Activity管理队列
         DavikActivityUtils.getScreenManager().addActivity(this);
-        //kkk
     }
 
     @Override

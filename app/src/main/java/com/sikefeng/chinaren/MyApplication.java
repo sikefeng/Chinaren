@@ -243,9 +243,9 @@ public class MyApplication extends Application {
     }
 
     public static OSS getOSSClient() {
-        String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+        String endpoint = "";
 // 在移动端建议使用STS的方式初始化OSSClient，更多信息参考：[访问控制]
-        OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("LTAI774euahqeQTf", "mLIIZBKELz9oO6XT6iXpSF79nNpGRm", "<StsToken.SecurityToken>");
+        OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("", "", "<StsToken.SecurityToken>");
         ClientConfiguration conf = new ClientConfiguration();
         conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
         conf.setSocketTimeout(15 * 1000); // socket超时，默认15秒

@@ -39,12 +39,13 @@ public class AppUncaughtExceptionHandler implements UncaughtExceptionHandler {
     public void uncaughtException(Thread thread, Throwable ex) {
         String name = thread.getName();
         String errorLog = obtainErrorLog(ex);
-//        System.out.println(name + "=kkkkkkkkkkkkkkkkkkkkkk=" + errorLog);
+        System.out.println(name + "=kkkkkkkkkkkkkkkkkkkkkk=" + errorLog);
         sendError(errorLog);
         mDefaultUncaughtExceptionHandler.uncaughtException(thread, ex);
     }
 
     public static String obtainErrorLog(Throwable ex) {
+        System.out.println("=kkkkkkkkkkkkkkkkkkkkkk=errorLog"  );
         StackTraceElement[] arr = ex.getStackTrace();
         final StringBuffer sbLog = new StringBuffer(ex.toString());
         final String lineSeperator = "-------------------------------\n\n";

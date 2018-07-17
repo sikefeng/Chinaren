@@ -3,26 +3,20 @@
  */
 package com.sikefeng.chinaren;
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.BuildConfig;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -48,14 +42,16 @@ import com.sikefeng.chinaren.entity.event.RvScrollEvent;
 import com.sikefeng.chinaren.entity.model.AppBean;
 import com.sikefeng.chinaren.entity.model.PhoneBean;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
+import com.sikefeng.chinaren.ui.activity.FeedBackActivity;
+import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
 import com.sikefeng.chinaren.ui.fragment.DiscoverFragment;
-import com.sikefeng.chinaren.ui.fragment.HomeFragment;
 import com.sikefeng.chinaren.ui.fragment.MyFragment;
 import com.sikefeng.chinaren.utils.AppExit2Back;
 import com.sikefeng.chinaren.utils.AppUtil;
 import com.sikefeng.chinaren.utils.Constants;
+import com.sikefeng.chinaren.utils.DavikActivityUtils;
 import com.sikefeng.chinaren.utils.PhoneUtils;
 import com.sikefeng.chinaren.utils.ResUtils;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
@@ -65,6 +61,7 @@ import com.sikefeng.chinaren.utils.speech.SpeechRecognizerUtils;
 import com.sikefeng.chinaren.widget.MovingImageView;
 import com.sikefeng.chinaren.widget.MovingViewAnimator;
 import com.sikefeng.chinaren.widget.PopupDialog;
+import com.zhy.changeskin.SkinManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -94,6 +91,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
             R.drawable.selector_tab_me};
 
     private MyFragment myFragment;
+
     /**
      * 订阅事件
      *
@@ -131,6 +129,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
     protected void init(Bundle savedInstanceState) {
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);//禁止MainActivity滑动退出APP
         mContext = this;
+        //加入Activity管理队列
+        DavikActivityUtils.getScreenManager().addActivity(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, getBinding().drawerLayout, getBinding().toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         getBinding().drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -185,14 +185,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
 //        SwipeBackUtils.disableSwipeActivity(this);
 
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new HomeFragment());
+        myFragment = new MyFragment();
+        fragmentList.add(myFragment);
+//        fragmentList.add(new HomeFragment());
 //        fragmentList.add(new MyFragment());
+        fragmentList.add(new ContactsFragment());
         fragmentList.add(new ContactsFragment());
 //        fragmentList.add(NewsTabLayout.getInstance());
         fragmentList.add(new DiscoverFragment());
 //        fragmentList.add(new newsFragment());
-        myFragment=new MyFragment();
-        fragmentList.add(myFragment);
         getBinding().viewpager.setOffscreenPageLimit(fragmentList.size());
         pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, java.util.Arrays.asList(tabTitles));
 
@@ -306,33 +307,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.group_item_github:
-                        System.out.println("1111111111111111111");
+                        startActivity(new Intent(mContext, FeedBackActivity.class));
                         break;
                     case R.id.group_item_more:
-                        System.out.println("22222222222222");
-
-
+                        startActivity(new Intent(mContext, VoicerListActivity.class));
                         break;
                     case R.id.group_item_qr_code:
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 1001);
-                                return true;
-                            } else {
-                                Intent intent2 = new Intent(Intent.ACTION_DIAL);
-                                Uri data = Uri.parse("tel:10086");
-                                intent2.setData(data);
-                                startActivity(intent2);
-                            }
-                        } else {
-                            Intent intent2 = new Intent(Intent.ACTION_DIAL);
-                            Uri data = Uri.parse("tel:10086");
-                            intent2.setData(data);
-                            startActivity(intent2);
-                        }
+                        boolean isChecked = (boolean) SharePreferenceUtils.get(mContext, "mode", false);
+                        SharePreferenceUtils.put(mContext, "mode", !isChecked);
+                        SkinManager.getInstance().changeSkin(!isChecked ? "night" : "");
                         break;
                     case R.id.group_item_share_project:
-                        System.out.println("44444444444444");
+                        String test = null;
+                        test.equals("");
                         break;
                     case R.id.item_model:
                         System.out.println("5555555555555");
@@ -445,6 +432,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        myFragment.onActivityResult(requestCode,resultCode,data);
+        myFragment.onActivityResult(requestCode, resultCode, data);
     }
 }

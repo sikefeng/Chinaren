@@ -108,7 +108,7 @@ public class NoteListPresenter extends BasePresenter<IRBaseView, NoteListViewMod
     }
 
 
-    public void onLongClickItem(BGABindingViewHolder holder, NoteBean model) {
+    public void onLongClick(BGABindingViewHolder holder, NoteBean model) {
         StyledDialog.buildIosAlert("删除提示", "是否删除该记录?", new MyDialogListener() {
             @Override
             public void onFirst() {
@@ -121,9 +121,6 @@ public class NoteListPresenter extends BasePresenter<IRBaseView, NoteListViewMod
             }
         }).setBtnText("确定", "取消").show();
     }
-
-
-
 
 }
 

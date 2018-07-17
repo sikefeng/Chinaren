@@ -9,7 +9,6 @@ import android.widget.CompoundButton;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.jude.swipbackhelper.SwipeBackHelper;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivitySettingsBinding;
@@ -69,8 +68,7 @@ public class SettingsActivity extends BaseActivity<ActivitySettingsBinding> impl
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        SwipeBackHelper.getCurrentPage(this)//获取当前页面
-                .setSwipeBackEnable(false);//设置是否可滑动
+
         ARouter.getInstance().inject(this);
 
         initView();

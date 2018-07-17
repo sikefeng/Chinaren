@@ -76,6 +76,7 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
         iconVisible = typedArray.getBoolean(R.styleable.VoiceEditTexStytle_iconVisible, false);
         System.out.println("999999999999999999="+iconVisible);
         typedArray.recycle();
+        init();
     }
 
     /**
@@ -115,11 +116,6 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
 //设置输入框里面内容发生改变的监听
         addTextChangedListener(this);
 //        speechRecognizerEditText = SpeechRecognizerEditText.getInstance(mContext);
-        if (mContext==null){
-            System.out.println("111111111111111111111111");
-        }else {
-            System.out.println("2222222222222222222222222222");
-        }
         speechRecognizerEditText = new SpeechRecognizerEditText(mContext);
         speechRecognizerEditText.setOnSpeechResultListener(this);
 
@@ -294,5 +290,10 @@ public class VoiceEditText extends android.support.v7.widget.AppCompatEditText i
           if (speechRecognizerEditText.isListening()){
               speechRecognizerEditText.stop();
           }
+    }
+
+    public void setIconVisible(boolean iconVisible) {
+        this.iconVisible = iconVisible;
+        setClearIconVisible(iconVisible);
     }
 }
