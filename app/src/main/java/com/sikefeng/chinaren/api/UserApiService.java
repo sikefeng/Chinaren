@@ -18,7 +18,6 @@ import retrofit2.http.Query;
 public interface UserApiService {
 
 
-
     /**
      * 获取用户列表信息
      *
@@ -52,7 +51,7 @@ public interface UserApiService {
      * @param userBean 用户实体类
      * @return Observable<UserData>
      */
-    @POST("common/login")
+    @POST("member/member_login")
     Observable<UserData> login(@Body UserBean userBean);
 
     /**
@@ -61,7 +60,7 @@ public interface UserApiService {
      * @param userBean 用户实体类
      * @return Observable<UserData>
      */
-    @POST("common/register")
+    @POST("member/member_register")
     Observable<UserData> registerUser(@Body UserBean userBean);
 
     /**
@@ -102,8 +101,11 @@ public interface UserApiService {
      * @param token 用户token
      * @return UserData
      */
-    @GET("common/logout")
+    @GET("member/member_logout")
     Observable<UserData> exitLogin(@Query("token") String token);
+
+    @GET("member/member_update")
+    Observable<UserData> updateMember(@Query("type") String type, @Query("value") String value);
 
 
 }

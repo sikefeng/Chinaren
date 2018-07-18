@@ -32,7 +32,6 @@
             android:id="@+id/tname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{userBean.loginName}"
             />
         <com.classic.common.MultipleStatusView
             android:layout_width="match_parent"

@@ -53,7 +53,7 @@
     <string name="reset_pwd">请输入以下信息重置密码</string>
     <string name="phone_empty">手机号码不能为空</string>
     <string name="code_empty">验证码不能为空</string>
-    <string name="name_empty">姓名不能为空</string>
+    <string name="name_empty">用户名不能为空</string>
     <string name="pwd_empty">密码不能为空</string>
     <string name="update_pwd_tips">正在修改密码...</string>
     <string name="isLogining">正在登录...</string>

@@ -137,7 +137,7 @@
                         android:layout_centerVertical="true"
                         android:text="@string/code_number" />
                     <com.sikefeng.chinaren.widget.ClearEditText
-                        android:text="@{userBean.verCode}"
+                        android:text="@{userBean.code}"
                         style="@style/editTextStyle"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/tv_code_number"

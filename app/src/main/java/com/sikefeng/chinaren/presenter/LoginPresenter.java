@@ -51,13 +51,12 @@ public class LoginPresenter extends BasePresenter<IRBaseView, LoginViewModel> {
                 .subscribeWith(new DisposableObserver<UserData>() {
                     @Override
                     public void onNext(UserData value) {
+                        StyledDialog.dismissLoading();
                         int status = value.getStatus();
                         String msg = value.getMsg();
                         LogUtils.i(status + "=========" + msg);
                         if (status == 0 && msg.equals("success")) {
                             UserBean bean = value.getData();
-                            bean.setLoginName(userBean.getLoginName());
-                            bean.setNewPassword(userBean.getNewPassword());
                             LoginUtil.saveUserData(getContext(), bean);
                             ARouter.getInstance().build(Constants.MAIN_URL).navigation();
                             getContext().finish();

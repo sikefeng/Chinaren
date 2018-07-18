@@ -20,6 +20,7 @@ import com.sikefeng.chinaren.presenter.LoginPresenter;
 import com.sikefeng.chinaren.presenter.vm.LoginViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.PermissionUtils;
+import com.sikefeng.chinaren.utils.StringUtil;
 import com.sikefeng.chinaren.utils.ToastUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -61,6 +62,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
      */
     private boolean showAuth = true;
     private Boolean isOpenDrawer = false;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
@@ -94,7 +96,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
     @Override
     protected void init(Bundle savedInstanceState) {
         SwipeBackHelper.getCurrentPage(this)//获取当前页面
-        .setSwipeBackEnable(false);//设置是否可滑动
+                .setSwipeBackEnable(false);//设置是否可滑动
         ARouter.getInstance().inject(this);
 
         userBean = new UserBean();
@@ -113,8 +115,16 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         getBinding().btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build(Constants.MAIN_URL).navigation();
-                ToastUtils.showBottom("登录成功！！！");
+                String loginName = getBinding().loginName.getText().toString().trim();
+                String password = getBinding().password.getText().toString().trim();
+                if (StringUtil.isBlank(loginName) || StringUtil.isBlank(password)) {
+                    ToastUtils.showShort("用户名或密码不能为空");
+                    return;
+                }
+                userBean.setLoginName(loginName);
+                userBean.setPassword(password);
+                userBean.setDevice("1"); //登录设备（0.微信小程序 1.Android 2.IOS）
+                presenter.login(userBean);
             }
         });
         getBinding().slidingDrawer.setOnDrawerOpenListener(new SlidingDrawer.OnDrawerOpenListener() {
@@ -133,7 +143,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             }
 
         });
-        ARouter.getInstance().build(Constants.MAIN_URL).navigation();
+//        ARouter.getInstance().build(Constants.MAIN_URL).navigation();
 
     }
 
@@ -168,7 +178,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         super.onResume();
         if (showAuth) {
             showAuth = false;
-            PermissionUtils.getInstace().authorization(this, showAuth, true, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA ); //6.0+授权访问
+            PermissionUtils.getInstace().authorization(this, showAuth, true, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA); //6.0+授权访问
         }
     }
 
@@ -185,11 +195,11 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
 
     private void threeLogin(int platformType) {
 
-        if (platformType==0){
+        if (platformType == 0) {
             loginPlatform = ShareSDK.getPlatform(QQ.NAME);
-        }else if (platformType==1){
+        } else if (platformType == 1) {
             loginPlatform = ShareSDK.getPlatform(Wechat.NAME);
-        }else {
+        } else {
             loginPlatform = ShareSDK.getPlatform(SinaWeibo.NAME);
         }
         //回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
@@ -198,7 +208,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
             public void onError(Platform platform, int arg1, Throwable arg2) {
                 // TODO Auto-generated method stub
                 arg2.printStackTrace();
-                System.out.println("arg2="+arg2);
+                System.out.println("arg2=" + arg2);
             }
 
             @Override
@@ -234,7 +244,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
         loginPlatform.showUser(null);//授权并获取用户信息
 
     }
-
 
 
 }

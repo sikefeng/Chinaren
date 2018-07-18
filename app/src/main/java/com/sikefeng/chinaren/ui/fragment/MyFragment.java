@@ -131,13 +131,13 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 StyledDialog.buildIosAlert("退出登录提示", "是否确认退出当前账号?", new MyDialogListener() {
                     @Override
                     public void onFirst() {
-                        String test = null;
-                        test.equals("");
+                        presenter.exitLogin();
                     }
 
                     @Override
                     public void onSecond() {
-
+                        String test = null;
+                        test.equals("");
                     }
                 }).setBtnText("确定", "取消").show();
                 break;

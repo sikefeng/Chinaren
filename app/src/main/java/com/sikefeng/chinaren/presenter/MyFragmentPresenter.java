@@ -11,11 +11,14 @@ import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.presenter.vm.MyFragmentViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.LoginUtil;
+import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 import com.sikefeng.chinaren.utils.ToastUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.sikefeng.chinaren.utils.Constants.TOKEN;
 
 /**
  * 文件名：ForgetPwdPresenter <br>
@@ -43,13 +46,9 @@ public class MyFragmentPresenter extends BasePresenter<IRBaseView, MyFragmentVie
 
     }
 
-    /**
-     * 功能描述：用户退出登录
-     * <br>创建时间： 2017-07-24 17:01:42
-     *
-     * @param token 用户token
-     */
-    public void exitLogin(String token) {
+
+    public void exitLogin() {
+        String token= (String) SharePreferenceUtils.get(getContext(),TOKEN,"");
         StyledDialog.buildLoading(getContext().getString(R.string.exiting)).show();
         addDisposable(ServiceHelper.getUsersAS().exitLogin(token)
                 .subscribeOn(Schedulers.io())

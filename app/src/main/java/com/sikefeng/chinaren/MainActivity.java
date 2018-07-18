@@ -62,13 +62,14 @@ import com.sikefeng.chinaren.widget.MovingImageView;
 import com.sikefeng.chinaren.widget.MovingViewAnimator;
 import com.sikefeng.chinaren.widget.PopupDialog;
 import com.zhy.changeskin.SkinManager;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.sikefeng.chinaren.utils.Constants.MOTTO;
+import static com.sikefeng.chinaren.utils.Constants.NICKNAME;
 
 
 @Route(path = Constants.MAIN_URL)
@@ -134,43 +135,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, getBinding().drawerLayout, getBinding().toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         getBinding().drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        mivMenu = (MovingImageView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
-        // 设置主题
-        String themeUrl = SharePreferenceUtils.get(mContext, "theme", "").toString();
-        if (!"".equals(themeUrl)) {
-            mivMenu.setImageResource(Integer.parseInt(themeUrl));
-        }
-        getBinding().drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                mivMenu.pauseMoving();
-            }
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.stop) {
-                    mivMenu.startMoving();
-                } else if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.pause) {
-                    mivMenu.resumeMoving();
-                }
-                isOpenDrawerLayout = true;
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                mivMenu.stopMoving();
-                isOpenDrawerLayout = false;
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.stop) {
-                    mivMenu.startMoving();
-                } else if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.pause) {
-                    mivMenu.resumeMoving();
-                }
-            }
-        });
 
 
         EventBus.getDefault().register(this);
@@ -333,7 +298,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
                 return true;
             }
         });
-
+        initLeftMenu();
     }
 
     private PopupDialog popupDialog = null;
@@ -434,4 +399,50 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         super.onActivityResult(requestCode, resultCode, data);
         myFragment.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void initLeftMenu(){
+        String motto= (String) SharePreferenceUtils.get(mContext,MOTTO,"");
+        String nickName= (String) SharePreferenceUtils.get(mContext,NICKNAME,"Learn and live.");
+        ((TextView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.tvMotto)).setText(motto);
+        ((TextView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.nickName)).setText(nickName);
+        mivMenu = (MovingImageView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
+        // 设置主题
+        String themeUrl = SharePreferenceUtils.get(mContext, "theme", "").toString();
+        if (!"".equals(themeUrl)) {
+            mivMenu.setImageResource(Integer.parseInt(themeUrl));
+        }
+        getBinding().drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                mivMenu.pauseMoving();
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.stop) {
+                    mivMenu.startMoving();
+                } else if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.pause) {
+                    mivMenu.resumeMoving();
+                }
+                isOpenDrawerLayout = true;
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                mivMenu.stopMoving();
+                isOpenDrawerLayout = false;
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.stop) {
+                    mivMenu.startMoving();
+                } else if (mivMenu.getMovingState() == MovingViewAnimator.MovingState.pause) {
+                    mivMenu.resumeMoving();
+                }
+            }
+        });
+
+    }
+
 }

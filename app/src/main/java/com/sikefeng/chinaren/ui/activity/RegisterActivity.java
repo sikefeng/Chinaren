@@ -2,15 +2,13 @@ package com.sikefeng.chinaren.ui.activity;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.utils.TextUtils;
-import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.MyApplication;
+import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityRegisterBinding;
 import com.sikefeng.chinaren.entity.event.RegisterEvent;
@@ -73,8 +71,8 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
     public void onMessageEvent(RegisterEvent event) {
         String type = event.getType();
         if (type.equals(sendCodeSuccess)) {
-            timeFirst = new TimeCount(getBinding().btnSendCode, defaultTime, seconds);
-            timeFirst.start();
+//            timeFirst = new TimeCount(getBinding().btnSendCode, defaultTime, seconds);
+//            timeFirst.start();
         }
     }
 
@@ -95,31 +93,31 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
         getBinding().setPresenter(presenter);
         getBinding().setViewModel(presenter.getViewModel());
         setToolbar(getBinding().toolbar);
-        getBinding().btnSendCode.setOnClickListener(this);
-        getBinding().cbVisiblePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    //选择状态 显示明文--设置为可见的密码
-                    getBinding().newPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                } else {
-                    //默认状态显示密码--设置文本 要一起写才能起作用 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    getBinding().newPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                }
-            }
-        });
+//        getBinding().btnSendCode.setOnClickListener(this);
+//        getBinding().cbVisiblePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    //选择状态 显示明文--设置为可见的密码
+//                    getBinding().newPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+//                } else {
+//                    //默认状态显示密码--设置文本 要一起写才能起作用 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
+//                    getBinding().newPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                }
+//            }
+//        });
         getBinding().btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String loginName = getBinding().loginName.getText().toString();
-                String verCode = getBinding().verCode.getText().toString();
-                String name = getBinding().name.getText().toString();
-                String newPassword = getBinding().newPassword.getText().toString();
-                if (TextUtils.isEmpty(loginName)) {
+                String phone = getBinding().phone.getText().toString();
+                String verCode = getBinding().code.getText().toString();
+                String nickName = getBinding().nickName.getText().toString();
+                String newPassword = getBinding().password.getText().toString();
+                if (TextUtils.isEmpty(phone)) {
                     ToastUtils.showShort(R.string.phone_empty);
                     return;
                 }
-                boolean isPhoneNumber = VerificationUtil.isMobile(loginName);
+                boolean isPhoneNumber = VerificationUtil.isMobile(phone);
                 if (!isPhoneNumber) {
                     ToastUtils.showShort(R.string.phone_not_format);
                     return;
@@ -128,7 +126,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
                     ToastUtils.showShort(R.string.code_empty);
                     return;
                 }
-                if (TextUtils.isEmpty(name)) {
+                if (TextUtils.isEmpty(nickName)) {
                     ToastUtils.showShort(R.string.name_empty);
                     return;
                 }
@@ -144,10 +142,12 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
                     ToastUtils.showShort(MyApplication.getContext().getString(R.string.network_disconnect));
                     return;
                 }
-                userBean.setLoginName(loginName);
-                userBean.setVerCode(verCode);
-                userBean.setName(name);
-                userBean.setNewPassword(newPassword);
+                userBean.setDevice("1"); //登录设备（0.微信小程序 1.Android 2.IOS）
+                userBean.setPhone(phone);
+                userBean.setCode(verCode);
+                userBean.setNickName(nickName);
+                userBean.setPassword(newPassword);
+                userBean.setLoginName(phone);
                 presenter.registerUser(userBean);
             }
         });
@@ -163,7 +163,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> impl
                     ToastUtils.showShort(MyApplication.getContext().getString(R.string.network_disconnect));
                     return;
                 }
-                String loginName = getBinding().loginName.getText().toString();
+                String loginName = getBinding().phone.getText().toString();
                 if (TextUtils.isEmpty(loginName)) {
                     ToastUtils.showShort(R.string.phone_empty);
                     return;

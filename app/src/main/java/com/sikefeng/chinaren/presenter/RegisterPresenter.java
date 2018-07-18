@@ -108,12 +108,10 @@ public class RegisterPresenter extends BasePresenter<IRBaseView, RegisterViewMod
                         } else {
                             ToastUtils.showShort(msg);
                         }
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.i(e.getMessage() + "--------Throwable-2---------" + e.toString());
                         StyledDialog.dismissLoading();
                     }
 

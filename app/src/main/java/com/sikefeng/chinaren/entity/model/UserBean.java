@@ -2,126 +2,90 @@
 package com.sikefeng.chinaren.entity.model;
 
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
+public class UserBean  {
 
-public class UserBean extends RealmObject {
-    /**
-     * 用户ID
-     */
-    @PrimaryKey
-    private String userId;
-    /**
-     * 用户token
-     */
-    private String token;
-    /**
-     * 备注
-     */
-    private String remarks;
-    /**
-     * 创建时间
-     */
-    private String createDate;
-    /**
-     * 登录名
-     */
-    private String loginName;
-    /**
-     * 密码
-     */
-    private String newPassword;
-    /**
-     * 验证码
-     */
-    private String verCode;
-    /**
-     * 工号
-     */
-    private String no;
-    /**
-     * 用户真实名称
-     */
-    private String name;
-    /**
-     * 邮件地址
-     */
-    private String email;
-    /**
-     * 电话号码
-     */
-    private String phone;
-    /**
-     * 移动电话号码
-     */
-    private String mobile;
-    /**
-     * 用户类别
-     */
-    private String userType;
-    /**
-     * 用户头像
-     */
-    private String photo;
-    /**
-     * 后台接口返回验证码code
-     */
-    private String code;
+    private String token; //Token
+    private String code; //验证码
+    private String loginName; //登录账号
+    private String password; //登录密码
+    private String phone; //手机号码
+    private String wxOpenId; //微信openID
+    private String IP; //用户登录IP
+    private String city; //用户所在城市
+    private String gender; //性别 (0.女 1.男)
+    private String nickName; //昵称
+    private String province; //省份
+    private String avatarUrl; //头像
+    private String background; //背景图片
+    private String device; //登录设备（0.微信小程序 1.Android 2.IOS）
+    private String motto; //座右铭
+    private String unique; //唯一标识
 
-    public String getUserId() {
-        return userId;
+    public UserBean() {
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public String getWxOpenId() {
+        return wxOpenId;
     }
 
-    public String getRemarks() {
-        return remarks;
+    public void setWxOpenId(String wxOpenId) {
+        this.wxOpenId = wxOpenId;
     }
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
+    public String getIP() {
+        return IP;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public void setIP(String IP) {
+        this.IP = IP;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public String getCity() {
+        return city;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public String getGender() {
+        return gender;
     }
 
-    public String getNo() {
-        return no;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public String getNickName() {
+        return nickName;
     }
 
-    public String getName() {
-        return name;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getProvince() {
+        return province;
     }
 
-    public String getEmail() {
-        return email;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getDevice() {
+        return device;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
     }
 
     public String getPhone() {
@@ -132,53 +96,20 @@ public class UserBean extends RealmObject {
         this.phone = phone;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
-    public String getVerCode() {
-        return verCode;
-    }
-
-    public void setVerCode(String verCode) {
-        this.verCode = verCode;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getCode() {
@@ -189,6 +120,36 @@ public class UserBean extends RealmObject {
         this.code = code;
     }
 
+    public String getMotto() {
+        return motto;
+    }
 
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+
+    public String getUnique() {
+        return unique;
+    }
+
+    public void setUnique(String unique) {
+        this.unique = unique;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
 }
 

@@ -145,8 +145,8 @@ public class ForgetPwdActivity extends BaseActivity<ActivityForgetpwdBinding> im
                     return;
                 }
                 userBean.setLoginName(loginName);
-                userBean.setVerCode(verCode);
-                userBean.setNewPassword(newPassword);
+//                userBean.setVerCode(verCode);
+//                userBean.setNewPassword(newPassword);
                 presenter.forgetPwd(userBean);
             }
         });

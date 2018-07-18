@@ -35,7 +35,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         SwipeBackHelper.onCreate(this); //初始化右滑返回上一级界面
         super.onCreate(savedInstanceState);
-        ImmersionBar.with(this).init(); //设置沉浸式状态栏样式
+//        ImmersionBar.with(this).init(); //设置沉浸式状态栏样式
         if(isEnableEventBus() && !EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }

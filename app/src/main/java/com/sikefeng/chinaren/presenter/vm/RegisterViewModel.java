@@ -41,6 +41,6 @@ public class RegisterViewModel extends BaseViewModel {
      */
     public void setUserData(String verCode){
         currentBinding.setUserBean(user);
-        user.setVerCode(verCode);
+//        user.setVerCode(verCode);
     }
 }

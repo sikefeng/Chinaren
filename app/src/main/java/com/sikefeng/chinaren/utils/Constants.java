@@ -24,17 +24,18 @@ public class Constants {
     public static final String IS_EXIT = "isExit";// 标记是否手动退出
     public static final String ISLOGIN = "isLogin";// 标记是否登录
     public static final String TOKEN = "token";//用户token
-    public static final String UID = "id";// 用户uid
     public static final String EMAIL = "email";// 登录账号
     public static final String LOGINNAME = "loginName";//用户昵称
     public static final String NEWPASSWORD = "newPassword";//密码
     public static final String GENDER = "gender";//性别
-    public static final String NAME = "name";//昵称
+    public static final String MOTTO = "motto";//座右铭
+    public static final String NICKNAME = "nickName";//昵称
     public static final String USERTYPE = "userType";//用户类型
-    public static final String PHOTO = "photo";//头像
+    public static final String AVATAR = "avatarUrl";//头像
     public static final String STATUE = "status";//是否冻结0否1是
     public static final String PHONE = "phone";//手机号码
-    public static final String BITTHDAY = "birthday";//生日
+    public static final String UNIQUE = "unique";//唯一标识
+    public static final String BACKGROUND = "background";//背景图片
 
     //密码长度限制
     public static final int PWD_LENGTH = 6; //密码最小长度

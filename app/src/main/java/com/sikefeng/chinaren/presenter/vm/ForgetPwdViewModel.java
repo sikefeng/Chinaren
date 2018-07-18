@@ -42,7 +42,7 @@ public class ForgetPwdViewModel extends BaseViewModel {
      */
     public void setUserData(String verCode){
         currentBinding.setUserBean(user);
-        user.setVerCode(verCode);
+        user.setCode(verCode);
     }
 
 

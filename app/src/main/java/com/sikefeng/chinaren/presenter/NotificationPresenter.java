@@ -88,9 +88,9 @@ public class NotificationPresenter extends BasePresenter<IRBaseView, Notificatio
             imgUrls = new ArrayList<>(count);
         }
         imgUrls.clear();
-        for (UserBean bean : getViewModel().getAdapter().getData()) {
-            imgUrls.add(bean.getName());
-        }
+//        for (UserBean bean : getViewModel().getAdapter().getData()) {
+//            imgUrls.add(bean.getName());
+//        }
 
         int curPos = holder.getAdapterPositionWrapper() - 1;
 

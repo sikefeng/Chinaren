@@ -56,7 +56,7 @@ public class InfoWinAdapter implements AMap.InfoWindowAdapter, View.OnClickListe
         View view = LayoutInflater.from(mContext).inflate(R.layout.custom_infowindow, null);
         navigation = (LinearLayout) view.findViewById(R.id.navigation_LL);
         call = (LinearLayout) view.findViewById(R.id.cancal_LL);
-        nameTV = (TextView) view.findViewById(R.id.name);
+        nameTV = (TextView) view.findViewById(R.id.agent_name);
         addrTV = (TextView) view.findViewById(R.id.agent_addr);
 
         nameTV.setText(agentName);

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.arouter.utils.TextUtils;
-import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 
@@ -32,7 +31,6 @@ public class GuideActivity extends AppCompatActivity {
         context = GuideActivity.this;
         boolean isLogin = (boolean) SharePreferenceUtils.get(context, Constants.ISLOGIN, false);
         String token = (String) SharePreferenceUtils.get(context, Constants.TOKEN, "");
-        LogUtils.i(isLogin+"-------------"+token);
         if (isLogin && !TextUtils.isEmpty(token)) {
             ARouter.getInstance().build(Constants.MAIN_URL).navigation();
         } else {

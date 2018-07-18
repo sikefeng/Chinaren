@@ -21,19 +21,17 @@ public class LoginUtil {
      * @param userBean 用户实体类
      */
     public static void saveUserData(final Context context, final UserBean userBean) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                /** 保存登陆者的信息 */
-                SharePreferenceUtils.put(context, Constants.TOKEN, userBean.getToken());
-                SharePreferenceUtils.put(context, Constants.UID, userBean.getUserId());
-                SharePreferenceUtils.put(context, Constants.LOGINNAME, userBean.getLoginName());
-                SharePreferenceUtils.put(context, Constants.NEWPASSWORD, userBean.getNewPassword());
-                SharePreferenceUtils.put(context, Constants.NAME, userBean.getName());
-                SharePreferenceUtils.put(context, Constants.USERTYPE, userBean.getUserType());
-                SharePreferenceUtils.put(context, Constants.ISLOGIN, true);//标记用户已经登录
-            }
-        }).start();
+        /** 保存登陆者的信息 */
+        SharePreferenceUtils.put(context, Constants.TOKEN, userBean.getToken());
+        SharePreferenceUtils.put(context, Constants.LOGINNAME, userBean.getLoginName());
+        SharePreferenceUtils.put(context, Constants.NICKNAME, userBean.getNickName());
+        SharePreferenceUtils.put(context, Constants.PHONE, userBean.getPhone());
+        SharePreferenceUtils.put(context, Constants.GENDER, userBean.getGender());
+        SharePreferenceUtils.put(context, Constants.AVATAR, userBean.getAvatarUrl());
+        SharePreferenceUtils.put(context, Constants.MOTTO, userBean.getMotto());
+        SharePreferenceUtils.put(context, Constants.UNIQUE, userBean.getUnique());
+        SharePreferenceUtils.put(context, Constants.BACKGROUND, userBean.getBackground());
+        SharePreferenceUtils.put(context, Constants.ISLOGIN, true);//标记用户已经登录
     }
 
     /**
