@@ -43,6 +43,7 @@ import com.sikefeng.chinaren.entity.model.AppBean;
 import com.sikefeng.chinaren.entity.model.PhoneBean;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.ui.activity.FeedBackActivity;
+import com.sikefeng.chinaren.ui.activity.UserInfoActivity;
 import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
 import com.sikefeng.chinaren.ui.fragment.ContactsFragment;
@@ -147,7 +148,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
                     .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
                     .penaltyLog().penaltyDeath().build());
         }
-//        SwipeBackUtils.disableSwipeActivity(this);
+
 
         List<Fragment> fragmentList = new ArrayList<>();
         myFragment = new MyFragment();
@@ -287,7 +288,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
                         test.equals("");
                         break;
                     case R.id.item_model:
-                        System.out.println("5555555555555");
+                        startActivity(new Intent(mContext, UserInfoActivity.class));
                         break;
                     case R.id.item_about:
                         System.out.println("66666666666666666");

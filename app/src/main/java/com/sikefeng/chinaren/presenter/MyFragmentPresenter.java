@@ -5,6 +5,7 @@ import com.hss01248.dialog.StyledDialog;
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BasePresenter;
 import com.sikefeng.chinaren.core.ServiceHelper;
+import com.sikefeng.chinaren.entity.model.BaseData;
 import com.sikefeng.chinaren.entity.model.UserData;
 import com.sikefeng.chinaren.mvpvmlib.base.IRBaseView;
 import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
@@ -17,8 +18,10 @@ import com.sikefeng.chinaren.utils.ToastUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.http.Query;
 
 import static com.sikefeng.chinaren.utils.Constants.TOKEN;
+import static com.sikefeng.chinaren.utils.Constants.userID;
 
 /**
  * 文件名：ForgetPwdPresenter <br>
@@ -48,7 +51,7 @@ public class MyFragmentPresenter extends BasePresenter<IRBaseView, MyFragmentVie
 
 
     public void exitLogin() {
-        String token= (String) SharePreferenceUtils.get(getContext(),TOKEN,"");
+        String token = (String) SharePreferenceUtils.get(getContext(), TOKEN, "");
         StyledDialog.buildLoading(getContext().getString(R.string.exiting)).show();
         addDisposable(ServiceHelper.getUsersAS().exitLogin(token)
                 .subscribeOn(Schedulers.io())
@@ -81,6 +84,7 @@ public class MyFragmentPresenter extends BasePresenter<IRBaseView, MyFragmentVie
                 })
         );
     }
+
 
 
 }

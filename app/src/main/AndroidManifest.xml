@@ -69,13 +69,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/MainTheme"
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MainTheme" />
         <activity
-            android:theme="@style/MainTheme"
             android:name=".ui.activity.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".ui.activity.WebActivity"
             android:screenOrientation="portrait" />
@@ -144,8 +144,9 @@
         <activity android:name=".ui.activity.ImageListActivity" />
         <activity android:name=".ui.activity.GridImageActivity" />
         <activity android:name=".ui.activity.PreviewActivity" />
-        <activity android:name=".ui.activity.FeedBackActivity"></activity>
-        <activity android:name=".ui.activity.HeadSettingActivity"/>
+        <activity android:name=".ui.activity.FeedBackActivity" />
+        <activity android:name=".ui.activity.HeadSettingActivity" />
+        <activity android:name=".ui.activity.UserInfoActivity"></activity>
     </application>
 
 </manifest>

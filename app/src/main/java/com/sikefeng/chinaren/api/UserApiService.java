@@ -2,6 +2,7 @@
 package com.sikefeng.chinaren.api;
 
 
+import com.sikefeng.chinaren.entity.model.BaseData;
 import com.sikefeng.chinaren.entity.model.UserBean;
 import com.sikefeng.chinaren.entity.model.UserData;
 import com.sikefeng.chinaren.entity.model.UserListData;
@@ -105,7 +106,7 @@ public interface UserApiService {
     Observable<UserData> exitLogin(@Query("token") String token);
 
     @GET("member/member_update")
-    Observable<UserData> updateMember(@Query("type") String type, @Query("value") String value);
+    Observable<BaseData> updateMember(@Query("type") String type, @Query("value") String value);
 
 
 }
