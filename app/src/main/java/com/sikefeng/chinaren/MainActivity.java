@@ -33,8 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.iflytek.cloud.SpeechError;
-
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityMainBinding;
 import com.sikefeng.chinaren.entity.event.MainEvent;
@@ -52,7 +52,6 @@ import com.sikefeng.chinaren.ui.fragment.MyFragment;
 import com.sikefeng.chinaren.utils.AppExit2Back;
 import com.sikefeng.chinaren.utils.AppUtil;
 import com.sikefeng.chinaren.utils.Constants;
-import com.sikefeng.chinaren.utils.DavikActivityUtils;
 import com.sikefeng.chinaren.utils.PhoneUtils;
 import com.sikefeng.chinaren.utils.ResUtils;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
@@ -63,9 +62,11 @@ import com.sikefeng.chinaren.widget.MovingImageView;
 import com.sikefeng.chinaren.widget.MovingViewAnimator;
 import com.sikefeng.chinaren.widget.PopupDialog;
 import com.zhy.changeskin.SkinManager;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -269,6 +270,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         String nickName= (String) SharePreferenceUtils.get(mContext,NICKNAME,"Learn and live.");
         ((TextView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.tvMotto)).setText(motto);
         ((TextView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.nickName)).setText(nickName);
+        SimpleDraweeView headView=(SimpleDraweeView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.headView);
+        headView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, UserInfoActivity.class));
+            }
+        });
         mivMenu = (MovingImageView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.miv_menu);
         // 设置主题
         String themeUrl = SharePreferenceUtils.get(mContext, "theme", "").toString();

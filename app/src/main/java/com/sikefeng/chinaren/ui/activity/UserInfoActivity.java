@@ -1,34 +1,57 @@
 package com.sikefeng.chinaren.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import com.hss01248.dialog.StyledDialog;
 import com.sikefeng.chinaren.R;
-import com.sikefeng.chinaren.core.ServiceHelper;
-import com.sikefeng.chinaren.entity.model.BaseData;
-import com.sikefeng.chinaren.mvpvmlib.utils.LogUtils;
-import com.sikefeng.chinaren.presenter.UserInfoPresenter;
-import com.sikefeng.chinaren.presenter.vm.TestViewModel;
-import com.sikefeng.chinaren.presenter.vm.UserInfoViewModel;
-import com.sikefeng.chinaren.utils.ToastUtils;
+import com.sikefeng.chinaren.databinding.ActivityUserInfoBinding;
+import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
+import static com.sikefeng.chinaren.utils.Constants.GENDER;
+import static com.sikefeng.chinaren.utils.Constants.MOTTO;
+import static com.sikefeng.chinaren.utils.Constants.NICKNAME;
 
 public class UserInfoActivity extends AppCompatActivity {
-     private UserInfoPresenter userInfoPresenter;
+    private ActivityUserInfoBinding currentBinding;
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
+        currentBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_info);
+        mContext = this;
+        initUserInfo();
 
-        userInfoPresenter=new UserInfoPresenter(new UserInfoViewModel());
-        userInfoPresenter.updateMember("motto","LIVE AND LEARN!!!");
     }
 
+    private void initUserInfo() {
+        String nickName = (String) SharePreferenceUtils.get(mContext, NICKNAME, "");
+        String motto = (String) SharePreferenceUtils.get(mContext, MOTTO, "");
+        String gender = (String) SharePreferenceUtils.get(mContext, GENDER, "0");
+        if (gender.equals("0")) {
+            currentBinding.tvGender.setText("女");
+        } else {
+            currentBinding.tvGender.setText("男");
+        }
+        currentBinding.nickName.setText(nickName);
+        currentBinding.tvMotto.setText(motto);
+        currentBinding.ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
+    }
+
+    private void updateUserInfo(String type) {
+        Intent intent = new Intent(mContext, UserInfoActivity.class);
+        intent.putExtra("type", type);
+        startActivity(intent);
+    }
 
 
 }

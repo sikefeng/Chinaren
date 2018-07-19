@@ -70,12 +70,10 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-           />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:screenOrientation="portrait"
-          />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.WebActivity"
             android:screenOrientation="portrait" />
@@ -146,7 +144,8 @@
         <activity android:name=".ui.activity.PreviewActivity" />
         <activity android:name=".ui.activity.FeedBackActivity" />
         <activity android:name=".ui.activity.HeadSettingActivity" />
-        <activity android:name=".ui.activity.UserInfoActivity"></activity>
+        <activity android:name=".ui.activity.UserInfoActivity" />
+        <activity android:name=".ui.activity.UpdateUserInfoActivity"></activity>
     </application>
 
 </manifest>
