@@ -1,5 +1,7 @@
 package com.sikefeng.chinaren.utils;
 
+import android.util.Log;
+
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.ServiceException;
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
@@ -51,5 +53,8 @@ public class FileUploadUtils {
         });
 
     }
+
+
+
 
 }
