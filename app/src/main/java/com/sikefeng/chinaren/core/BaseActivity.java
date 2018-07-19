@@ -12,7 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.jude.swipbackhelper.SwipeBackHelper;
+
 import com.sikefeng.chinaren.mvpvmlib.base.RBaseActivity;
 import com.sikefeng.chinaren.utils.DavikActivityUtils;
 import com.zhy.changeskin.SkinManager;
@@ -33,7 +33,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        SwipeBackHelper.onCreate(this); //初始化右滑返回上一级界面
+
         super.onCreate(savedInstanceState);
 //        ImmersionBar.with(this).init(); //设置沉浸式状态栏样式
         if(isEnableEventBus() && !EventBus.getDefault().isRegistered(this)){
@@ -47,7 +47,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        SwipeBackHelper.onCreate(this); //右滑事件
+
     }
 
     @Override
@@ -57,7 +57,7 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends RBaseActi
             EventBus.getDefault().unregister(this);
         }
         SkinManager.getInstance().unregister(this);
-        SwipeBackHelper.onDestroy(this);
+
 
         ImmersionBar.with(this).destroy(); //销毁沉浸式样式
     }

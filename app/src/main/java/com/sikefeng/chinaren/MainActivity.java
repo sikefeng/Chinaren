@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.iflytek.cloud.SpeechError;
-import com.jude.swipbackhelper.SwipeBackHelper;
+
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityMainBinding;
 import com.sikefeng.chinaren.entity.event.MainEvent;
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);//禁止MainActivity滑动退出APP
+
         mContext = this;
         //加入Activity管理队列
         DavikActivityUtils.getScreenManager().addActivity(this);

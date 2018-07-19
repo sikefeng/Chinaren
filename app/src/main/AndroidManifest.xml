@@ -71,11 +71,11 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainTheme" />
+           />
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainTheme" />
+          />
         <activity
             android:name=".ui.activity.WebActivity"
             android:screenOrientation="portrait" />
