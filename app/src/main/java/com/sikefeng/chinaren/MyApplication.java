@@ -15,6 +15,7 @@ import com.alibaba.sdk.android.oss.ClientConfiguration;
 import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;
 import com.alibaba.sdk.android.oss.common.OSSLog;
+import com.alibaba.sdk.android.oss.common.auth.OSSAuthCredentialsProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alipay.euler.andfix.patch.PatchManager;
@@ -244,14 +245,26 @@ public class MyApplication extends Application {
     }
 
     public static OSS getOSSClient() {
-        String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+//         String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+//        ClientConfiguration conf = new ClientConfiguration();
+//        conf.setConnectionTimeout(15 * 1000); // connction time out default 15s
+//        conf.setSocketTimeout(15 * 1000); // socket timeout，default 15s
+//        conf.setMaxConcurrentRequest(5); // synchronous request number，default 5
+//        conf.setMaxErrorRetry(2); // retry，default 2
+//        OSSLog.enableLog(); //write local log file ,path is SDCard_path\OSSLog\logs.csv
+//        OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("<StsToken.AccessKeyId>", "<StsToken.SecretKeyId>", "<StsToken.SecurityToken>");
+//        OSS oss = new OSSClient(instance.getApplicationContext(), endpoint, credentialProvider, conf);
+//        return oss;
+        String endpoint = "http://oss-cn-shenzhen.aliyuncs.com";
+        // 推荐使用OSSAuthCredentialsProvider，token过期后会自动刷新。
+        String stsServer = "应用服务器地址，例如http://abc.com:8080";
+        OSSCredentialProvider credentialProvider = new OSSAuthCredentialsProvider(stsServer);
+         //config
         ClientConfiguration conf = new ClientConfiguration();
-        conf.setConnectionTimeout(15 * 1000); // connction time out default 15s
-        conf.setSocketTimeout(15 * 1000); // socket timeout，default 15s
-        conf.setMaxConcurrentRequest(5); // synchronous request number，default 5
-        conf.setMaxErrorRetry(2); // retry，default 2
-        OSSLog.enableLog(); //write local log file ,path is SDCard_path\OSSLog\logs.csv
-        OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("<StsToken.AccessKeyId>", "<StsToken.SecretKeyId>", "<StsToken.SecurityToken>");
+        conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
+        conf.setSocketTimeout(15 * 1000); // socket超时，默认15秒
+        conf.setMaxConcurrentRequest(5); // 最大并发请求数，默认5个
+        conf.setMaxErrorRetry(2); // 失败后最大重试次数，默认2次
         OSS oss = new OSSClient(instance.getApplicationContext(), endpoint, credentialProvider, conf);
         return oss;
     }

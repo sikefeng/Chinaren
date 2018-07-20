@@ -105,9 +105,11 @@ public interface UserApiService {
     @GET("member/member_logout")
     Observable<UserData> exitLogin(@Query("token") String token);
 
-    @GET("member/member_update")
-    Observable<BaseData> updateMember(@Query("type") String type, @Query("value") String value);
+    @GET("member/member_updateinfo")
+    Observable<BaseData> updateMemberInfo(@Query("type") String type, @Query("value") String value);
 
+    @POST("member/member_update")
+    Observable<UserData> updateMember(@Body UserBean userBean);
 
 }
 

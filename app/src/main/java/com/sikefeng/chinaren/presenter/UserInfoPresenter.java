@@ -39,7 +39,7 @@ public class UserInfoPresenter extends BasePresenter<IRBaseView, UserInfoViewMod
     }
 
     public void updateMember(String type, String value) {
-        addDisposable(ServiceHelper.getUsersAS().updateMember(type, value)
+        addDisposable(ServiceHelper.getUsersAS().updateMemberInfo(type, value)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<BaseData>() {
