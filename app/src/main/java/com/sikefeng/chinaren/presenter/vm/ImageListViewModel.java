@@ -63,7 +63,6 @@ public class ImageListViewModel extends BaseViewModel {
         }else {
             adapter.addMoreData(data.getData());
         }
-
     }
     /**
      * 功能描述：设置暂无数据视图提示

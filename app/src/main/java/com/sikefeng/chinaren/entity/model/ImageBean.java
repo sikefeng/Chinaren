@@ -1,6 +1,7 @@
 package com.sikefeng.chinaren.entity.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Sikefeng
@@ -12,7 +13,7 @@ public class ImageBean implements Serializable {
 
     private String title;
     private String firstImage;
-    private String imageList;
+    private List<String> imageList;
 
     public ImageBean() {
     }
@@ -33,11 +34,11 @@ public class ImageBean implements Serializable {
         this.firstImage = firstImage;
     }
 
-    public String getImageList() {
+    public List<String> getImageList() {
         return imageList;
     }
 
-    public void setImageList(String imageList) {
+    public void setImageList(List<String> imageList) {
         this.imageList = imageList;
     }
 }

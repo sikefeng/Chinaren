@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
  * 文件描述：<br>
  * 已处理列表数据协调器
  *
- * @author <a href="mailto:sikefeng.xu@xxxxtech.com">Richard</a> <br>
+ * @author Richard
  * @version v0.1  <br>
  * @since JDK 1.8
  */
@@ -98,10 +98,10 @@ public class ImageListPresenter extends BasePresenter<IRBaseView, ImageListViewM
      */
     public void onClickItem(BGABindingViewHolder holder, ImageBean model){
 
-        Intent intent=new Intent(getContext(), GridImageActivity.class);
-        intent.putExtra("imageList",model.getImageList());
-        intent.putExtra("title",model.getTitle());
-        getContext().startActivity(intent);
+//        Intent intent=new Intent(getContext(), GridImageActivity.class);
+//        intent.putExtra("imageList",model.getImageList());
+//        intent.putExtra("title",model.getTitle());
+//        getContext().startActivity(intent);
 
 //        String json = model.getImageList();
 //        json = json.replaceAll(" ", "");
