@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#55555555">
 
     <RelativeLayout
-        android:layout_marginBottom="55dp"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/tv_sure"
-            android:layout_marginLeft="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="确定"
-            android:textColor="@color/text_color"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp">
+
         <ImageView
             android:id="@+id/iv_colse"
-            android:layout_marginTop="20dp"
-            android:paddingRight="20dp"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ai_close"/>
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:src="@mipmap/ai_close" />
+
+        <ImageView
+            android:id="@+id/iv_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:paddingRight="20dp"
+            android:src="@mipmap/ai_save" />
 
         <TextView
-            android:textSize="@dimen/title_size"
             android:id="@+id/tv_title"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AI智能生活" />
+            android:layout_marginTop="40dp"
+            android:gravity="center_horizontal"
+            android:text="AI智能生活"
+            android:textSize="@dimen/title_size" />
 
         <RelativeLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_below="@id/tv_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
             android:id="@+id/rel_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_below="@id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
             android:gravity="center">
 
 

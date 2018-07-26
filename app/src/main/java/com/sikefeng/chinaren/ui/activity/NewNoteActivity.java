@@ -72,10 +72,10 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         }
         getBinding().setNoteBean(noteBean);
         setToolbar(getBinding().toolbar);
-        if (!StringUtil.isBlank(noteBean.getTitleColor())){
-            getBinding().title.setTextColor(Color.parseColor(noteBean.getTitleColor()));
+        if (!StringUtil.isBlank(noteBean.getTitleColor())) {
+            getBinding().etTitle.setTextColor(Color.parseColor(noteBean.getTitleColor()));
         }
-        if (!StringUtil.isBlank(noteBean.getContentColor())){
+        if (!StringUtil.isBlank(noteBean.getContentColor())) {
             getBinding().etContent.setTextColor(Color.parseColor(noteBean.getContentColor()));
         }
         getBinding().toolbar.setOnMenuItemClickListener(onMenuItemClick);
@@ -94,9 +94,9 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         popupDialog = new PopupDialog(mContext, R.layout.popup_select_color);
         RelativeLayout rel_color = popupDialog.getView(R.id.rel_color);
         TextView tv_title = popupDialog.getView(R.id.tv_title);
-        TextView tv_sure = popupDialog.getView(R.id.tv_sure);
         ImageView iv_colse = popupDialog.getView(R.id.iv_colse);
-        tv_sure.setOnClickListener(new View.OnClickListener() {
+        ImageView iv_sure = popupDialog.getView(R.id.iv_sure);
+        iv_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 popupDialog.dismiss();
@@ -104,7 +104,6 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
                 noteBean.setTitleColor(ColorUtils.int2Hex(colorPalette.getSelectColor()));
                 getBinding().etContent.setTextColor(colorPalette.getSelectColor());
                 getBinding().etTitle.setTextColor(colorPalette.getSelectColor());
-//                  tv_title.setTextColor(colorPalette.getSelectColor());
             }
         });
         iv_colse.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +115,7 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
         colorPalette = new ColorPalette(mContext);
         colorPalette.setLastColor(getBinding().etContent.getCurrentTextColor());
         rel_color.addView(colorPalette);
+
         tv_title.setTextColor(getBinding().etContent.getCurrentTextColor());
         popupDialog.setAnimation(android.R.style.Animation_InputMethod);
         popupDialog.showAtLocation(view, Gravity.TOP);
@@ -145,7 +145,6 @@ public class NewNoteActivity extends BaseActivity<ActivityNewNoteBinding> implem
                     } else {
                         newNotePresenter.updateNote(noteBean);
                     }
-
                     break;
             }
             return true;

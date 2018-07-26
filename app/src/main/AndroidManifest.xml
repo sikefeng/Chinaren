@@ -145,7 +145,8 @@
         <activity android:name=".ui.activity.FeedBackActivity" />
         <activity android:name=".ui.activity.HeadSettingActivity" />
         <activity android:name=".ui.activity.UserInfoActivity" />
-        <activity android:name=".ui.activity.UpdateUserInfoActivity"></activity>
+        <activity android:name=".ui.activity.UpdateUserInfoActivity" />
+        <activity android:name=".ui.activity.RecognitionActivity"></activity>
     </application>
 
 </manifest>

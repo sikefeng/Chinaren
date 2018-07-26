@@ -12,7 +12,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
@@ -28,6 +31,7 @@ import com.sikefeng.chinaren.ui.activity.ThemeChangeActivity;
 import com.sikefeng.chinaren.utils.FileUploadUtils;
 import com.sikefeng.chinaren.utils.PickerImageUtils;
 import com.sikefeng.chinaren.utils.SharePreferenceUtils;
+import com.sikefeng.chinaren.widget.PopupDialog;
 import com.sikefeng.chinaren.widget.qrcode.CaptureActivity;
 
 import java.io.File;
@@ -122,7 +126,18 @@ public class MyFragment extends BaseFragment<FragmentMyBinding> implements View.
                 break;
             case R.id.baiduLayout:
 //                openServiceSetting();
-
+                PopupDialog popupDialog=new PopupDialog(mContext, R.layout.popup_url);
+                popupDialog.showAtLocation(view, Gravity.CENTER);
+                EditText edUrl=popupDialog.getView(R.id.edUrl);
+                Button btnSubmit=popupDialog.getView(R.id.btnSubmit);
+                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupDialog.dismiss();
+                        String url=edUrl.getText().toString().trim();
+                        SharePreferenceUtils.put(mContext,"URL",url);
+                    }
+                });
                 break;
             case R.id.scanCode:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));

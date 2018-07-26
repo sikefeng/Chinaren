@@ -160,6 +160,7 @@ dependencies {
     compile 'cn.jzvd:jiaozivideoplayer:6.2.3'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
     compile 'com.aliyun.dpa:oss-android-sdk:+'
+//    compile 'com.carlos.voiceline:mylibrary:1.0.6'
 
     compile(rootProject.ext.support["appcompat-v7"]) {
         exclude module: 'support-annotations'

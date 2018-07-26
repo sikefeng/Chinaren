@@ -26,7 +26,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="#fafcd0">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/AppBarLayout01"
@@ -36,12 +36,13 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/status_bar_height"
-                android:background="@color/colorPrimary" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/status_bar_height"-->
+                <!--android:background="@color/colorPrimary" />-->
 
             <android.support.v7.widget.Toolbar
+                android:background="@drawable/toolbar_bg"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

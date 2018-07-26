@@ -14,10 +14,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.sdk.android.oss.ClientConfiguration;
 import com.alibaba.sdk.android.oss.OSS;
 import com.alibaba.sdk.android.oss.OSSClient;
-import com.alibaba.sdk.android.oss.common.OSSLog;
 import com.alibaba.sdk.android.oss.common.auth.OSSAuthCredentialsProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
-import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alipay.euler.andfix.patch.PatchManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hss01248.dialog.MyActyManager;
@@ -245,19 +243,10 @@ public class MyApplication extends Application {
     }
 
     public static OSS getOSSClient() {
-//         String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
-//        ClientConfiguration conf = new ClientConfiguration();
-//        conf.setConnectionTimeout(15 * 1000); // connction time out default 15s
-//        conf.setSocketTimeout(15 * 1000); // socket timeout，default 15s
-//        conf.setMaxConcurrentRequest(5); // synchronous request number，default 5
-//        conf.setMaxErrorRetry(2); // retry，default 2
-//        OSSLog.enableLog(); //write local log file ,path is SDCard_path\OSSLog\logs.csv
-//        OSSCredentialProvider credentialProvider = new OSSStsTokenCredentialProvider("<StsToken.AccessKeyId>", "<StsToken.SecretKeyId>", "<StsToken.SecurityToken>");
-//        OSS oss = new OSSClient(instance.getApplicationContext(), endpoint, credentialProvider, conf);
-//        return oss;
+
         String endpoint = "http://oss-cn-shenzhen.aliyuncs.com";
         // 推荐使用OSSAuthCredentialsProvider，token过期后会自动刷新。
-        String stsServer = "应用服务器地址，例如http://abc.com:8080";
+        String stsServer = "http://192.168.0.104:8982/";
         OSSCredentialProvider credentialProvider = new OSSAuthCredentialsProvider(stsServer);
          //config
         ClientConfiguration conf = new ClientConfiguration();

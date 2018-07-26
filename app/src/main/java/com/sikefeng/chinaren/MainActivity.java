@@ -7,7 +7,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -43,6 +46,8 @@ import com.sikefeng.chinaren.entity.model.AppBean;
 import com.sikefeng.chinaren.entity.model.PhoneBean;
 import com.sikefeng.chinaren.mvpvmlib.base.RBasePresenter;
 import com.sikefeng.chinaren.ui.activity.FeedBackActivity;
+import com.sikefeng.chinaren.ui.activity.RecognitionActivity;
+import com.sikefeng.chinaren.ui.activity.UpdateUserInfoActivity;
 import com.sikefeng.chinaren.ui.activity.UserInfoActivity;
 import com.sikefeng.chinaren.ui.activity.VoicerListActivity;
 import com.sikefeng.chinaren.ui.adapter.SimpleFragmentPagerAdapter;
@@ -67,6 +72,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +93,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
     private List<AppBean> appList;//获取已安装APP应用列表
     private boolean isOpenDrawerLayout = false;
     private Context mContext;
+    private MediaPlayer mediaPlayer;
     /**
      * 图片数组
      */
@@ -206,9 +213,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         checkNetWork(); //检测网络状态
         initVoiver(); //语音识别
         initLeftMenu(); //左侧滑动菜单
+
+
     }
 
-    private void initVoiver(){
+    private void initVoiver() {
         speechRecognizerUtils = SpeechRecognizerUtils.getInstance(this);
         appList = MyAccessibilityService.appList;//获取已安装的应用信息
         if (appList == null) {
@@ -260,17 +269,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         getBinding().fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showVoiceListener(view);
+                playRing(true,mContext,R.raw.start);
             }
         });
     }
 
-    private void initLeftMenu(){
-        String motto= (String) SharePreferenceUtils.get(mContext,MOTTO,"");
-        String nickName= (String) SharePreferenceUtils.get(mContext,NICKNAME,"Learn and live.");
+    private void initLeftMenu() {
+        String motto = (String) SharePreferenceUtils.get(mContext, MOTTO, "");
+        String nickName = (String) SharePreferenceUtils.get(mContext, NICKNAME, "Learn and live.");
         ((TextView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.tvMotto)).setText(motto);
         ((TextView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.nickName)).setText(nickName);
-        SimpleDraweeView headView=(SimpleDraweeView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.headView);
+        SimpleDraweeView headView = (SimpleDraweeView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.headView);
+        ImageView ivEditInfo = (ImageView) getBinding().nvMenu.getHeaderView(0).findViewById(R.id.ivEditInfo);
+        ivEditInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, UpdateUserInfoActivity.class));
+            }
+        });
         headView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -326,19 +342,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
                         startActivity(new Intent(mContext, VoicerListActivity.class));
                         break;
                     case R.id.group_item_qr_code:
-                        boolean isChecked = (boolean) SharePreferenceUtils.get(mContext, "mode", false);
-                        SharePreferenceUtils.put(mContext, "mode", !isChecked);
-                        SkinManager.getInstance().changeSkin(!isChecked ? "night" : "");
+//                        boolean isChecked = (boolean) SharePreferenceUtils.get(mContext, "mode", false);
+//                        SharePreferenceUtils.put(mContext, "mode", !isChecked);
+//                        SkinManager.getInstance().changeSkin(!isChecked ? "night" : "");
+                        SkinManager.getInstance().changeSkin("night");
                         break;
                     case R.id.group_item_share_project:
-                        String test = null;
-                        test.equals("");
+//                        String test = null;
+//                        test.equals("");
+                        startActivity(new Intent(mContext, RecognitionActivity.class));
                         break;
                     case R.id.item_model:
                         startActivity(new Intent(mContext, UserInfoActivity.class));
                         break;
                     case R.id.item_about:
-                        System.out.println("66666666666666666");
+
                         break;
                 }
                 item.setCheckable(false);
@@ -348,7 +366,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         });
 
     }
-
 
 
     private PopupDialog popupDialog = null;
@@ -383,6 +400,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         if (speechRecognizerUtils.isListening()) {
             speechRecognizerUtils.stop();
         }
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+        }
+        playRing(false,mContext,R.raw.speen_end);
     }
 
     /**
@@ -442,6 +465,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(networkChangeReceive);
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     @Override
@@ -450,6 +480,37 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements P
         myFragment.onActivityResult(requestCode, resultCode, data);
     }
 
+    private static final float BEEP_VOLUME = 0.10f;
+    private boolean isStart=false;
+    private void playRing(boolean start,Context context,int raw) {
+        isStart=start;
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        }
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                if (isStart){
+                    showVoiceListener(findViewById(R.id.tablayout));
+                }
+            }
+        });
+        mediaPlayer.reset();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            AssetFileDescriptor file = context.getResources().openRawResourceFd(raw);
+            try {
+                mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(), file.getLength());
+            } finally {
+                file.close();
+            }
+            mediaPlayer.setVolume(BEEP_VOLUME, BEEP_VOLUME);
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException ioe) {
+            mediaPlayer.release();
+        }
+    }
 
 
 }

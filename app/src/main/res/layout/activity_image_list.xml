@@ -32,10 +32,6 @@
             android:fitsSystemWindows="false"
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/status_bar_height"
-                android:background="@color/colorPrimary" />
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"

@@ -1,7 +1,5 @@
 package com.sikefeng.chinaren.utils;
 
-import android.util.Log;
-
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.ServiceException;
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
@@ -19,7 +17,7 @@ public class FileUploadUtils {
 
     public static void uploadFile(String path) {
         // 构造上传请求
-        PutObjectRequest put = new PutObjectRequest("aiznsh", "/avatar/first.jpg", path);
+        PutObjectRequest put = new PutObjectRequest("aiznsh", "first.jpg", path);
 // 异步上传时可以设置进度回调
         put.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
             @Override

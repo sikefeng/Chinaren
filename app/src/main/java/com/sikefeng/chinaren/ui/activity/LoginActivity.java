@@ -2,14 +2,16 @@ package com.sikefeng.chinaren.ui.activity;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SlidingDrawer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-
 import com.sikefeng.chinaren.R;
 import com.sikefeng.chinaren.core.BaseActivity;
 import com.sikefeng.chinaren.databinding.ActivityLoginBinding;
@@ -20,8 +22,10 @@ import com.sikefeng.chinaren.presenter.LoginPresenter;
 import com.sikefeng.chinaren.presenter.vm.LoginViewModel;
 import com.sikefeng.chinaren.utils.Constants;
 import com.sikefeng.chinaren.utils.PermissionUtils;
+import com.sikefeng.chinaren.utils.SharePreferenceUtils;
 import com.sikefeng.chinaren.utils.StringUtil;
 import com.sikefeng.chinaren.utils.ToastUtils;
+import com.sikefeng.chinaren.widget.PopupDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -156,7 +160,19 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> implements
                 break;
             //忘记密码
             case R.id.tvForgetPwd:
-                ARouter.getInstance().build(Constants.FORGET_URL).navigation();
+//                ARouter.getInstance().build(Constants.FORGET_URL).navigation();
+                PopupDialog popupDialog=new PopupDialog(LoginActivity.this, R.layout.popup_url);
+                popupDialog.showAtLocation(v, Gravity.CENTER);
+                EditText edUrl=popupDialog.getView(R.id.edUrl);
+                Button btnSubmit=popupDialog.getView(R.id.btnSubmit);
+                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupDialog.dismiss();
+                        String url=edUrl.getText().toString().trim();
+                        SharePreferenceUtils.put(LoginActivity.this,"URL",url);
+                    }
+                });
                 break;
             case R.id.ib_login_qq:
                 threeLogin(0);
